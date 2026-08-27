@@ -1,6 +1,6 @@
 # Calder Documentation
 
-This is the repository for the documentation for the University of Leeds Aire HPC system. It is managed by the University of Leeds [Research Computing Team](https://arc.leeds.ac.uk/team/).
+This is the repository for the documentation for the University of Leeds Calder HPC system. It is managed by the University of Leeds [Research Computing Team](https://arc.leeds.ac.uk/team/).
 
 ## Contributing to the documentation
 
