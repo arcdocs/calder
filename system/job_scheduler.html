@@ -1,0 +1,718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Job Scheduler &#8212; Aire Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'system/job_scheduler';</script>
+    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/aire/system/job_scheduler.html" />
+    <link rel="icon" href="../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Modules and Applications" href="modules_and_applications.html" />
+    <link rel="prev" title="Storage and Filesystems" href="storage_filesystem.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Aire Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire Documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../welcome.html">
+                    Aire User Documentation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/start.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/request_account.html">Requesting an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/logging_on.html">Logging on</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/request_software.html">Requesting new software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/rules_regulations.html">Rules &amp; Regulations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="start.html">System Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="hpc_architecture.html">HPC architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compute_node_types.html">Compute node types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage_filesystem.html">Storage and Filesystems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Job Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules_and_applications.html">Modules and Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="linux_user_environment.html">Linux User Environment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage/job_type.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage/job_example.html">Job Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage/job_priority.html">Job Priority</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_data_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/best_practices.html">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/storage_options.html">Storage Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/filesystem_quotas.html">Filesystem Quotas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/data_transfer.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/data_sharing.html">Data Sharing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage/dependency_management.html">Dependency Management</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../software/start.html">Software on Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/abaqus.html">Abaqus</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../software/applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../software/applications/ansys/ansys_cli.html">Ansys CLI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/applications/ansys/cfx.html">CFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/applications/ansys/chemkin.html">Chemkin Pro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/applications/ansys/fluent.html">Fluent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../software/applications/ansys/ls-dyna.html">LS-DYNA</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/castep.html">CASTEP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/comsol.html">COMSOL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/fleur.html">Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/gaussian.html">Gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/matlab.html">MATLAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/namd.html">NAMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/orca.html">ORCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/rosetta.html">Rosetta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/applications/vasp.html">VASP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/compilers/cuda.html">CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/compilers/gcc.html">GCC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/compilers/intel.html">Intel oneAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/compilers/jdk.html">Java Development Kit</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/dask.html">Dask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/fftw.html">FFTW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/hdf5.html">HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/lapack.html">LAPACK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/netcdf.html">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/openblas.html">OpenBLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/openmpi.html">Open MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/libraries/vtk.html">VTK</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/interpreters/miniforge.html">Miniforge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../software/tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../software/tools/apptainer.html">Apptainer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tools/cmake.html">CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tools/spack.html">Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tools/texlive.html">TeX Live</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../support/start.html">Contact Us</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../privacy_and_cookies.html">Privacy and cookies</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/edit/main/book/system/job_scheduler.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/issues/new?title=Issue%20on%20page%20%2Fsystem/job_scheduler.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/system/job_scheduler.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Job Scheduler</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-job-scheduler">What is a job scheduler?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-a-job-scheduler">Benefits of a job scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-does-aire-use">Which job scheduler does Aire use?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-a-job-to-the-scheduler">Submitting a job to the scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="job-scheduler">
+<span id="page-job-scheduler"></span><h1>Job Scheduler<a class="headerlink" href="#job-scheduler" title="Link to this heading">#</a></h1>
+<p>This page offers a more in-depth overview of the job scheduling system. It is recommended that you familiarise yourself with this content before <a class="reference internal" href="../getting_started/start.html"><span class="std std-doc">getting started</span></a> using Aire.</p>
+<!-- ```{contents}
+:local:
+``` -->
+<section id="what-is-a-job-scheduler">
+<h2>What is a job scheduler?<a class="headerlink" href="#what-is-a-job-scheduler" title="Link to this heading">#</a></h2>
+<p>A job scheduler - also known as a queueing system or workload manager - is a software tool that implements a batch system on an HPC cluster, allowing many users to submit jobs simultaneously.</p>
+<p>The two most popular schedulers in HPC are <a class="reference external" href="https://altair.com/pbs-professional">PBSPro</a> and <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>, though there are others, such as <a class="reference external" href="https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=scheduler-about-lsf-session">LSF</a> and <a class="reference external" href="https://altair.com/grid-engine/">Grid Engine</a>.</p>
+</section>
+<section id="benefits-of-a-job-scheduler">
+<h2>Benefits of a job scheduler<a class="headerlink" href="#benefits-of-a-job-scheduler" title="Link to this heading">#</a></h2>
+<dl class="simple myst">
+<dt>Efficient use of resources</dt><dd><p>HPC systems are very powerful and have a huge capacity for work. They are expensive to run too, and consume lot of energy. It is important for us to run the systems as efficiently as possible and to maximise the amount of work they can do. Job scheduling systems can help us optimise for energy consumption, as well as throughput.</p>
+</dd>
+<dt>Saving users time</dt><dd><p>Some user tasks take a long time to run - even more than a day. You might want to run a long connected sequence of runs, or run the same task many times with lots of different parameters. Doing this directly from a PC by hand can become very tedious and error prone. A job scheduling system allows us to automate the running of work so that you don’t have to monitor your terminal for hours on end, and can set up complex workflows, leaving it to the job scheduling system to keep things moving.</p>
+</dd>
+<dt>Fair-sharing</dt><dd><p>A job scheduler can be configured to allocate compute resources fairly to different users and groups. For example, a user who has recently submitted a large job may need to wait longer for their job to run than another user who has not recently run a job.</p>
+</dd>
+</dl>
+</section>
+<section id="which-job-scheduler-does-aire-use">
+<h2>Which job scheduler does Aire use?<a class="headerlink" href="#which-job-scheduler-does-aire-use" title="Link to this heading">#</a></h2>
+<p>Aire uses the Slurm system, which is used in many other UK University HPC centres. The old ARC3 and ARC4 HPC systems used Grid Engine. Fortunately, it is quite easy for users who are familiar with Grid Engine to transition to Slurm.</p>
+<div class="admonition-used-slurm-before admonition">
+<p class="admonition-title">Used Slurm before?</p>
+<p>Slurm is configured differently at different HPC centres, to meet the differing requirements of their users. However, most of the commands and parameters you use on your jobs will be the same or similar.</p>
+</div>
+</section>
+<section id="submitting-a-job-to-the-scheduler">
+<h2>Submitting a job to the scheduler<a class="headerlink" href="#submitting-a-job-to-the-scheduler" title="Link to this heading">#</a></h2>
+<p>To submit a job to the scheduler, you must first create a job script to run your program. In the script, you will specify any particular data or parameters needed to run your program. You can then submit the script to the job scheduling system using Slurm’s <a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code></a> command for batch mode or <a class="reference external" href="https://slurm.schedmd.com/srun.html"><code class="docutils literal notranslate"><span class="pre">srun</span></code></a> command for interactive jobs. In your script or run command, you will include some information for the scheduling system to inform it about the size and shape of the job, and the resources it will need to run.</p>
+<p>Some commonly used parameters are:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--job-name=&lt;name&gt;</span></code></p></td>
+<td><p>Specifies the job name to be displayed. Use a meaningful name to distinguish between different jobs.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--time=&lt;T&gt;</span></code> where <code class="docutils literal notranslate"><span class="pre">&lt;T&gt;</span></code> has format <code class="docutils literal notranslate"><span class="pre">hh:mm:ss</span></code></p></td>
+<td><p>Specifies the walltime (the amount of time you expect the run to take). Add a small safety margin (e.g., 20% extra) to account for variation. Over-estimating walltime may delay the start of your job.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--cpus-per-task=&lt;ncpus&gt;</span></code></p></td>
+<td><p>Specifies the number of CPUs your job will use. Serial jobs use only 1 CPU, while parallel jobs can use more. It is important to specify this correctly. Slurm defaults to a single CPU if this parameter is omitted.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--mem=&lt;size&gt;[units]</span></code></p></td>
+<td><p>Specifies the total amount of memory required for the job. Avoid over-estimating as it may delay your job and/or deprive other jobs of memory.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--gpus=[type:]&lt;number&gt;</span></code></p></td>
+<td><p>Specifies the number of GPUs required. If your code uses GPUs, you will need to request this.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For the full list of options, please refer to the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">Slurm documentation</a></p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>To learn more about writing job scripts for different types of job, and to see examples, check out <a class="reference internal" href="../usage/job_type.html"><span class="std std-doc">Job Types</span></a> and <a class="reference internal" href="../usage/job_example.html"><span class="std std-doc">Job Examples</span></a>.</p>
+</div>
+</section>
+<section id="after-a-job-is-submitted">
+<h2>After a job is submitted<a class="headerlink" href="#after-a-job-is-submitted" title="Link to this heading">#</a></h2>
+<p>Once it is submitted, Slurm looks for a space to fit your job into, and if space is free, will start the job running immediately. However as many other users will often be using the system too, the job is likely to be placed in a queue, waiting to run when resource become available as other jobs finish.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Check the status of your job using the <a class="reference external" href="https://slurm.schedmd.com/squeue.html"><code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> command.</p>
+</div>
+<p>The time you wait can vary, depending on how much work there is on the system and how much is waiting to run. Your jobs will be assigned to a partition, which is part of the apparatus used by the scheduler to manage the work. Which partition your job goes into is not important in terms of how quickly the job may run.</p>
+<p>When resources become free, Slurm will run your job and when it completes, it will return the output file to your directory.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./system"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="storage_filesystem.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Storage and Filesystems</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="modules_and_applications.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Modules and Applications</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-job-scheduler">What is a job scheduler?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-a-job-scheduler">Benefits of a job scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-does-aire-use">Which job scheduler does Aire use?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-a-job-to-the-scheduler">Submitting a job to the scheduler</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="#" id="open_preferences_center">Update cookies preferences</a>
+</p>
+<!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Aire User Documentation","website_privacy_policy_url":"https://comms.leeds.ac.uk/websites/policy-on-privacy-and-cookie-notices/"});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RZDCG2LMBZ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RZDCG2LMBZ');
+</script>
+<!-- end of Google Analytics-->
+
+<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a></noscript>
+<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

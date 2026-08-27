@@ -1,0 +1,855 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Filesystem Quotas &#8212; Aire Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage/file_data_management/filesystem_quotas';</script>
+    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/aire/usage/file_data_management/filesystem_quotas.html" />
+    <link rel="icon" href="../../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Transfer" href="data_transfer.html" />
+    <link rel="prev" title="Storage Options" href="storage_options.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Aire Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire Documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../welcome.html">
+                    Aire User Documentation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/start.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_account.html">Requesting an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/logging_on.html">Logging on</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_software.html">Requesting new software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/rules_regulations.html">Rules &amp; Regulations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../system/start.html">System Overview</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../system/hpc_architecture.html">HPC architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/compute_node_types.html">Compute node types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/storage_filesystem.html">Storage and Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/job_scheduler.html">Job Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/modules_and_applications.html">Modules and Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/linux_user_environment.html">Linux User Environment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../start.html">Using Aire</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../job_type.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../job_example.html">Job Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../job_priority.html">Job Priority</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="start.html">File and Data Management</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="storage_options.html">Storage Options</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Filesystem Quotas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_transfer.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_sharing.html">Data Sharing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependency_management.html">Dependency Management</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../software/start.html">Software on Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/abaqus.html">Abaqus</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../software/applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ansys_cli.html">Ansys CLI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/cfx.html">CFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/chemkin.html">Chemkin Pro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/fluent.html">Fluent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ls-dyna.html">LS-DYNA</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/castep.html">CASTEP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/comsol.html">COMSOL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/fleur.html">Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/gaussian.html">Gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/matlab.html">MATLAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/namd.html">NAMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/orca.html">ORCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/rosetta.html">Rosetta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/vasp.html">VASP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/cuda.html">CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/gcc.html">GCC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/intel.html">Intel oneAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/jdk.html">Java Development Kit</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/dask.html">Dask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/fftw.html">FFTW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/hdf5.html">HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/lapack.html">LAPACK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf.html">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openblas.html">OpenBLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openmpi.html">Open MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/vtk.html">VTK</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/interpreters/miniforge.html">Miniforge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/apptainer.html">Apptainer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/cmake.html">CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/spack.html">Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/texlive.html">TeX Live</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/start.html">Contact Us</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../privacy_and_cookies.html">Privacy and cookies</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/edit/main/book/usage/file_data_management/filesystem_quotas.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/issues/new?title=Issue%20on%20page%20%2Fusage/file_data_management/filesystem_quotas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/usage/file_data_management/filesystem_quotas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Filesystem Quotas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-quotas">Default quotas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-your-quota-usage">Monitoring Your Quota Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-if-you-hit-your-quota">What Happens If You Hit Your Quota?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-if-you-hit-your-quota">What To Do If You Hit Your Quota</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quota-requests-user-guidelines-and-policy">Quota Requests: User Guidelines and Policy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filesystem-overview-and-best-practices">Filesystem Overview and Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-request-a-quota-increase">When to Request a Quota Increase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-nature-of-quota-increases">Temporary Nature of Quota Increases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-justify-a-quota-increase">How to Justify a Quota Increase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-the-period-ends">What Happens When the Period Ends?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-compliance-policy">Non-Compliance Policy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-request-a-quota-increase">How to Request a Quota Increase</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="filesystem-quotas">
+<span id="page-quotas"></span><h1>Filesystem Quotas<a class="headerlink" href="#filesystem-quotas" title="Link to this heading">#</a></h1>
+<p>We use quotas on the filesystems to manage the usage of the space fairly among the users and to try to avoid or reduce situations where a filesystem fails. If you believe you have a genuine need for additional storage, a request can be made — but please ensure you have read the full documentation first and confirmed that you are following all recommended practices for managing your current quota.</p>
+<p>The quota system tracks two key metrics: the amount of disk space used and the number of inodes.</p>
+<ul class="simple">
+<li><p>The <strong>space quota</strong> limits the total size of your data.</p></li>
+<li><p>The <strong>inode quota</strong> limits the number of files and directories you can create.</p></li>
+</ul>
+<section id="default-quotas">
+<h2>Default quotas<a class="headerlink" href="#default-quotas" title="Link to this heading">#</a></h2>
+<p>By default, all users are assigned storage quotas to ensure fair access to shared resources. These default limits vary depending on the filesystem and are designed to accommodate typical research workloads. The following table outlines the standard quota allocations for each quoted storage filesystem.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Filesystem</p></th>
+<th class="head"><p>Default Space Quota</p></th>
+<th class="head"><p>Default Inode Quota</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Home Folder (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>)</p></td>
+<td><p>65GB</p></td>
+<td><p>1,500,000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>)</p></td>
+<td><p>1TB</p></td>
+<td><p>1,500,000</p></td>
+</tr>
+<tr class="row-even"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>)</p></td>
+<td><p>1TB</p></td>
+<td><p>1,500,000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="monitoring-your-quota-usage">
+<h2>Monitoring Your Quota Usage<a class="headerlink" href="#monitoring-your-quota-usage" title="Link to this heading">#</a></h2>
+<p>It’s important to regularly check your storage usage to avoid interruptions caused by hitting quota limits. The following table shows how you can monitor both your space and inode quota usage using simple commands.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Filesystem</p></th>
+<th class="head"><p>Command to Check Quota</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Home Folder (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">quota</span> <span class="pre">-s</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">quota</span> <span class="pre">-h</span> <span class="pre">-u</span> <span class="pre">$USER</span> <span class="pre">/scratch</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">quota</span> <span class="pre">-h</span> <span class="pre">-u</span> <span class="pre">$USER</span> <span class="pre">/flash</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><em>Note: The <code class="docutils literal notranslate"><span class="pre">quota</span></code> command is used for network-mounted filesystems like NFS, which is the case for your Home Folder, and the <code class="docutils literal notranslate"><span class="pre">lfs</span> <span class="pre">quota</span></code> command is specific to Lustre filesystems, which is the case for shared high-performance filesystems such as Scratch or Flash. The flags <code class="docutils literal notranslate"><span class="pre">-s</span></code> and <code class="docutils literal notranslate"><span class="pre">-h</span></code> displays sizes in a human-readable format.</em></p>
+<p>If your usage is larger than you were expecting, you should investigate what folder/file is using the extra space. The following command will help you to investigate the space usage:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>du<span class="w"> </span>-ah<span class="w"> </span>--max-depth<span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-rh
+</pre></div>
+</div>
+<p>This command will list all folders and files (<code class="docutils literal notranslate"><span class="pre">-a</span></code>) in current directory (<code class="docutils literal notranslate"><span class="pre">--max-depth=1</span></code>), including hidden objects. The output will be displayed with human readable sizes (<code class="docutils literal notranslate"><span class="pre">-h</span></code>) and with bigger directories/files first (<code class="docutils literal notranslate"><span class="pre">-r</span></code>).</p>
+</section>
+<section id="what-happens-if-you-hit-your-quota">
+<h2>What Happens If You Hit Your Quota?<a class="headerlink" href="#what-happens-if-you-hit-your-quota" title="Link to this heading">#</a></h2>
+<p>When you exceed your storage space or inode quota, the system will block any further attempts to write data. This can lead to a range of issues, including:</p>
+<ul class="simple">
+<li><p><strong>Job failures</strong>: Jobs that attempt to write to disk may fail, often without clear error messages.</p></li>
+<li><p><strong>Interrupted data transfers</strong>: File uploads or processing steps may stop unexpectedly.</p></li>
+<li><p><strong>Software installation issues</strong>: New packages or modules may fail to install.</p></li>
+<li><p><strong>Slow or failed logins</strong>: Login processes that write temporary files (e.g. shell history or environment configuration) can be delayed or disrupted.</p></li>
+<li><p><strong>Broken workflows</strong>: Scripts that create intermediate files, logs, or checkpoints may no longer function correctly.</p></li>
+</ul>
+</section>
+<section id="what-to-do-if-you-hit-your-quota">
+<h2>What To Do If You Hit Your Quota<a class="headerlink" href="#what-to-do-if-you-hit-your-quota" title="Link to this heading">#</a></h2>
+<p>If you’ve hit your quota, it’s important to act quickly to free up space and avoid further disruption. The primary goal is to restore normal system behaviour — such as job execution, file transfers, and login functionality — as soon as possible.</p>
+<p>Start by identifying and removing unnecessary data. Common candidates include:</p>
+<ul class="simple">
+<li><p><strong>Outdated results</strong> and temporary or intermediate files no longer in use.</p></li>
+<li><p><strong>Unused software</strong>: Remove local installations (e.g. from <code class="docutils literal notranslate"><span class="pre">~/.local</span></code>, <code class="docutils literal notranslate"><span class="pre">conda</span></code>, or <code class="docutils literal notranslate"><span class="pre">pip</span></code>) that are no longer needed.</p></li>
+<li><p><strong>Cache folders</strong>, such as <code class="docutils literal notranslate"><span class="pre">.cache/</span></code>, which can silently consume significant space.</p></li>
+</ul>
+<div class="warning admonition">
+<p class="admonition-title">Conda Hidden Files</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span></code> can easily accumulate over 5GB of unused packages, tarballs, and cache files.
+If you’re using <code class="docutils literal notranslate"><span class="pre">miniforge</span></code> and <code class="docutils literal notranslate"><span class="pre">conda</span></code> to manage your software stack, consider running the following periodically:</p>
+<ol class="arabic">
+<li><p>Remove unused environments:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">remove</span> <span class="pre">-n</span> <span class="pre">envNAME</span> <span class="pre">--all</span></code></p>
+</li>
+<li><p>Clean up cache, lock files, unused packages, tarballs, and logs:</p>
+<p><code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">clean</span> <span class="pre">--all</span></code></p>
+</li>
+</ol>
+</div>
+<p>Once you’ve freed up some space, system functions such as login and file operations should begin to stabilise. From there, you can take more structured actions:</p>
+<ul class="simple">
+<li><p><strong>Move completed work</strong> to appropriate long-term or project storage.</p></li>
+<li><p><strong>Ensure you’re using the right storage tier</strong> for your workload (see our <a class="reference internal" href="../../system/storage_filesystem.html#page-storage-overview"><span class="std std-ref">storage overview</span></a> and <a class="reference internal" href="best_practices.html#page-best-practices"><span class="std std-ref">best practices guide</span></a> for more information).</p></li>
+<li><p><strong>Plan your research in stages</strong>, allowing for regular clean up between cycles to stay within your quota.</p></li>
+</ul>
+<div class="tip admonition">
+<p class="admonition-title">Still need more space?</p>
+<p>If, after cleaning up, organising your data, and improving your workflow, you still have a genuine need for more storage, you may request additional quota. See the full guidance below on how to do this.</p>
+</div>
+</section>
+<section id="quota-requests-user-guidelines-and-policy">
+<h2>Quota Requests: User Guidelines and Policy<a class="headerlink" href="#quota-requests-user-guidelines-and-policy" title="Link to this heading">#</a></h2>
+<p>The HPC storage systems are shared, finite resources designed exclusively for active computation. This guideline outlines when users may request an increase in their storage quota and the conditions for approval.
+All requests will be assessed in the context of overall system availability and fair use.</p>
+<section id="filesystem-overview-and-best-practices">
+<h3>Filesystem Overview and Best Practices<a class="headerlink" href="#filesystem-overview-and-best-practices" title="Link to this heading">#</a></h3>
+<p>Before requesting a quota increase, ensure that you are using the storage filesystems appropriately:</p>
+<ul class="simple">
+<li><p>Follow our <a class="reference internal" href="best_practices.html#page-best-practices"><span class="std std-ref">Best Practices</span></a> for data management and storage usage.</p></li>
+<li><p>Use appropriate storage areas according our <a class="reference internal" href="../../system/storage_filesystem.html#page-storage-overview"><span class="std std-ref">Storage and Filesystems</span></a> guidance.</p></li>
+<li><p>Understand and respect your <a class="reference internal" href="#page-quotas"><span class="std std-ref">Filesystem Quotas</span></a>, and monitor them regularly.</p></li>
+<li><p>Comply with the <a class="reference internal" href="../../getting_started/rules_regulations.html#page-rules"><span class="std std-ref">Rules and Regulations for using Aire</span></a>.</p></li>
+</ul>
+</section>
+<section id="when-to-request-a-quota-increase">
+<h3>When to Request a Quota Increase<a class="headerlink" href="#when-to-request-a-quota-increase" title="Link to this heading">#</a></h3>
+<p>Quota increases are not automatically granted and must be justified. If you require additional space for active research work, you may submit a request. The following explains which scenarios are considered valid and outlines the types of requests that are typically declined.</p>
+<p>Valid Reasons:</p>
+<ul style="list-style-type: none;">
+  <li>✅ Active research or simulation work requiring additional space.</li>
+  <li>✅ Quota is insufficient for ongoing, legitimate computational needs.</li>
+  <li>✅ Clearly defined workload phases.</li>
+  <li>✅ Unnecessary files have been removed</li>
+</ul>
+<p>Automatically Rejected Requests:</p>
+<ul style="list-style-type: none;">
+  <li>❌ Vague justifications or unspecified timelines</li>
+  <li>❌ Storing inactive data (e.g., old results, duplicate files)</li>
+  <li>❌ Inappropriate use of storage filesystems.</li>
+  <li>❌ Users with unresolved quota policy violations.</li>
+</ul>
+</section>
+<section id="temporary-nature-of-quota-increases">
+<h3>Temporary Nature of Quota Increases<a class="headerlink" href="#temporary-nature-of-quota-increases" title="Link to this heading">#</a></h3>
+<p>All quota increases are time limited. This section explains how long increases can last and what is expected once the period ends.</p>
+<ul class="simple">
+<li><p>Quota increases are granted for a maximum of 6 months.</p></li>
+<li><p>Users must specify an end date when requesting a quota increase.</p></li>
+<li><p>Before the period ends, users must remove or transfer the data.</p></li>
+<li><p>Once the quota increase period ends, quotas will automatically revert to default levels.</p></li>
+<li><p>User can request quota increases as many time as necessary.</p></li>
+</ul>
+</section>
+<section id="how-to-justify-a-quota-increase">
+<h3>How to Justify a Quota Increase<a class="headerlink" href="#how-to-justify-a-quota-increase" title="Link to this heading">#</a></h3>
+<p>Successful quota increase requests will be well justified and complete. The steps below guide you through submitting a successful quota increase request:</p>
+<ul class="simple">
+<li><p>Justification for the increase.</p></li>
+<li><p>Required size, number of files, and target filesystem.</p></li>
+<li><p>Expected end date for the quota increase (max 6 months).</p></li>
+<li><p>Plan for removing/transferring data.</p></li>
+<li><p>Confirmation that current storage usage follows the best practices outlined in this documentation.</p></li>
+</ul>
+<p>Requests that are detailed, timely, and align with active research activities are more likely to be approved.</p>
+<div class="tip admonition">
+<p class="admonition-title">Good Request Example ✅</p>
+<p><em>I am running a series of large-scale molecular dynamics simulations between June and August 2025. Each job produces around 80 GB of temporary output, and I expect to run 2000 simulations (100 different parameters × 20 simulations per parameter), totalling approximately 160 TB. To manage this, I will divide the workflow into batches: processing 20 simulations at a time (1.6 TB), analysing the results, archiving final outputs to external storage, and then removing the raw data. This batching approach means I don’t need to have all 160TB at the same time. Therefore, I request a temporary increase on <strong>Scratch</strong> from 1 TB to <strong>4.8 TB</strong>, allowing me to work on three batches simultaneously. I don’t generate many <strong>files, so no change</strong> is necessary in this aspect. The requested increase should <strong>expire on 31 July 2025</strong>, by which time all <strong>data will be removed</strong> or transferred following the best practices guidance.</em></p>
+</div>
+</section>
+<section id="what-happens-when-the-period-ends">
+<h3>What Happens When the Period Ends?<a class="headerlink" href="#what-happens-when-the-period-ends" title="Link to this heading">#</a></h3>
+<p>Users must manage their data responsibly during and after a quota increase. This section explains what happens to your storage once the extension period expires. At the end of the agreed period:</p>
+<ul class="simple">
+<li><p>The user’s quota returns to default.</p></li>
+<li><p>Data must be deleted or moved beforehand.</p></li>
+<li><p>The system has no backup. Data left after the deadline will be permanently deleted.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Users will be unable to create new files until they are back within their quota. Taking early action helps prevent data loss and workflow failures.</p>
+</div>
+</section>
+<section id="non-compliance-policy">
+<h3>Non-Compliance Policy<a class="headerlink" href="#non-compliance-policy" title="Link to this heading">#</a></h3>
+<p>You are expected to reduce your filesystem usage to the default quota level before the agreed period ends. Failure to reduce usage by the deadline is a policy violation. Consequences are:</p>
+<ul class="simple">
+<li><p>30 days post-deadline: Automatic deletion of all data in the user’s filesystem.</p></li>
+<li><p>Further violations will prevent you from requesting quota increases in the future.</p></li>
+</ul>
+<p><em>Contact the HPC admin team before the deadline if you anticipate delays.</em></p>
+</section>
+<section id="how-to-request-a-quota-increase">
+<h3>How to Request a Quota Increase<a class="headerlink" href="#how-to-request-a-quota-increase" title="Link to this heading">#</a></h3>
+<p>Quota Increase requests are made via the <a href="https://it.leeds.ac.uk/it?id=sc_cat_item&sys_id=ca435a961bd5aa1063cf6467b04bcbe6">HPC Quota Increase Form</a> available in the IT website.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./usage/file_data_management"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="storage_options.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Storage Options</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data_transfer.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Transfer</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#default-quotas">Default quotas</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#monitoring-your-quota-usage">Monitoring Your Quota Usage</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-if-you-hit-your-quota">What Happens If You Hit Your Quota?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-to-do-if-you-hit-your-quota">What To Do If You Hit Your Quota</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#quota-requests-user-guidelines-and-policy">Quota Requests: User Guidelines and Policy</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#filesystem-overview-and-best-practices">Filesystem Overview and Best Practices</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-request-a-quota-increase">When to Request a Quota Increase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#temporary-nature-of-quota-increases">Temporary Nature of Quota Increases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-justify-a-quota-increase">How to Justify a Quota Increase</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#what-happens-when-the-period-ends">What Happens When the Period Ends?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#non-compliance-policy">Non-Compliance Policy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-request-a-quota-increase">How to Request a Quota Increase</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="#" id="open_preferences_center">Update cookies preferences</a>
+</p>
+<!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Aire User Documentation","website_privacy_policy_url":"https://comms.leeds.ac.uk/websites/policy-on-privacy-and-cookie-notices/"});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RZDCG2LMBZ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RZDCG2LMBZ');
+</script>
+<!-- end of Google Analytics-->
+
+<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a></noscript>
+<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

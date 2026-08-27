@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Data Transfer &#8212; Aire Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'usage/file_data_management/data_transfer';</script>
+    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/aire/usage/file_data_management/data_transfer.html" />
+    <link rel="icon" href="../../_static/favicon-32x32.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Data Sharing" href="data_sharing.html" />
+    <link rel="prev" title="Filesystem Quotas" href="filesystem_quotas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../welcome.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Aire Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire Documentation - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../welcome.html">
+                    Aire User Documentation
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/start.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_account.html">Requesting an account</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/logging_on.html">Logging on</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_software.html">Requesting new software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/rules_regulations.html">Rules &amp; Regulations</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../system/start.html">System Overview</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../system/hpc_architecture.html">HPC architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/compute_node_types.html">Compute node types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/storage_filesystem.html">Storage and Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/job_scheduler.html">Job Scheduler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/modules_and_applications.html">Modules and Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/linux_user_environment.html">Linux User Environment</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../start.html">Using Aire</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../job_type.html">Job Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../job_example.html">Job Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../job_priority.html">Job Priority</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="start.html">File and Data Management</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="storage_options.html">Storage Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="filesystem_quotas.html">Filesystem Quotas</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_sharing.html">Data Sharing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../dependency_management.html">Dependency Management</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../software/start.html">Software on Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/abaqus.html">Abaqus</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../../software/applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ansys_cli.html">Ansys CLI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/cfx.html">CFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/chemkin.html">Chemkin Pro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/fluent.html">Fluent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ls-dyna.html">LS-DYNA</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/castep.html">CASTEP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/comsol.html">COMSOL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/fleur.html">Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/gaussian.html">Gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/matlab.html">MATLAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/namd.html">NAMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/orca.html">ORCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/rosetta.html">Rosetta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/applications/vasp.html">VASP</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/cuda.html">CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/gcc.html">GCC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/intel.html">Intel oneAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/jdk.html">Java Development Kit</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/dask.html">Dask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/fftw.html">FFTW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/hdf5.html">HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/lapack.html">LAPACK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf.html">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openblas.html">OpenBLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openmpi.html">Open MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/vtk.html">VTK</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/interpreters/miniforge.html">Miniforge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/apptainer.html">Apptainer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/cmake.html">CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/spack.html">Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../software/tools/texlive.html">TeX Live</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../support/start.html">Contact Us</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../privacy_and_cookies.html">Privacy and cookies</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/edit/main/book/usage/file_data_management/data_transfer.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/arcdocs/aire/issues/new?title=Issue%20on%20page%20%2Fusage/file_data_management/data_transfer.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/usage/file_data_management/data_transfer.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Data Transfer</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus">Globus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-globus-personal-on-aire">Installing Globus Personal on Aire</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-globus-personal-on-aire">Running Globus Personal on Aire</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-globus-knowledge-base-articles">Relevant Globus Knowledge Base Articles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scp">SCP</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="data-transfer">
+<h1>Data Transfer<a class="headerlink" href="#data-transfer" title="Link to this heading">#</a></h1>
+<p>This page provides an overview of data transfer on Aire along with support for our preferred data transfer methods, Globus and scp.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The login nodes on Aire are powerful and have fast connections to the campus network and onward to the JANET network and other universities.</p></li>
+<li><p>The standard Linux tools are available on the login nodes to transfer data to and from the HPC system.</p></li>
+<li><p>Useful commands are <code class="docutils literal notranslate"><span class="pre">scp</span></code> and <code class="docutils literal notranslate"><span class="pre">rsync</span></code>.</p></li>
+<li><p>You can transfer single files or sets of files. While directories can be copied, it can be better to compress files into a single file and transfer that file. This can be achieved using the <code class="docutils literal notranslate"><span class="pre">zip</span></code> command.</p></li>
+<li><p>The login nodes also accept inbound connections for these utilities from other machines on campus (wired connection), such as your desktop or workstation or departmental servers and storage.</p></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>You should make sure any input data required is on your scratch directory before the job starts. If you need to transfer data elsewhere after a job completes, the job should save the data in the scratch directory, and then you can transfer it as a separate task after the job finishes.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You should not transfer data in and out of Aire from running jobs. This ties up the compute nodes waiting for the network and is inefficient.</p>
+</div>
+<p>For detailed instructions on data transfer, please refer to the following KB article:</p>
+<ul class="simple">
+<li><p><a href="https://leeds.service-now.com/it?id=kb_article_view&table=kb_knowledge&sys_kb_id=dfcc76a9fb3b16909eaffefbaeefdc09&searchTerm=KB0018323" target="_blank">KB0018323 - How to transfer data to and from Aire</a></p></li>
+</ul>
+<p>Note that the above articles require you to log in with your University account to view.</p>
+</section>
+<section id="globus">
+<h2>Globus<a class="headerlink" href="#globus" title="Link to this heading">#</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Globus is now our preference for transferring files between OneDrive and Aire, whereas, in the past, users have been advised to use <code class="docutils literal notranslate"><span class="pre">rclone</span></code>. We’d also encourage you to use Isilon <code class="docutils literal notranslate"><span class="pre">/resstore</span></code> more than OneDrive or N:\ drive for research data files.
+Visit the Library’s <a href="https://library.leeds.ac.uk/info/14062/research-data-management/65/storing-and-handling-data/3">Storing and handling data</a> section for more information about different storage services.
+Refer to <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sys_kb_id=a15bba21fb943a909eaffefbaeefdcb5&table=kb_knowledge&searchTerm=KB0017543">KB0017543</a> for help with data transfer between University storage systems and Globus connection points.</p>
+</div>
+<p>Globus enables you to quickly, securely and reliably move your data (in particular, large files) to and from locations you have access to, using GridFTP protocol optimized for high-bandwidth wide-area networks. We are currently working to add Globus centrally to Aire.</p>
+<p>Globus Personal provides an effective interim solution for file transfers to/from Aire to locations such as University-managed Research IT Storage (<code class="docutils literal notranslate"><span class="pre">resstore</span></code>: <a href="https://it.leeds.ac.uk/it?id=kb_article&sysparm_article=KB0018026" target="_blank">Research Data Storage Service Provision</a>)  while we work towards enabling the central Globus client infrastructure. The personal client allows users to make both their Aire home directory and <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> visible to Globus, enabling efficient data transfers between Aire and Globus-enabled endpoints such as <code class="docutils literal notranslate"><span class="pre">resstore</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You cannot transfer files between two instances of Globus personal without a subscription; you must connect between an instance of Globus personal and a Globus client endpoint.</p>
+<p>This means that at the moment (until we have the central client enabled on Aire):</p>
+<ul class="simple">
+<li><p>You can transfer files between Globus Personal on Aire and Globus endpoints such as <code class="docutils literal notranslate"><span class="pre">resstore</span></code>;</p></li>
+<li><p>You can transfer files between Globus Personal on Aire and Globus endpoints such as OneDrive;</p></li>
+<li><p>You <em>cannot</em> transfer files between Globus Personal on Aire and Globus Personal on your PC or laptop (without a subscription);</p></li>
+<li><p>You can transfer files between Globus Personal on Aire and Globus endpoints such as OneDrive/<code class="docutils literal notranslate"><span class="pre">resstore</span></code>, and then between OneDrive/<code class="docutils literal notranslate"><span class="pre">resstore</span></code>; and Globus Personal on your PC or laptop.</p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to connect Globus to your OneDrive account, you will need to request approval. Refer to the
+<a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018501" target="_blank">KB0018501 article.</a></p>
+</div>
+<p>In addition to the specific installation instructions provided below for Aire, you will also find the Knowledge Base articles linked below useful for setting up Globus and accessing your storage.</p>
+<section id="installing-globus-personal-on-aire">
+<h3>Installing Globus Personal on Aire<a class="headerlink" href="#installing-globus-personal-on-aire" title="Link to this heading">#</a></h3>
+<p>The following guidance has been adapted from the <a class="reference external" href="https://docs.globus.org/globus-connect-personal/install/linux/">Globus documentation (Linux installation instructions)</a>:</p>
+<ol class="arabic">
+<li><p>After logging in to Aire, download Globus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>wget<span class="w"> </span>https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz
+</pre></div>
+</div>
+</li>
+<li><p>Extract the tarball:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>tar<span class="w"> </span>xzf<span class="w"> </span>globusconnectpersonal-latest.tgz
+<span class="c1"># this will produce a versioned globusconnectpersonal directory</span>
+<span class="c1"># replace `x.y.z` in the line below with the version number you see, or use tab complete</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>globusconnectpersonal-x.y.z
+</pre></div>
+</div>
+</li>
+<li><p>Run Globus personal to complete set-up without a GUI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./globusconnectpersonal<span class="w"> </span>-setup<span class="w"> </span>--no-gui
+</pre></div>
+</div>
+<p>This will launch Globus, and your terminal should provide you with a URL to visit on your local machine to complete set-up (including University of Leeds SSO); you will then receive a key to copy and paste back into the command line on Aire. You will then need to set a name for this endpoint (e.g. <code class="docutils literal notranslate"><span class="pre">aire_endpoint</span></code> or something sensible). Please see the <a class="reference external" href="https://docs.globus.org/globus-connect-personal/install/linux/#running_with_no_gui">Globus documentation</a> for further details.</p>
+</li>
+<li><p>You can close Globus once set-up is complete.</p></li>
+<li><p>Modify or create the file <code class="docutils literal notranslate"><span class="pre">config-paths</span></code> (assuming you are still in the folder <code class="docutils literal notranslate"><span class="pre">globusconnectpersonal-x.y.z</span></code>) with your favourite text editor (this command will create the file if it doesn’t already exist):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nano<span class="w"> </span>~/.globusonline/lta/config-paths
+</pre></div>
+</div>
+<p>This allows us to edit Globus permissions to various file paths. The <code class="docutils literal notranslate"><span class="pre">config-paths</span></code> file is a headerless CSV with the following content:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&lt;path&gt;,&lt;sharing<span class="w"> </span>flag&gt;,&lt;R/W<span class="w"> </span>flag&gt;
+</pre></div>
+</div>
+<p>The nano command may create a new empty file, or you may already have this file, depending on the version of Globus. If there is already content in this file, you’ll see something like this:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/,0,1
+</pre></div>
+</div>
+<p>Which provides access to your home directory (<code class="docutils literal notranslate"><span class="pre">~/</span></code>), doesn’t allow sharing (<code class="docutils literal notranslate"><span class="pre">0</span></code> is the sharing flag), and and allows read/write access (<code class="docutils literal notranslate"><span class="pre">1</span></code> is the R/W flag). Don’t worry if the file is empty; just add the above line and save in order to access your home directory (or <code class="docutils literal notranslate"><span class="pre">~/some_directory/,0,1</span></code> for a sub-directory).</p>
+<p>You can also add <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> with the same permissions by adding the following line to the file and saving:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$/mnt/scratch/<span class="nv">$USER</span>,0,1
+</pre></div>
+</div>
+<p>Or again, a sub-directory: <code class="docutils literal notranslate"><span class="pre">$/mnt/scratch/$USER/some_directory/,0,1</span></code>.</p>
+<p>Read more about <a class="reference external" href="https://docs.globus.org/globus-connect-personal/install/linux/#config-paths">Managing Globus Connect Personal Directory Permissions via the Config File in the official documentation</a>.</p>
+</li>
+</ol>
+</section>
+<section id="running-globus-personal-on-aire">
+<h3>Running Globus Personal on Aire<a class="headerlink" href="#running-globus-personal-on-aire" title="Link to this heading">#</a></h3>
+<ol class="arabic">
+<li><p>Please read the <a class="reference external" href="https://docs.globus.org/guides/tutorials/manage-files/transfer-files/">Globus webapp documentation</a> and ensure your Globus endpoints are visible under “Connections” from the <a class="reference external" href="https://app.globus.org/">webapp</a>. Your newly configured Aire collection should also be present, but will show the status “offline”.</p></li>
+<li><p>From Aire, run Globus with <code class="docutils literal notranslate"><span class="pre">nohup</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># replace `x.y.z` in the line below with the version number you see</span>
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>globusconnectpersonal-x.y.z
+$<span class="w"> </span>./globusconnectpersonal<span class="w"> </span>-start<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+<p>If you refresh the <a class="reference external" href="https://app.globus.org/">webapp</a>, you should now see your Aire collection as “online”. Because we used <code class="docutils literal notranslate"><span class="pre">&amp;</span></code>, this will continue to run even when you log out of Aire, making disruption-free transfers easier. Note that if you edit any configuration etc. you will need to stop and restart Globus:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./globusconnectpersonal<span class="w"> </span>-stop
+$<span class="w"> </span>./globusconnectpersonal<span class="w"> </span>-start<span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Using the “File Manager” tab on the left of the screen, select Aire as a collection. By default, the path is to your home directory, however if you made <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> visible as per the installation instructions, you can also enter a path to a directory in this space: <code class="docutils literal notranslate"><span class="pre">/mnt/scratch/&lt;USERNAME&gt;/some_directory</span></code>.</p></li>
+<li><p>Using the UI, you can now transfer data across between Aire and another endpoint.</p></li>
+</ol>
+</section>
+<section id="relevant-globus-knowledge-base-articles">
+<h3>Relevant Globus Knowledge Base Articles<a class="headerlink" href="#relevant-globus-knowledge-base-articles" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0017543" target="_blank">Data transfer between Globus Collections, OneDrive, Microsoft Teams and SharePoint sites</a>: how to connect various University storage with Globus.</p></li>
+<li><p><a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0015444" target="_blank">Getting started with Globus data transfer service</a>: this article introduces Globus and signposts Globus documentation. This KB article also links to the Globus Data Transfer Service request form, to enable Globus on pre-existing University Storage.</p></li>
+<li><p><a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0015522" target="_blank">How to log into Globus</a>: this article shows you how to authorise Globus Web to use your University of Leeds account.</p></li>
+<li><p><a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018026" target="_blank">Information about Research Data Storage Service Provision</a>:available research storage (Globus enabled).</p></li>
+</ul>
+</section>
+</section>
+<section id="scp">
+<h2>SCP<a class="headerlink" href="#scp" title="Link to this heading">#</a></h2>
+<p>Due to the authentication methods required to access Aire, some standard scp clients can be cumbersome as they require repeated authentication during transfer. For a smoother experience, we recommend using MobaXterm on Windows, or CyberDuck or ForkLift on Mac, which handle authentication more efficiently and provide user-friendly interfaces for file transfers. For Linux, using the <code class="docutils literal notranslate"><span class="pre">scp</span></code> command via the terminal is the most straightforward. Refer to the <a href="https://leeds.service-now.com/it?id=kb_article_view&sysparm_article=KB0018323" target="_blank">KB0018323 article</a> for further information on using scp on Aire.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./usage/file_data_management"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="filesystem_quotas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Filesystem Quotas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="data_sharing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Data Sharing</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#globus">Globus</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-globus-personal-on-aire">Installing Globus Personal on Aire</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-globus-personal-on-aire">Running Globus Personal on Aire</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relevant-globus-knowledge-base-articles">Relevant Globus Knowledge Base Articles</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scp">SCP</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By University of Leeds Research Computing Team
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+<div class="extra_footer">
+  <p>
+<a href="#" id="open_preferences_center">Update cookies preferences</a>
+</p>
+<!-- Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+<script type="text/javascript" src="//www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8"></script>
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palette":"dark","language":"en","page_load_consent_levels":["strictly-necessary"],"notice_banner_reject_button_hide":false,"preferences_center_close_button_hide":false,"page_refresh_confirmation_buttons":false,"website_name":"Aire User Documentation","website_privacy_policy_url":"https://comms.leeds.ac.uk/websites/policy-on-privacy-and-cookie-notices/"});
+});
+</script>
+
+<!-- Google Analytics -->
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RZDCG2LMBZ"></script>
+<script type="text/plain" data-cookie-consent="tracking">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RZDCG2LMBZ');
+</script>
+<!-- end of Google Analytics-->
+
+<noscript>Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a></noscript>
+<!-- End Cookie Consent by TermsFeed https://www.TermsFeed.com -->
+
+</div>
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
