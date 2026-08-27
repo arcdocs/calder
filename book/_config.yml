@@ -1,8 +1,8 @@
 # Book settings
-title: Aire Documentation
+title: Calder Documentation
 author: University of Leeds Research Computing Team
 logo: ./assets/img/logo/logo.png
-email: ask-rc@leeds.ac.uk
+email: RCTeam@leeds.ac.uk
 copyright: "2026"
 
 # Auto-exclude files not in the toc
@@ -20,7 +20,7 @@ launch_buttons:
   thebelab                  : false  # Add a thebelab button to pages (requires the repository to run on Binder)
 
 repository:
-  url                       : https://github.com/arcdocs/aire  # The URL to your book's repository
+  url                       : https://github.com/arcdocs/calder  # The URL to your book's repository
   path_to_book              : "book/"  # A path to your book's folder, relative to the repository root.
   branch                    : main  # Which branch of the repository should be used when creating links
 
@@ -51,13 +51,13 @@ html:
       </script>
 
       <!-- Google Analytics -->
-      <script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RZDCG2LMBZ"></script>
+      <script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-4PJ6DH1FJV"></script>
       <script type="text/plain" data-cookie-consent="tracking">
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
 
-        gtag('config', 'G-RZDCG2LMBZ');
+        gtag('config', 'G-4PJ6DH1FJV');
       </script>
       <!-- end of Google Analytics-->
 
@@ -69,4 +69,4 @@ html:
   use_repository_button: true
   use_issues_button: true
   use_edit_page_button: true
-  baseurl                   : "https://arcdocs.leeds.ac.uk/aire"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/
+  baseurl                   : "https://arcdocs.leeds.ac.uk/calder"  # The base URL where your book will be hosted. Used for creating image previews and social links. e.g.: https://mypage.com/mybook/

@@ -22,7 +22,7 @@ chapters:
   - file: system/job_scheduler
   - file: system/modules_and_applications
   - file: system/linux_user_environment
-# ===== Using Aire ==================================
+# ===== Using Calder ==================================
 - file: usage/start
   sections:
   - file: usage/job_type
@@ -38,7 +38,7 @@ chapters:
     - file: usage/file_data_management/data_sharing
   - file: usage/dependency_management
   #- file: usage/use_of_containers
-# ===== Software on Aire ============================
+# ===== Software on Calder ============================
 - file: software/start
   sections:
   - file: software/applications/start
@@ -102,4 +102,4 @@ chapters:
   title: Contact Us
 - url: https://arc.leeds.ac.uk
   title: Research Computing Website
-- file: privacy_and_cookies
+- file: privacy_cookies

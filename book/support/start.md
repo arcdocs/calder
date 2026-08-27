@@ -20,4 +20,3 @@ The Research Infrastructure Engineering (RIE) team also contributes to the HPC a
 
 <!-- TODO: What does the RIE team do? -->
 <!-- TODO: How to contact the RIE team? -->
-

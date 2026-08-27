@@ -1,4 +1,4 @@
-name: arcdocs-aire-jb
+name: arcdocs-jb
 channels:
   - defaults
   - conda-forge

@@ -1,10 +1,10 @@
-# Aire Documentation
+# Calder Documentation
 
-This is the repository for the documentation for the University of Leeds Aire HPC system. It is managed by the University of Leeds [Research Computing Team.](https://arc.leeds.ac.uk/team/)
+This is the repository for the documentation for the University of Leeds Aire HPC system. It is managed by the University of Leeds [Research Computing Team](https://arc.leeds.ac.uk/team/).
 
 ## Contributing to the documentation
 
-We welcome all contributions to this project via GitHub issues and pull requests. Please follow the guidelines on the [`CONTRIBUTING.md` file](CONTRIBUTING.md) to make sure your contributions can be easily integrated in the project. Edits must be approved by at least one user from the arcdocs group (generally RSEs & RIEs at Leeds). For larger issues that can't be solved quickly, or require greater input, please raise an Issue in the "Issues" tab. 
+We welcome all contributions to this project via GitHub issues and pull requests. Please follow the guidelines on the [`CONTRIBUTING.md` file](CONTRIBUTING.md) to make sure your contributions can be easily integrated in the project. Edits must be approved by at least one user from the arcdocs group (generally RSEs & RIEs at Leeds). For larger issues that can't be solved quickly, or require greater input, please raise an Issue in the "Issues" tab.
 
 There are two main ways to update the documentation; via GitHub codespaces (recommended) or locally on your own machine.
 
@@ -23,8 +23,8 @@ In a shell with git and conda available (we recommend Miniforge):
 ```{bash}
 
 # clone repository and navigate to root
-$ git clone https://github.com/arcdocs/aire.git
-$ cd aire
+$ git clone https://github.com/arcdocs/calder.git
+$ cd calder
 
 # create environment
 $ conda env create -f environment.yml
@@ -34,7 +34,7 @@ To build the html content locally you can use the `jupyter-book` command line to
 
 ```{bash}
 # activate the conda environment 
-$ conda activate arcdocs-aire-jb
+$ conda activate arcdocs-jb
 
 # build book
 $ jupyter-book build book/
