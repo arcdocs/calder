@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Fleur &#8212; Aire Documentation</title>
+    <title>Fleur &#8212; Calder Documentation</title>
   
   
   
@@ -61,7 +61,7 @@
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'software/applications/fleur';</script>
-    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/aire/software/applications/fleur.html" />
+    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/calder/software/applications/fleur.html" />
     <link rel="icon" href="../../_static/favicon-32x32.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="Aire Documentation - Home"/>
-    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Calder Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder Documentation - Home"/>
   
   
 </a></div>
@@ -166,7 +166,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../welcome.html">
-                    Aire User Documentation
+                    Calder User Documentation
                 </a>
             </li>
         </ul>
@@ -260,7 +260,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../support/start.html">Contact Us</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../privacy_and_cookies.html">Privacy and cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../privacy_cookies.html">Privacy and cookies</a></li>
 
 </ul>
 
@@ -321,7 +321,7 @@
       
       
       
-      <li><a href="https://github.com/arcdocs/aire" target="_blank"
+      <li><a href="https://github.com/arcdocs/calder" target="_blank"
    class="btn btn-sm btn-source-repository-button dropdown-item"
    title="Source repository"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -338,7 +338,7 @@
       
       
       
-      <li><a href="https://github.com/arcdocs/aire/edit/main/book/software/applications/fleur.md" target="_blank"
+      <li><a href="https://github.com/arcdocs/calder/edit/main/book/software/applications/fleur.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +355,7 @@
       
       
       
-      <li><a href="https://github.com/arcdocs/aire/issues/new?title=Issue%20on%20page%20%2Fsoftware/applications/fleur.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/arcdocs/calder/issues/new?title=Issue%20on%20page%20%2Fsoftware/applications/fleur.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -510,18 +510,18 @@
 <section id="how-to-run-a-job">
 <h2>How to run a job<a class="headerlink" href="#how-to-run-a-job" title="Link to this heading">#</a></h2>
 <p>A fleur job generally runs in two steps. First, an .xml-format input file is generated from a human readable text file, using the input generator. This can be performed on a login node, as it is not computationally intensive. Please see the <a class="reference external" href="https://www.flapw.de/MaX-8.0/future/F1/">tutorial</a> for further information.</p>
-<div class="highlight-plaintext notranslate"><div class="highlight"><pre><span></span>[user@login1[aire] my_folder]$ module load fleur
-Loading fleur/max8_hdf5/openmpi-5.0.5-gcc-14.2.0_lapack-3.12.0
-  Loading requirement: gcc/14.2.0 lapack/3.12.0 openmpi/5.0.5/gcc-14.2.0
-[user@login1[aire] my_folder]$ inpgen -f my_input.txt
-      Welcome to FLEUR - inpgen   (www.flapw.de)
-      MaX-Release 8.0          (www.max-centre.eu)
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>user@login1<span class="o">[</span>aire<span class="o">]</span><span class="w"> </span>my_folder<span class="o">]</span>$<span class="w"> </span>module<span class="w"> </span>load<span class="w"> </span>fleur
+Loading<span class="w"> </span>fleur/max8_hdf5/openmpi-5.0.5-gcc-14.2.0_lapack-3.12.0
+<span class="w">  </span>Loading<span class="w"> </span>requirement:<span class="w"> </span>gcc/14.2.0<span class="w"> </span>lapack/3.12.0<span class="w"> </span>openmpi/5.0.5/gcc-14.2.0
+<span class="o">[</span>user@login1<span class="o">[</span>aire<span class="o">]</span><span class="w"> </span>my_folder<span class="o">]</span>$<span class="w"> </span>inpgen<span class="w"> </span>-f<span class="w"> </span>my_input.txt
+<span class="w">      </span>Welcome<span class="w"> </span>to<span class="w"> </span>FLEUR<span class="w"> </span>-<span class="w"> </span>inpgen<span class="w">   </span><span class="o">(</span>www.flapw.de<span class="o">)</span>
+<span class="w">      </span>MaX-Release<span class="w"> </span><span class="m">8</span>.0<span class="w">          </span><span class="o">(</span>www.max-centre.eu<span class="o">)</span>
 ...
- Run finished successfully
- Stop message:
-   All done
+<span class="w"> </span>Run<span class="w"> </span>finished<span class="w"> </span>successfully
+<span class="w"> </span>Stop<span class="w"> </span>message:
+<span class="w">   </span>All<span class="w"> </span><span class="k">done</span>
 ...
-[user@login1[aire] my_folder]$
+<span class="o">[</span>user@login1<span class="o">[</span>aire<span class="o">]</span><span class="w"> </span>my_folder<span class="o">]</span>$
 </pre></div>
 </div>
 <p>Fleur supports distributed-memory parallelism with OpenMPI. To run a Fleur job, call Fleur from the same directory as the generated input file. Below is an example job submission script.</p>
@@ -662,13 +662,13 @@ cookieconsent.run({"notice_banner_type":"simple","consent_type":"express","palet
 </script>
 
 <!-- Google Analytics -->
-<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-RZDCG2LMBZ"></script>
+<script type="text/plain" data-cookie-consent="tracking" async src="https://www.googletagmanager.com/gtag/js?id=G-4PJ6DH1FJV"></script>
 <script type="text/plain" data-cookie-consent="tracking">
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'G-RZDCG2LMBZ');
+  gtag('config', 'G-4PJ6DH1FJV');
 </script>
 <!-- end of Google Analytics-->
 
