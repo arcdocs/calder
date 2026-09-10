@@ -14,6 +14,10 @@ In the following examples, we demonstrate job scripts for running jobs on variou
 
 The following script requests 1 CPU, 1 hour of runtime, and 1GB memory, specifying the job name as `serial_job`. Here we explicitly set the number of tasks and the number of cores to 1, but this is not strictly necessary as they are the default settings.
 
+::::{tab-set}
+
+:::{tab-item} Aire
+
 ```bash
 #!/bin/bash
 #SBATCH --job-name=serial_job
@@ -26,10 +30,36 @@ The following script requests 1 CPU, 1 hour of runtime, and 1GB memory, specifyi
 module load <module_name>
 
 # Run the job
-./example.bin
+./example_aire.bin
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=serial_job
+#SBATCH --time=01:00:00
+#SBATCH --mem=1G
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+
+# Load any necessary modules
+module load <module_name>
+
+# Run the job
+./example_calder.bin
+```
+
+:::
+::::
+
 This script demonstrates how to request 1 CPU, 1 day of runtime, and 32GB of memory for a serial job. It also specifies the locations for the output and error files, which is helpful for troubleshooting. The variable `%j` is automatically replaced with the job ID, making it easier to organise output and error files for multiple jobs.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -43,8 +73,30 @@ This script demonstrates how to request 1 CPU, 1 day of runtime, and 32GB of mem
 module load <module_name>
 
 # Run the job
-./example.bin
+./example_aire.bin
 ```
+
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=serial_job         # Descriptive job name
+#SBATCH --output=output_%j.out        # Output file (%j = job ID)
+#SBATCH --error=error_%j.err          # Error file (%j = job ID)
+#SBATCH --time=1-00:00:00             # Request 1 day of runtime
+#SBATCH --mem=32G                     # Request 32GB of memory
+
+# Load any necessary modules
+module load <module_name>
+
+# Run the job
+./example_calder.bin
+```
+
+:::
+::::
 
 ## Parallel jobs
 
@@ -57,6 +109,10 @@ Note that in order to use more than one CPU (or core), your program must be spec
 ### Threaded
 
 Here we request 16 cores within a single node for 2 hours. Note that jobs will need to be compiled for execution on multiple threads (e.g., via OpenMP) or run on multithreading-capable software; the below example is for a binary compiled for OpenMP.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -76,6 +132,31 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 ./example.bin
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=threaded_job
+#SBATCH --time=02:00:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1          # Number of tasks for OpenMP
+#SBATCH --cpus-per-task=16  # Number of CPU cores per task
+
+# Load any necessary modules
+module load <module_name>
+
+# Tell OpenMP how many resources it has been given
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+# Run the job
+./example.bin
+```
+
+:::
+::::
+
 :::{note}
 To optimise performance, it is sometimes worth exploring additional OpenMP options such as:
 
@@ -88,6 +169,10 @@ These settings can help improve thread placement and binding, potentially speedi
 ### MPI
 
 These are jobs that run across multiple nodes using a Message Passing Interface (MPI). In the following example, we request 256 MPI processes across 2 nodes, with 128 tasks per node:
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -105,44 +190,99 @@ module load openmpi
 srun ./example.bin
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=MPI_job
+#SBATCH --time=04:00:00
+#SBATCH --mem=256G              # Request 256GB memory per node
+#SBATCH --ntasks=256            # Number of MPI processes
+#SBATCH --nodes=2               # Number of nodes
+#SBATCH --ntasks-per-node=128   # Number of tasks per node
+
+# Load any necessary modules, e.g. MPI
+module load openmpi
+
+# Run the job using Slurm's native launcher
+srun ./example.bin
+```
+
+:::
+::::
+
 ```{tip}
-On Aire, `srun` is Slurm's native launcher and is generally recommended for launching MPI applications. It uses the resources allocated by Slurm and works well for multi-node jobs.
+On both Aire and Calder, `srun` is Slurm's native launcher and is generally recommended for launching MPI applications. It uses the resources allocated by Slurm and works well for multi-node jobs. The systems use different network fabrics: Aire uses Omni-Path and Calder uses InfiniBand. Check the system-specific software and MPI guidance when optimising an application.
 
 Some applications that invoke `mpiexec` or `mpirun` internally may report errors such as "There are not enough slots available" despite the requested resources having been allocated. Where the application allows the MPI launcher to be configured, consider using `srun` instead.
 
 If you are unsure which launcher your application expects, consult the software documentation or contact Research IT.
 ```
 
-```{admonition} Example: Running Paramotopy with Bertini
+::::{admonition} Example: Running Paramotopy with Bertini
 Paramotopy launches the parallel `bertini` executables internally. When running under Slurm, the main Paramotopy process should be started as a single task, while Paramotopy should be configured to use `srun` to launch the parallel MPI executables.
 
-For example, start Paramotopy with a single task:
+:::::{tab-set}
 
-    mpiexec -n 1 paramotopy <input_file>
+::::{tab-item} Aire
 
-Then update the Paramotopy parallelism configuration to use `srun` instead of the default `mpiexec` from:
+Start Paramotopy with a single task:
 
-    architecture mpiexec
+```bash
+mpiexec -n 1 paramotopy <input_file>
+```
 
-to:
+Configure Paramotopy to use `srun` instead of the default `mpiexec`:
 
-    architecture srun
+```text
+architecture srun
+```
 
 With this configuration, Paramotopy will launch the parallel executables using commands similar to:
 
-    srun -n 336 bertini
-    srun -n 336 step2
+```bash
+srun -n 336 bertini
+srun -n 336 step2
+```
 
-rather than:
+:::
 
-    mpiexec -n 336 bertini
+::::{tab-item} Calder
+
+Start Paramotopy with a single task:
+
+```bash
+mpiexec -n 1 paramotopy <input_file>
+```
+
+Configure Paramotopy to use `srun` instead of the default `mpiexec`:
+
+```text
+architecture srun
+```
+
+With this configuration, Paramotopy will launch the parallel executables using commands similar to:
+
+```bash
+srun -n 336 bertini
+srun -n 336 step2
+```
+
+:::
+:::::
 
 This ensures that the MPI processes are launched using the resources allocated by Slurm, which can help avoid launcher-related errors such as reporting insufficient available slots for multi-node jobs.
-```
+::::
 
 ## AI/ML jobs on GPU
 
-This example shows how to run a PyTorch job in a Conda environment on Aire, which uses Miniforge as the Conda installer. To request GPUs, make sure to specify the gpu partition in your Slurm script with `#SBATCH --partition=gpu`. Then, request the number of GPUs you need using `#SBATCH --gres=gpu:N`, where `N` is the number of GPUs; for instance, `#SBATCH --gres=gpu:1` for one GPU or `#SBATCH --gres=gpu:2` for two GPUs.
+This example shows how to run a PyTorch job in a Conda environment on Aire or Calder. To request GPUs, make sure to specify the gpu partition in your Slurm script with `#SBATCH --partition=gpu`. Then, request the number of GPUs you need using `#SBATCH --gres=gpu:N`, where `N` is the number of GPUs; for instance, `#SBATCH --gres=gpu:1` for one GPU or `#SBATCH --gres=gpu:2` for two GPUs.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -160,46 +300,110 @@ conda activate my_ML_environment
 python my_ML_script.py
 ```
 
-```{tip}
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=ml_job          # Job name
+#SBATCH --time=01:00:00            # Request runtime (hh:mm:ss)
+#SBATCH --partition=gpu            # Request GPU partition
+#SBATCH --gres=gpu:1               # Request 1 GPU
+
+# Load any necessary modules, e.g. Miniforge
+# Activate conda environment
+module load miniforge
+conda activate my_ML_environment
+
+# Run the job
+python my_ML_script.py
+```
+
+:::
+::::
+
+::::{tip}
 Requesting 1 GPU defaults to using 1 CPU core and 1GB memory for your job. If you need more CPU cores and memory, you need to request them separately using additional SBATCH directives. On one GPU node, there are 24 CPU cores and 256GB memory total, with resources divided among 3 GPUs (approximately 8 cores and 85GB memory available per GPU). For example, to request 8 CPU cores with 8GB memory per core (32GB total):
 
-    #SBATCH --cpus-per-task=4          # Request 4 CPU cores
-    #SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
+:::::{tab-set}
+
+::::{tab-item} Aire
+
+```bash
+#SBATCH --cpus-per-task=4          # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
 ```
 
-```{admonition} Using the Flash storage
-Aire provides temporary Flash storage (`$TMP_SHARED`) for high I/O performance during job execution. This NVMe storage has a quota of 1TB and 1.5M files per job, making it ideal for I/O-intensive workloads like ML/AI. Data is automatically purged when the job ends. Request Flash storage in your job script:
+::::
 
-    #!/bin/bash
-    #SBATCH --job-name=gpu_flash       # Job name
-    #SBATCH --time=01:00:00            # Request runtime (hh:mm:ss)
-    #SBATCH --partition=gpu            # Request GPU partition
-    #SBATCH --gres=gpu:1               # Request 1 GPU
-    #SBATCH --cpus-per-task=4          # Request 4 CPU cores
-    #SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
+::::{tab-item} Calder
 
-    # Flash storage path is automatically set as $TMP_SHARED
-    echo "Flash storage path: $TMP_SHARED"
-
-    # Copy input data to Flash storage
-    cp -r /path/to/input/data $TMP_SHARED/
-
-    # Load GPU environment
-    module load miniforge
-    conda activate my_ML_environment
-
-    # Run GPU job using local data
-    python my_ML_script.py --data $TMP_SHARED/data
-
-    # Copy results back to permanent storage
-    cp -r $TMP_SHARED/results /path/to/permanent/storage/
-
-    # Flash storage ($TMP_SHARED) is automatically cleaned after the job ends
+```bash
+#SBATCH --cpus-per-task=4          # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
 ```
+
+::::
+:::::
+::::
+
+::::{admonition} Using the Flash storage
+Aire provides temporary Flash storage (`$TMP_SHARED`) for high I/O performance during job execution. This NVMe storage has a quota of 1TB and 1.5M files per job, making it ideal for I/O-intensive workloads like ML/AI. Data is automatically purged when the job ends. The availability and configuration of equivalent temporary storage on Calder will be documented when its hardware details are confirmed.
+
+::::{tab-set}
+
+:::{tab-item} Aire
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=gpu_flash       # Job name
+#SBATCH --time=01:00:00            # Request runtime (hh:mm:ss)
+#SBATCH --partition=gpu            # Request GPU partition
+#SBATCH --gres=gpu:1               # Request 1 GPU
+#SBATCH --cpus-per-task=4          # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G           # Request 8GB memory per CPU core
+
+# Flash storage path is automatically set as $TMP_SHARED
+echo "Flash storage path: $TMP_SHARED"
+
+# Copy input data to Flash storage
+cp -r /path/to/input/data $TMP_SHARED/
+
+# Load GPU environment
+module load miniforge
+conda activate my_ML_environment
+
+# Run GPU job using local data
+python my_ML_script.py --data $TMP_SHARED/data
+
+# Copy results back to permanent storage
+cp -r $TMP_SHARED/results /path/to/permanent/storage/
+
+# Flash storage ($TMP_SHARED) is automatically cleaned after the job ends
+```
+
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+# GPU temporary-storage configuration for Calder will be added once the
+# Calder storage specifications are confirmed.
+```
+
+:::
+::::
+::::
 
 ## Large-memory jobs
 
 Here we request use of a high-memory node to run threaded application via OpenMP. Note that the option `--mem` applies to the amount of memory requested *per node*.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -218,9 +422,37 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 ./example.bin
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=large_memory_job
+#SBATCH --time=01:00:00
+#SBATCH --partition=himem   # Request high-memory node
+#SBATCH --mem=160G          # Request 160GB memory (10GB per core)
+#SBATCH --nodes=1
+#SBATCH --ntasks=1          # Number of tasks for OpenMP
+#SBATCH --cpus-per-task=16  # Number of CPU cores per task
+
+# Tell OpenMP how many resources it has been given
+export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+
+# Run the job
+./example.bin
+```
+
+:::
+::::
+
 ## Job arrays
 
 Job arrays let you run a set of independent jobs with a single submission. Slurm creates multiple instances of the job, and each instance can use different parameters or data. The example script below runs 100 jobs in a Conda environment, with input and output files determined by the array index `$SLURM_ARRAY_TASK_ID`. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -239,10 +471,39 @@ conda activate my_environment
 python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLURM_ARRAY_TASK_ID
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=task_array_job
+#SBATCH --time=01:00:00
+#SBATCH --array=1-100%10             # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
+#SBATCH --output=arrayjob_%A_%a.out  # Save output to a file named with job ID (%A) and array index (%a)
+
+
+# Load any necessary modules
+# e.g. using a conda environment
+module load miniforge
+conda activate my_environment
+
+# Run the job, passing in the input and output filenames
+python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLURM_ARRAY_TASK_ID
+```
+
+:::
+::::
+
 ## Task arrays (multiple tasks in one job)
+
 Unlike job arrays, which submit many independent jobs, a task array refers to running multiple tasks within a single Slurm job allocation. This is common for MPI jobs or parallel programs where tasks need to communicate.
 
 Slurm uses the `--ntasks` option to specify the number of tasks. All tasks share the same environment and resources, making this ideal for tightly coupled workloads.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 ```bash
 #!/bin/bash
@@ -259,18 +520,75 @@ echo "Running MPI job with $SLURM_NTASKS tasks"
 srun ./my_mpi_program
 ```
 
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=task_example
+#SBATCH --output=task_%j.out
+#SBATCH --error=task_%j.err
+#SBATCH --ntasks=10 # 10 tasks in one job
+#SBATCH --cpus-per-task=1
+#SBATCH --time=01:00:00
+#SBATCH --mem=20G
+
+module load openmpi
+echo "Running MPI job with $SLURM_NTASKS tasks"
+srun ./my_mpi_program
+```
+
+:::
+::::
+
 ## Job dependencies
+
 It is possible to submit a job which will only start once another job has reached a particular state. This is useful when multiple stages of a workflow must run in sequence. Dependency conditions include `afterok`, which starts the dependent job only if the initial job completes successfully, and `afterany`, which starts the dependent job once the initial job finishes, regardless of outcome (including failure or timeout).
 
 Submitting an initial job using `sbatch job1.sh` returns a job ID number `<JOBID>`. A second job submitted with a dependency, `job2.sh`, will remain in the queue until the dependency condition is satisfied.
+::::{tab-set}
+
+:::{tab-item} Aire
+
 ```
 [username@login1[aire] ~]$ sbatch --dependency=afterok:<JOBID> job2.sh
 ```
+
+:::
+
+:::{tab-item} Calder
+
+```
+[username@login1[calder] ~]$ sbatch --dependency=afterok:<JOBID> job2.sh
+```
+
+:::
+::::
 A dependency on more than one job can be specified by separating job IDs with a colon. The dependent job will start only when all specified jobs satisfy the condition.
+::::{tab-set}
+
+:::{tab-item} Aire
+
 ```
 [username@login1[aire] ~]$ sbatch --dependency=afterok:<JOBID_1>:<JOBID_2> job3.sh
 ```
+
+:::
+
+:::{tab-item} Calder
+
+```
+[username@login1[calder] ~]$ sbatch --dependency=afterok:<JOBID_1>:<JOBID_2> job3.sh
+```
+
+:::
+::::
 A dependent job can also be submitted from within a job script. In this case, `$SLURM_JOB_ID` is set automatically to the job ID of the running job.
+::::{tab-set}
+
+:::{tab-item} Aire
+
 ```bash
 #!/bin/bash
 #SBATCH --job-name=initial_job
@@ -285,3 +603,25 @@ A dependent job can also be submitted from within a job script. In this case, `$
 # Submit a dependent job
 sbatch --dependency=afterany:$SLURM_JOB_ID job2.sh
 ```
+
+:::
+
+:::{tab-item} Calder
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=initial_job
+#SBATCH --time=01:00:00
+#SBATCH --mem=1G
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+
+# Run the job
+./example.bin
+
+# Submit a dependent job
+sbatch --dependency=afterany:$SLURM_JOB_ID job2.sh
+```
+
+:::
+::::

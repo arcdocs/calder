@@ -1,13 +1,15 @@
-# Calder User Documentation
+# Aire and Calder User Documentation
 
-This site documents information relevant to users of Calder, the latest High Performance Computing (HPC) facility at the [University of Leeds](https://www.leeds.ac.uk). It is oriented towards researchers with basic experience using a Unix-like command line interface (CLI).
+This site documents information relevant to users of Aire and Calder, the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk). It is oriented towards researchers with basic experience using a Unix-like command line interface (CLI).
 
-Launched on the 6th of February 2025, Aire is the University of Leeds' latest HPC system, bringing cutting-edge computational power to support research across disciplines. With major upgrades in computing power, memory, and storage, Aire is set to enhance data processing and streamline research workflows.
+Calder is the next-generation HPC system following Aire. It introduces a new software stack and user environment, alongside updated hardware and system software. These pages are being developed as a shared documentation site so that guidance can be kept together while system-specific instructions remain clear.
+
+Where a command, job submission script, or hardware detail differs between systems, the documentation uses tabs to show the relevant version. Select the **Aire** or **Calder** tab to view the instructions for the system you are using. For example, a job submission page may provide separate scripts while keeping the common Slurm concepts in one place.
 
 New users may want to start by reading the [Getting Started](getting_started/start) section.
 
-```{admonition} Upgrading from ARC3 and ARC4
-Aire is the new HPC system replacing the ARC3 and ARC4 systems. The new system significantly increases compute capacity for the community while delivering a modern, maintainable software and programming environment. ARC3 and ARC4 are now completely unavailable, and all data stored on them that has not been moved off has been lost.
+```{admonition} Moving from Aire to Calder
+Calder is being introduced as the next generation of the University of Leeds HPC service. During the transition, some guidance will apply to both systems, while other sections will provide separate instructions. In particular, Calder uses InfiniBand networking where Aire uses Omni-Path, so MPI guidance may differ between the two systems.
 ```
 
 :::{seealso}
