@@ -1,4 +1,4 @@
-(page:rules)=
+(page:rules-regulations)=
 
 <!--
 IMPORTANT:
@@ -8,9 +8,13 @@ Substantive changes to meaning, policy, or requirements MUST NOT be made without
 Readability improvements, formatting changes, typo corrections, and link fixes are welcome, provided they do not alter the approved content or intent.
 -->
 
-# Rules and Regulations for using Aire
+# Rules and Regulations for using HPC
 
-Aire is a shared High Performance Computing (HPC) system that supports many users simultaneously. To enable different users’ work to co-exist effectively, there are tools and protocols in place to manage access to resources. These mechanisms are not infallible, so all users are required to use the system responsibly and in accordance with these rules.
+:::{note}
+We are reviewing and updating the Rules and Regulations for using HPC. This page will be updated in due course.
+:::
+
+Aire and Calder are shared High Performance Computing (HPC) systems that supports many users simultaneously. To enable different users’ work to co-exist effectively, there are tools and protocols in place to manage access to resources. These mechanisms are not infallible, so all users are required to use the system responsibly and in accordance with these rules.
 
 You must use the appropriate tools and protocols provided on the system and ensure that your programs do not interfere with other users’ work. You are also required to ensure that your workloads are efficient and make good use of the resources allocated to them. **Runs that do not meet these criteria may be terminated without warning**.
 
@@ -26,7 +30,7 @@ You must use the appropriate tools and protocols provided on the system and ensu
 ## Enforcement and Access
 
 - We reserve the right to terminate runs without warning if they interfere with other users or the operation of the system.
-- We also reserve the right to disable access to Aire without warning if we believe a user is causing problems.
+- We also reserve the right to disable access to Aire and Calder without warning if we believe a user is causing problems.
 
 *Where possible, we will normally try to contact users beforehand to resolve issues cooperatively.*
 
@@ -46,11 +50,11 @@ Additional guidance about data is available at:
 - <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018252" target="_blank">Research information management guide to data classification</a>: Define data confidentially tiering and help you to assess data sensitivity.
 - <a href="https://it.leeds.ac.uk/sys_attachment.do?sys_id=b0d335c6fb402a5033b5fd9aaeefdc64&view=true" target="_blank"> Research Information Management Guide (PDF)</a> Sets out what kinds of research data can be stored in what kinds of storage solution for each tier.
 
-If you are unsure whether your data is appropriate for use on Aire, you should seek advice before proceeding.
+If you are unsure whether your data is appropriate for use on Aire and Calder, you should seek advice before proceeding.
 
 ## Fair Share, Job Priority, and Scheduling
 
-Aire is a shared HPC service used by many users concurrently. To ensure fair, equitable, and efficient access to resources:
+Aire and Calder are shared HPC services used by many users concurrently. To ensure fair, equitable, and efficient access to resources:
 
 - Jobs must be submitted via the centrally managed scheduler. Users are required to use the Slurm scheduler to run processes on compute nodes.
 - Job scheduling and prioritisation are managed centrally by the system scheduler.

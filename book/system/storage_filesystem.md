@@ -1,90 +1,113 @@
-(page:storage-overview)=
-# Storage and Filesystems
+# Storage and Filesystem
 
-Aire offers versatile storage solutions to support diverse research workflows. This guide explains the available storage options, their key features, and best practices for efficient data and quota management. Use the information below to make informed decisions and optimise your HPC work.
+(page:storage-filesystem)=
 
-## Summary of storage types
+Aire and Calder provide several storage options to support a wide range of research workflows. This section summarises the available storage types, their key features, and the best practices for managing quotas and data efficiently.
 
-The table below provides a high‑level comparison of each storage option. Note that the associated environment variables (e.g., `$HOME`, `$SCRATCH`) simplify navigation in your workflows by automatically pointing to the correct directories.
+## Summary of storage types on Aire
 
-| **Storage Type**                   | **Details**                   |
-|------------------------------------|-------------------------------|
-| **Home Folder**                    | **Path:** `/users/<username>`<br>**Env Variable:** `$HOME`<br>**Quota:** 65GB, 1.5 million files<br>**Backup:** ✅ Yes<br>**Automatic Deletion:** ❌ No<br>**Best For:** Persistent small files (scripts, notes, configs)                                                     |
-| **Scratch on Lustre (Disk‑based)** | **Path:** `/mnt/scratch/<username>`<br>**Env Variable:** `$SCRATCH`<br>**Quota:** 1TB, 1.5 million files<br>**Backup:** ❌ No<br>**Automatic Deletion:** ❌ No<br>**Best For:** Large datasets                                                                       |
-| **Flash on Lustre (NVMe‑based)**   | **Path:** `/mnt/flash/tmp/job.<JOB-ID>`<br>**Env Variable:** `$TMP_SHARED`<br>**Quota:** 1TB, 1.5M files<br>**Backup:** ❌ No<br>**Automatic Deletion:** ✅ Yes<br>**Best For:** I/O‑intensive tasks                  |
-| **Scratch on compute nodes**        | **Path:** `/tmp/job.JOB-ID`<br>**Env Variable:** `$TMP_LOCAL`, `$TMPDIR`<br>**Quota:** None, subject to node storage availability<br>**Backup:** ❌ No<br>**Automatic Deletion:** ✅ Yes<br>**Best For:** Single‑node jobs needing fast, localised storage |
+The table below gives a high-level comparison of each storage option. Environment variables such as `$HOME` and `$SCRATCH` make navigation easier by pointing directly to the correct directories.
 
-> **Key Information**  
+| **Storage Type** | **Details** |
+| --- | --- |
+| **Home Folder** | **Path:** `/users/<username>`<br>**Environment variable:** `$HOME`<br>**Quota:** 65 GB, 1.5 million files<br>**Backup:** ✅ Yes<br>**Automatic deletion:** ❌ No<br>**Best for:** Persistent small files such as scripts, notes, and configuration files |
+| **Scratch on Lustre (disk-based)** | **Path:** `/mnt/scratch/<username>`<br>**Environment variable:** `$SCRATCH`<br>**Quota:** 1 TB, 1.5 million files<br>**Backup:** ❌ No<br>**Automatic deletion:** ❌ No<br>**Best for:** Large datasets and active project data |
+| **Flash on Lustre (NVMe-based)** | **Path:** `/mnt/flash/tmp/job.<JOB-ID>`<br>**Environment variable:** `$TMP_SHARED`<br>**Quota:** 1 TB, 1.5 million files<br>**Backup:** ❌ No<br>**Automatic deletion:** ✅ Yes<br>**Best for:** I/O-intensive tasks |
+| **Scratch on compute nodes** | **Path:** `/tmp/job.JOB-ID`<br>**Environment variable:** `$TMP_LOCAL`, `$TMPDIR`<br>**Quota:** None, subject to node storage availability<br>**Backup:** ❌ No<br>**Automatic deletion:** ✅ Yes<br>**Best for:** Single-node jobs needing fast, local storage |
+
+> **Key information**
 >
-> - **Temporary Data**: Data in `$TMP_SHARED`, `$TMP_LOCAL`, and `$TMPDIR` is automatically deleted when a job completes.  
-> - **No Backups**: Data in `$SCRATCH`, `$TMP_SHARED`, `$TMP_LOCAL`, and `$TMPDIR` is not backed up. Archive critical files to your Home Folder or external storage.
+> - **Temporary data**: Files in `$TMP_SHARED`, `$TMP_LOCAL`, and `$TMPDIR` are automatically deleted when a job completes.
+> - **No backups**: Data in `$SCRATCH`, `$TMP_SHARED`, `$TMP_LOCAL`, and `$TMPDIR` is not backed up. Archive critical files to your Home Folder or external storage.
 
 ## Detailed storage descriptions
 
 ### Home Directory
 
-- **Path & Environment**:  
-  - Directory: `/users/<username>`  
-  - Accessible via the `$HOME` variable and via the `~` shortcut.
-- **Quota**: 65GB and up to 1.5 million files.
-- **Backup**: Yes (with periodic backups – external archiving recommended for critical data).
-- **Automatic Deletion**: No.
-- **Usage**:  
-  Appropriate for persistent, small files such as scripts, documentation, and configuration files. Not appropriate for high I/O operations.
+- **Path and environment**
+  - Directory: `/users/<username>`
+  - Accessible via the `$HOME` variable and the `~` shortcut.
+- **Quota**: 65 GB and up to 1.5 million files.
+- **Backup**: Yes, with periodic backups. External archiving is recommended for critical data.
+- **Automatic deletion**: No.
+- **Usage**: Best for persistent, small files such as scripts, documentation, and configuration files. It is not intended for high I/O workloads.
 
-### Scratch on Lustre (Disk‑based)
+### Scratch on Lustre (disk-based)
 
-- **Path & Environment**:  
-  - Directory: `/mnt/scratch/<username>`  
+- **Path and environment**
+  - Directory: `/mnt/scratch/<username>`
   - Accessible via the `$SCRATCH` variable.
-  - Symlink: `/scratch` -> `/mnt/scratch`
-- **Quota**: 1TB and up to 1.5 million files.
+  - Symlink: `/scratch` → `/mnt/scratch`
+- **Quota**: 1 TB and up to 1.5 million files.
 - **Backup**: No.
-- **Automatic Deletion**: No.
-- **Usage**:  
-  Designed for large datasets and active job data. Manual cleanup is essential to avoid exceeding quotas.
+- **Automatic deletion**: No.
+- **Usage**: Designed for large datasets and active job data. Manual cleanup is essential to avoid exceeding quotas.
 
-### Flash on Lustre (NVMe‑based)
+### Flash on Lustre (NVMe-based)
 
-- **Path & Environment**:  
-  - Directory: `/mnt/flash/tmp/job.<JOB-ID>`  
+- **Path and environment**
+  - Directory: `/mnt/flash/tmp/job.<JOB-ID>`
   - Accessible via the `$TMP_SHARED` variable.
-  - Symlink: `/flash` -> `/mnt/flash`
-- **Quota**: 1TB per job and up to 1.5 million files per job.
+  - Symlink: `/flash` → `/mnt/flash`
+- **Quota**: 1 TB per job and up to 1.5 million files per job.
 - **Backup**: No.
-- **Automatic Deletion**: Yes—files are purged upon job completion.
-- **Usage**:  
-  Optimised for I/O‑intensive operations such as simulations. Ideal for tasks that require high performance during the job period.
+- **Automatic deletion**: Yes. Files are purged when the job completes.
+- **Usage**: Optimised for I/O-intensive tasks such as simulations. Ideal for workloads that require high performance during the job period.
 
 ### Scratch on compute nodes
 
-- **Path & Environment**:  
+- **Path and environment**
   - Directory: `/tmp`
   - Accessible via `$TMP_LOCAL` and `$TMPDIR`.
-- **Quota**: None, subject to node storage availability
+- **Quota**: None, subject to node storage availability.
 - **Backup**: No.
-- **Automatic Deletion**: Yes—data is purged after job completion.
-- **Usage**:  
-  Best for fast, node‑local storage during single‑node jobs. Note that data cannot be shared between nodes and is local.
+- **Automatic deletion**: Yes. Data is purged after job completion.
+- **Usage**: Best for fast, node-local storage during single-node jobs. Data is not shared between nodes and remains local to the node.
 
 :::{seealso}
-For detailed guidance on best practices for using storage and filesystems, please refer to the [File and Data Management](../usage/file_data_management/start.md) section.
+For detailed guidance on best practices for using storage and filesystems, see the [File and Data Management](../usage/file_management/start.md) section.
 :::
 
-## Storage Capacity and Limits
+### Storage Capacity and Limits on Aire
 
 As explained above, Aire provides several shared storage areas. Each has a finite capacity, and usage is managed collectively across all users:
 
 | Filesystem                          | Total Space | Total Inode   |
 | ----------------------------------- | ----------- | ------------- |
-| Home Folder (`$HOME`)               | 106 TB        | 2,269,138,752 |
-| Scratch on Lustre (`$SCRATCH`)      | 3.7 PB        | 2,997,485,568 |
-| Flash on Lustre (`$TMP_SHARED`)     | 139 TB        | 293,022,729   |
-| Scratch on compute nodes (`TMPDIR`) | 372 GB*       | 24,838,144*   |
+| Home Folder (`$HOME`)               | 106 TB      | 2,269,138,752 |
+| Scratch on Lustre (`$SCRATCH`)      | 3.7 PB      | 2,997,485,568 |
+| Flash on Lustre (`$TMP_SHARED`)     | 139 TB      | 293,022,729   |
+| Scratch on compute nodes (`TMPDIR`) | 372 GB*     | 24,838,144*   |
 
 *\* Quantities available per node*
 
-### When a Filesystem Becomes Full
+## Calder storage
+
+(calder-storage)=
+
+Calder provides its own Lustre parallel filesystem alongside Aire's, following the same pattern of persistent home storage plus disk-based and NVMe-based scratch space.
+
+| **Storage Type** | **Details** |
+| --- | --- |
+| **Home Folder** | **Path:** `/users/<username>`<br>**Environment variable:** `$HOME`<br>**Shared with:** Aire, so your home directory is the same on both systems<br>**Backup:** ✅ Yes<br>**Best for:** Persistent small files such as scripts, notes, and configuration files |
+| **Scratch on Lustre (disk-based)** | **Path:** `/scratch-calder/<username>`<br>**Environment variable:** `$SCRATCH`<br>**Quota:** Project-based<br>**Backup:** ❌ No<br>**Best for:** Large datasets and active project data |
+| **Flash on Lustre (NVMe-based)** | **Path:** `/flash-calder/tmp/job.<JOB-ID>`<br>**Environment variable:** `$TMP_SHARED`<br>**Quota:** Project-based<br>**Automatic deletion:** ✅ Yes<br>**Best for:** I/O-intensive tasks |
+
+Unlike Aire's fixed per-user quotas, Calder uses project-based quotas, with limits set per project by Research IT.
+
+### Storage Capacity and Limits on Calder
+
+| Filesystem                            | Total Space |
+| -------------------------------------- | ----------- |
+| Scratch on Lustre (`/scratch-calder`)  | ~6.3 PB     |
+| Flash on Lustre (`/flash-calder`)      | ~246 TB     |
+| Home Folder (`$HOME`)                  | Shared with Aire (see above) |
+
+```{note}
+When the upgraded Aire system (Aire 2.0) launches, Aire's scratch and flash paths will be renamed to `/scratch-aire` and `/flash-aire` respectively, to distinguish them from Calder's storage.
+```
+
+## When a Filesystem Becomes Full
 
 While the quota system helps manage individual usage, it doesn’t guarantee that the overall filesystem won’t fill up. Quotas are intentionally **oversubscribed** to maximise usable space — most users don’t use their full quota all the time. However, this means it’s possible for the filesystem itself to become critically full.
 
@@ -112,7 +135,7 @@ At this stage, to protect system integrity and avoid cascading failures, we take
 Rebooting the system means **all users lose access** temporarily. This also carries a small risk of hardware issues or service delays during the recovery.
 :::
 
-### A Community Responsibility
+## A Community Responsibility
 
 The HPC system is a shared resource. Although we monitor usage closely and take preemptive action when possible, **the majority of data is managed by users**, not system administrators.
 
@@ -120,8 +143,8 @@ For this reason, we ask everyone to:
 
 - Regularly review and clean up your data.
 - Follow our [Best Practices](page:best-practices) for data management and storage usage.
-- Understand and respect your [Filesystem Quotas](page:quotas), and monitor them regularly.
-- Comply with the [Rules and Regulations for using Aire](page:rules).
+- Understand and respect your [Filesystem Quotas](page:filesystem-quotas), and monitor them regularly.
+- Comply with the [Rules and Regulations for using Aire](page:rules-regulations).
 - Respond promptly to any system alerts or emails — early action can prevent disruption for the entire community.
 
 By following these guidelines, you help protect not only your work, but also the reliability of the HPC platform as a whole.

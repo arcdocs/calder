@@ -1,13 +1,13 @@
 # Training courses
 
-To effectively use an HPC system like Aire, you’ll need certain skills, starting with a basic understanding of the Linux command line (the shell). This knowledge is essential for preparing and manipulating data, code, and scripts, as well as managing your work on the system. Familiarity with the Linux shell is a prerequisite for accessing Aire. If you’ve used other HPC systems before, you likely already have most of the necessary skills.
+Using an HPC system such as Calder is easiest with a basic understanding of the Linux command line, also known as the shell. These skills help you organise files, prepare and transfer data, run software and scripts, and manage your work on the system. Researchers who have used another HPC service will usually already be familiar with many of the essentials.
 
-As you progress in your use of HPC, more advanced Linux skills may become necessary, including scripting and tools like `grep`, `awk`, and `sed`. If your work involves developing or maintaining code, proficiency in relevant programming languages will also be beneficial.
+As your use of HPC develops, you may also benefit from shell scripting and command-line tools such as `grep`, `awk`, and `sed`. Familiarity with the programming languages, software, and workflows used in your research is particularly useful when developing or maintaining code for Calder.
 
-We offer regular training courses at the University, as well as access to courses hosted online or at other institutions. The curriculum and current course schedule are available [here](https://arc.leeds.ac.uk/courses/).
+## University training
 
-For additional learning, we recommend the following external training resources:
+The University offers regular training courses in research computing, programming, and related skills. Course descriptions and the current schedule are available on the [Research Computing courses page](https://arc.leeds.ac.uk/courses/).
 
-[Software Carpentry - The Unix Shell](https://swcarpentry.github.io/shell-novice/)
+## External training resources
 
-<!-- TODO: Add more external training links -->
+For an introduction to the Linux shell, work through [Software Carpentry: The Unix Shell](https://swcarpentry.github.io/shell-novice/).

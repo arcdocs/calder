@@ -2,10 +2,6 @@
 
 This page covers the basic things you need to know about the cluster architecture.
 
-<!-- ```{contents}
-:local:
-``` -->
-
 ## Overview of an HPC cluster
 
 HPC cluster systems are constructed from a large number of separate computers called nodes. Each node is about equivalent to a high-end workstation or server. They are linked together by HPC interconnect - a technology which allows very rapid communications between the nodes.
@@ -14,10 +10,10 @@ HPC cluster systems are constructed from a large number of separate computers ca
 
 ## Node types explained
 
-There are **5 types of node** in the Aire HPC cluster:
+There are **5 types of node** in the Aire and Calder HPC clusters:
 
 Compute nodes
-: Compute nodes are physical systems containing CPU and memory. Each compute node on Aire has 168 cores, which are the physical processing units within a CPU that execute instructions and perform calculations. Having many cores allows many instructions to be executed in parallel. There are also high-memory nodes separate from standard compute nodes for jobs that require a significant amount of memory.
+: Compute nodes are physical systems containing CPU and memory. Each compute node on Aire has 168 cores, which are the physical processing units within a CPU that execute instructions and perform calculations. Having many cores allows many instructions to be executed in parallel. Aire also has high-memory nodes, separate from standard compute nodes, for jobs that require a significant amount of memory; Calder does not currently have a high-memory node type.
 
 GPU nodes
 : A GPU node is simply a compute node that has one or more Graphical Processing Units (or GPUs) installed on it. GPUs can be very powerful and allow certain programs to run faster than they do on CPUs (such as some Machine Learning and Deep Learning tools for AI applications). Programs have to be specially written to run on GPUs.
@@ -31,7 +27,7 @@ Storage nodes
 Admin nodes
 : These aren't accessible or visible to users, but they provide the resources and services needed to manage the cluster. For example, they allow system administrators to automatically install and configure the OS on all the nodes and access monitoring features. The [job scheduling system](job_scheduler.md) is hosted on one of the admin nodes.
 
-For more detailed information on the different types of compute nodes, please refer to the [Compute Node Types](../system/compute_node_types.md) section.
+For more detailed information on the different types of compute nodes, please refer to the [Compute Node Types](../system/node_types.md) section.
 
 ## How work is executed on an HPC cluster
 
