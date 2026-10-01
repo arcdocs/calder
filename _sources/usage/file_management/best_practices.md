@@ -1,5 +1,6 @@
-(page:best-practices)=
 # Best Practices
+
+(page:best-practices)=
 
 Follow these guidelines to manage your data efficiently on Aire:
 

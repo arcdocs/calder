@@ -1,8 +1,9 @@
 # Intel oneAPI
-<!-- Brief introduction -->
+
 Intel oneAPI is a unified, open programming model designed by Intel to simplify development across diverse hardware architectures including CPUs, GPUs, FPGAs, and other accelerators. It provides a comprehensive suite of compilers, libraries, analysis tools, and migration utilities optimized for high-performance computing (HPC), artificial intelligence (AI), and data analytics.
 
 Key benefits of Intel oneAPI in HPC environments include:
+
 - **Cross-architecture support**: Write code once and run it on multiple hardware platforms.
 - **Performance optimization**: Libraries and tools are tuned for Intel hardware.
 - **Open standards**: Based on SYCL and DPC++, avoiding vendor lock-in.
@@ -22,13 +23,12 @@ Key benefits of Intel oneAPI in HPC environments include:
 - [Intel IPP](https://www.intel.com/content/www/us/en/developer/tools/oneapi/ipp.html)
 - [Intel CCL](https://github.com/intel/oneccl)
 
-
 ## The Intel OneAPI modules on Aire
 
 This page documents all Intel oneAPI modules available on the HPC system, including descriptions, official links, usage instructions, and licensing notes.
 
 | Version | Module Load Command | Description |
-|---------|----------------------|-------------|
+| --------- | ---------------------- | ------------- |
 | 2025.0.4 | `module load intel/oneapi/compiler/2025.0.4` | Intel C/C++/Fortran compilers |
 | 2025.0.4 | `module load intel/oneapi/compiler-intel-llvm/2025.0.4` | LLVM-based compiler with SYCL/DPC++ support |
 | 2025.0.4 | `module load intel/oneapi/compiler-rt/2025.0.4` | Runtime libraries for compiled applications |
@@ -47,8 +47,6 @@ This page documents all Intel oneAPI modules available on the HPC system, includ
 | 2022.0 | `module load intel/oneapi/intel_ipp_intel64/2022.0` | Signal/image processing primitives |
 | 2025.0 | `module load intel/oneapi/intel_ippcp_intel64/2025.0` | Cryptographic primitives |
 
-
-
 ## Licensing
 
 Intel oneAPI toolkits are generally free to use and do not require a license for most components. However, some tools and libraries may have specific licensing terms. For details, refer to:
@@ -56,7 +54,7 @@ Intel oneAPI toolkits are generally free to use and do not require a license for
 - [Intel oneAPI Licensing FAQ](https://www.intel.com/content/www/us/en/developer/articles/faq/oneapi-licensing-faq.html)
 
 ## Note
-Previous versions of Intel oneAPI included both `ifort` and `ifx` compilers. However, starting from the 2025 version, only `ifx` is supported.
 
+Previous versions of Intel oneAPI included both `ifort` and `ifx` compilers. However, starting from the 2025 version, only `ifx` is supported.
 
 <!-- Optional: If there is any other useful advice, such as profiling and performance tuning, please include them here as a separate section. -->

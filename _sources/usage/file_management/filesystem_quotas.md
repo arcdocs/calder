@@ -1,6 +1,6 @@
-(page:quotas)=
-
 # Filesystem Quotas
+
+(page:filesystem-quotas)=
 
 We use quotas on the filesystems to manage the usage of the space fairly among the users and to try to avoid or reduce situations where a filesystem fails. If you believe you have a genuine need for additional storage, a request can be made — but please ensure you have read the full documentation first and confirmed that you are following all recommended practices for managing your current quota.
 
@@ -9,25 +9,48 @@ The quota system tracks two key metrics: the amount of disk space used and the n
 - The **space quota** limits the total size of your data.
 - The **inode quota** limits the number of files and directories you can create.
 
+```{note}
+Quotas are applied at different levels depending on the system. On Aire, quotas are applied **per user**. On Calder (and on Aire once it is upgraded to Aire 2.0), quotas are instead applied **per Slurm project**, and are shared by everyone in that project. The default space and inode limits described below are the same regardless of whether they are applied per user or per project.
+```
+
 ## Default quotas
 
-By default, all users are assigned storage quotas to ensure fair access to shared resources. These default limits vary depending on the filesystem and are designed to accommodate typical research workloads. The following table outlines the standard quota allocations for each quoted storage filesystem.
+By default, all users (or, on Calder, all projects) are assigned storage quotas to ensure fair access to shared resources. These default limits vary depending on the filesystem and are designed to accommodate typical research workloads. The following table outlines the standard quota allocations for each quoted storage filesystem.
 
-| Filesystem                      | Default Space Quota | Default Inode Quota |
-| ------------------------------- | ------------------- | ------------------- |
-| Home Folder (`$HOME`)           | 65GB                | 1,500,000           |
-| Scratch on Lustre (`$SCRATCH`)  | 1TB                 | 1,500,000           |
-| Flash on Lustre (`$TMP_SHARED`) | 1TB                 | 1,500,000           |
+| Filesystem                      | Default Space Quota | Default Inode Quota | Applied per |
+| ------------------------------- | ------------------- | ------------------- | ----------- |
+| Home Folder (`$HOME`)           | 65GB                | 1,500,000           | User (shared between Aire and Calder) |
+| Scratch on Lustre (`$SCRATCH`)  | 1TB                 | 1,500,000           | User on Aire; Project on Calder |
+| Flash on Lustre (`$TMP_SHARED`) | 1TB                 | 1,500,000           | User on Aire; Project on Calder |
 
 ## Monitoring Your Quota Usage
 
 It's important to regularly check your storage usage to avoid interruptions caused by hitting quota limits. The following table shows how you can monitor both your space and inode quota usage using simple commands.
+
+::::{tab-set}
+
+:::{tab-item} Aire
 
 | Filesystem                      | Command to Check Quota           |
 | ------------------------------- | -------------------------------- |
 | Home Folder (`$HOME`)           | `quota -s`                       |
 | Scratch on Lustre (`$SCRATCH`)  | `lfs quota -h -u $USER /scratch` |
 | Flash on Lustre (`$TMP_SHARED`) | `lfs quota -h -u $USER /flash`   |
+
+:::
+
+:::{tab-item} Calder
+
+| Filesystem                      | Command to Check Quota                      |
+| ------------------------------- | -------------------------------------------- |
+| Home Folder (`$HOME`)           | `quota -s`                                   |
+| Scratch on Lustre (`$SCRATCH`)  | `lfs quota -h -p <project-id> /scratch-calder` |
+| Flash on Lustre (`$TMP_SHARED`) | `lfs quota -h -p <project-id> /flash-calder`   |
+
+Your `<project-id>` is the Slurm project associated with your account; contact Research IT if you're unsure of yours.
+
+:::
+::::
 
 *Note: The `quota` command is used for network-mounted filesystems like NFS, which is the case for your Home Folder, and the `lfs quota` command is specific to Lustre filesystems, which is the case for shared high-performance filesystems such as Scratch or Flash. The flags `-s` and `-h` displays sizes in a human-readable format.*
 
@@ -75,7 +98,7 @@ If you're using `miniforge` and `conda` to manage your software stack, consider 
 Once you've freed up some space, system functions such as login and file operations should begin to stabilise. From there, you can take more structured actions:
 
 - **Move completed work** to appropriate long-term or project storage.
-- **Ensure you're using the right storage tier** for your workload (see our [storage overview](page:storage-overview) and [best practices guide](page:best-practices) for more information).
+- **Ensure you're using the right storage tier** for your workload (see our [storage overview](page:storage-filesystem) and [best practices guide](page:best-practices) for more information).
 - **Plan your research in stages**, allowing for regular clean up between cycles to stay within your quota.
 
 :::{admonition} Still need more space?
@@ -85,7 +108,7 @@ If, after cleaning up, organising your data, and improving your workflow, you st
 
 ## Quota Requests: User Guidelines and Policy
 
-The HPC storage systems are shared, finite resources designed exclusively for active computation. This guideline outlines when users may request an increase in their storage quota and the conditions for approval.
+The HPC storage systems are shared, finite resources designed exclusively for active computation. This guideline outlines when users (or, on Calder, projects) may request an increase in their storage quota and the conditions for approval.
 All requests will be assessed in the context of overall system availability and fair use.
 
 ### Filesystem Overview and Best Practices
@@ -93,9 +116,9 @@ All requests will be assessed in the context of overall system availability and 
 Before requesting a quota increase, ensure that you are using the storage filesystems appropriately:
 
 - Follow our [Best Practices](page:best-practices) for data management and storage usage.
-- Use appropriate storage areas according our [Storage and Filesystems](page:storage-overview) guidance.
-- Understand and respect your [Filesystem Quotas](page:quotas), and monitor them regularly.
-- Comply with the [Rules and Regulations for using Aire](page:rules).
+- Use appropriate storage areas according our [Storage and Filesystems](page:storage-filesystem) guidance.
+- Understand and respect your filesystem quotas, and monitor them regularly.
+- Comply with the [Rules and Regulations for using HPC](page:rules-regulations).
 
 ### When to Request a Quota Increase
 
@@ -127,7 +150,7 @@ All quota increases are time limited. This section explains how long increases c
 - Users must specify an end date when requesting a quota increase.
 - Before the period ends, users must remove or transfer the data.
 - Once the quota increase period ends, quotas will automatically revert to default levels.
-- User can request quota increases as many time as necessary.
+- Increases can be requested as many times as necessary, whether for a personal quota on Aire or a project quota on Calder.
 
 ### How to Justify a Quota Increase
 
@@ -150,7 +173,7 @@ Requests that are detailed, timely, and align with active research activities ar
 
 Users must manage their data responsibly during and after a quota increase. This section explains what happens to your storage once the extension period expires. At the end of the agreed period:
 
-- The user’s quota returns to default.
+- The quota (per user on Aire, or per project on Calder) returns to default.
 - Data must be deleted or moved beforehand.
 - The system has no backup. Data left after the deadline will be permanently deleted.
 
@@ -162,7 +185,7 @@ Users will be unable to create new files until they are back within their quota.
 
 You are expected to reduce your filesystem usage to the default quota level before the agreed period ends. Failure to reduce usage by the deadline is a policy violation. Consequences are:
 
-- 30 days post-deadline: Automatic deletion of all data in the user’s filesystem.
+- 30 days post-deadline: Automatic deletion of all data in the user's or project's filesystem.
 - Further violations will prevent you from requesting quota increases in the future.
 
 *Contact the HPC admin team before the deadline if you anticipate delays.*

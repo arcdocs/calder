@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Storage and Filesystems &#8212; Calder Documentation</title>
+    <title>Storage and Filesystem &#8212; Aire and Calder User Documentation</title>
   
   
   
@@ -66,7 +66,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Job Scheduler" href="job_scheduler.html" />
-    <link rel="prev" title="Compute node types" href="compute_node_types.html" />
+    <link rel="prev" title="Compute node types" href="node_types.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Calder Documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Aire and Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire and Calder User Documentation - Home"/>
   
   
 </a></div>
@@ -166,12 +166,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../welcome.html">
-                    Calder User Documentation
+                    Aire and Calder User Documentation
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../getting_started/start.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/faq.html">FAQ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/request_account.html">Requesting an account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/logging_on.html">Logging on</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../getting_started/request_software.html">Requesting new software</a></li>
@@ -180,29 +181,27 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="start.html">System Overview</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="hpc_architecture.html">HPC architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="compute_node_types.html">Compute node types</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Storage and Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="node_types.html">Compute node types</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Storage and Filesystem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="job_scheduler.html">Job Scheduler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="modules_and_applications.html">Modules and Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linux_user_environment.html">Linux User Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="module_system.html">Modules and Applications</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../usage/job_type.html">Job Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../usage/job_example.html">Job Examples</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire and Calder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../usage/environment_management.html">Managing Software Environments</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_management/best_practices.html">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_management/storage_options.html">Storage Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_management/filesystem_quotas.html">Filesystem Quotas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_management/data_transfer.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../usage/file_management/data_sharing.html">Data Sharing</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../usage/jobs.html">Job Types and Examples</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../usage/job_priority.html">Job Priority</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_data_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/best_practices.html">Best Practices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/storage_options.html">Storage Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/filesystem_quotas.html">Filesystem Quotas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/data_transfer.html">Data Transfer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../usage/file_data_management/data_sharing.html">Data Sharing</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../usage/dependency_management.html">Dependency Management</a></li>
-</ul>
-</details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../software/start.html">Software on Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../software/start.html">Software on HPC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../software/applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../software/applications/abaqus.html">Abaqus</a></li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../software/applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -245,20 +244,24 @@
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../software/interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../software/interpreters/miniforge.html">Miniforge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/interpreters/r.html">R</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../software/tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../software/tools/apptainer.html">Apptainer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../software/tools/cmake.html">CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../software/tools/miniforge.html">Miniforge</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../software/tools/spack.html">Spack</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../software/tools/texlive.html">TeX Live</a></li>
 </ul>
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../support/start.html">Contact Us</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../support/start.html">How to get support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../support/training_courses.html">Training courses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../support/other_resources.html">Other useful resources</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../privacy_cookies.html">Privacy and cookies</a></li>
 
@@ -461,7 +464,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Storage and Filesystems</h1>
+    <h1>Storage and Filesystem</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -471,19 +474,21 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-storage-types">Summary of storage types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-storage-types-on-aire">Summary of storage types on Aire</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-storage-descriptions">Detailed storage descriptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-directory">Home Directory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-lustre-diskbased">Scratch on Lustre (Disk‑based)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-on-lustre-nvmebased">Flash on Lustre (NVMe‑based)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-lustre-disk-based">Scratch on Lustre (disk-based)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-on-lustre-nvme-based">Flash on Lustre (NVMe-based)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-compute-nodes">Scratch on compute nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits-on-aire">Storage Capacity and Limits on Aire</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits">Storage Capacity and Limits</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-filesystem-becomes-full">When a Filesystem Becomes Full</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-community-responsibility">A Community Responsibility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calder-storage">Calder storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits-on-calder">Storage Capacity and Limits on Calder</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-filesystem-becomes-full">When a Filesystem Becomes Full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-community-responsibility">A Community Responsibility</a></li>
 </ul>
             </nav>
         </div>
@@ -495,12 +500,12 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="storage-and-filesystems">
-<span id="page-storage-overview"></span><h1>Storage and Filesystems<a class="headerlink" href="#storage-and-filesystems" title="Link to this heading">#</a></h1>
-<p>Aire offers versatile storage solutions to support diverse research workflows. This guide explains the available storage options, their key features, and best practices for efficient data and quota management. Use the information below to make informed decisions and optimise your HPC work.</p>
-<section id="summary-of-storage-types">
-<h2>Summary of storage types<a class="headerlink" href="#summary-of-storage-types" title="Link to this heading">#</a></h2>
-<p>The table below provides a high‑level comparison of each storage option. Note that the associated environment variables (e.g., <code class="docutils literal notranslate"><span class="pre">$HOME</span></code>, <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>) simplify navigation in your workflows by automatically pointing to the correct directories.</p>
+  <section id="storage-and-filesystem">
+<h1>Storage and Filesystem<a class="headerlink" href="#storage-and-filesystem" title="Link to this heading">#</a></h1>
+<p id="page-storage-filesystem">Aire and Calder provide several storage options to support a wide range of research workflows. This section summarises the available storage types, their key features, and the best practices for managing quotas and data efficiently.</p>
+<section id="summary-of-storage-types-on-aire">
+<h2>Summary of storage types on Aire<a class="headerlink" href="#summary-of-storage-types-on-aire" title="Link to this heading">#</a></h2>
+<p>The table below gives a high-level comparison of each storage option. Environment variables such as <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> and <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> make navigation easier by pointing directly to the correct directories.</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Storage Type</strong></p></th>
@@ -509,25 +514,25 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><strong>Home Folder</strong></p></td>
-<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code><br><strong>Env Variable:</strong> <code class="docutils literal notranslate"><span class="pre">$HOME</span></code><br><strong>Quota:</strong> 65GB, 1.5 million files<br><strong>Backup:</strong> ✅ Yes<br><strong>Automatic Deletion:</strong> ❌ No<br><strong>Best For:</strong> Persistent small files (scripts, notes, configs)</p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$HOME</span></code><br><strong>Quota:</strong> 65 GB, 1.5 million files<br><strong>Backup:</strong> ✅ Yes<br><strong>Automatic deletion:</strong> ❌ No<br><strong>Best for:</strong> Persistent small files such as scripts, notes, and configuration files</p></td>
 </tr>
-<tr class="row-odd"><td><p><strong>Scratch on Lustre (Disk‑based)</strong></p></td>
-<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/mnt/scratch/&lt;username&gt;</span></code><br><strong>Env Variable:</strong> <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code><br><strong>Quota:</strong> 1TB, 1.5 million files<br><strong>Backup:</strong> ❌ No<br><strong>Automatic Deletion:</strong> ❌ No<br><strong>Best For:</strong> Large datasets</p></td>
+<tr class="row-odd"><td><p><strong>Scratch on Lustre (disk-based)</strong></p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/mnt/scratch/&lt;username&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code><br><strong>Quota:</strong> 1 TB, 1.5 million files<br><strong>Backup:</strong> ❌ No<br><strong>Automatic deletion:</strong> ❌ No<br><strong>Best for:</strong> Large datasets and active project data</p></td>
 </tr>
-<tr class="row-even"><td><p><strong>Flash on Lustre (NVMe‑based)</strong></p></td>
-<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/mnt/flash/tmp/job.&lt;JOB-ID&gt;</span></code><br><strong>Env Variable:</strong> <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code><br><strong>Quota:</strong> 1TB, 1.5M files<br><strong>Backup:</strong> ❌ No<br><strong>Automatic Deletion:</strong> ✅ Yes<br><strong>Best For:</strong> I/O‑intensive tasks</p></td>
+<tr class="row-even"><td><p><strong>Flash on Lustre (NVMe-based)</strong></p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/mnt/flash/tmp/job.&lt;JOB-ID&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code><br><strong>Quota:</strong> 1 TB, 1.5 million files<br><strong>Backup:</strong> ❌ No<br><strong>Automatic deletion:</strong> ✅ Yes<br><strong>Best for:</strong> I/O-intensive tasks</p></td>
 </tr>
 <tr class="row-odd"><td><p><strong>Scratch on compute nodes</strong></p></td>
-<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/tmp/job.JOB-ID</span></code><br><strong>Env Variable:</strong> <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code><br><strong>Quota:</strong> None, subject to node storage availability<br><strong>Backup:</strong> ❌ No<br><strong>Automatic Deletion:</strong> ✅ Yes<br><strong>Best For:</strong> Single‑node jobs needing fast, localised storage</p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/tmp/job.JOB-ID</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code><br><strong>Quota:</strong> None, subject to node storage availability<br><strong>Backup:</strong> ❌ No<br><strong>Automatic deletion:</strong> ✅ Yes<br><strong>Best for:</strong> Single-node jobs needing fast, local storage</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <blockquote>
-<div><p><strong>Key Information</strong></p>
+<div><p><strong>Key information</strong></p>
 <ul class="simple">
-<li><p><strong>Temporary Data</strong>: Data in <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is automatically deleted when a job completes.</p></li>
-<li><p><strong>No Backups</strong>: Data in <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is not backed up. Archive critical files to your Home Folder or external storage.</p></li>
+<li><p><strong>Temporary data</strong>: Files in <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> are automatically deleted when a job completes.</p></li>
+<li><p><strong>No backups</strong>: Data in <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code> is not backed up. Archive critical files to your Home Folder or external storage.</p></li>
 </ul>
 </div></blockquote>
 </section>
@@ -536,76 +541,71 @@
 <section id="home-directory">
 <h3>Home Directory<a class="headerlink" href="#home-directory" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Path &amp; Environment</strong>:</p>
+<li><p><strong>Path and environment</strong></p>
 <ul>
 <li><p>Directory: <code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code></p></li>
-<li><p>Accessible via the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> variable and via the <code class="docutils literal notranslate"><span class="pre">~</span></code> shortcut.</p></li>
+<li><p>Accessible via the <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> variable and the <code class="docutils literal notranslate"><span class="pre">~</span></code> shortcut.</p></li>
 </ul>
 </li>
-<li><p><strong>Quota</strong>: 65GB and up to 1.5 million files.</p></li>
-<li><p><strong>Backup</strong>: Yes (with periodic backups – external archiving recommended for critical data).</p></li>
-<li><p><strong>Automatic Deletion</strong>: No.</p></li>
-<li><p><strong>Usage</strong>:<br />
-Appropriate for persistent, small files such as scripts, documentation, and configuration files. Not appropriate for high I/O operations.</p></li>
+<li><p><strong>Quota</strong>: 65 GB and up to 1.5 million files.</p></li>
+<li><p><strong>Backup</strong>: Yes, with periodic backups. External archiving is recommended for critical data.</p></li>
+<li><p><strong>Automatic deletion</strong>: No.</p></li>
+<li><p><strong>Usage</strong>: Best for persistent, small files such as scripts, documentation, and configuration files. It is not intended for high I/O workloads.</p></li>
 </ul>
 </section>
-<section id="scratch-on-lustre-diskbased">
-<h3>Scratch on Lustre (Disk‑based)<a class="headerlink" href="#scratch-on-lustre-diskbased" title="Link to this heading">#</a></h3>
+<section id="scratch-on-lustre-disk-based">
+<h3>Scratch on Lustre (disk-based)<a class="headerlink" href="#scratch-on-lustre-disk-based" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Path &amp; Environment</strong>:</p>
+<li><p><strong>Path and environment</strong></p>
 <ul>
 <li><p>Directory: <code class="docutils literal notranslate"><span class="pre">/mnt/scratch/&lt;username&gt;</span></code></p></li>
 <li><p>Accessible via the <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> variable.</p></li>
-<li><p>Symlink: <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">/mnt/scratch</span></code></p></li>
+<li><p>Symlink: <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> → <code class="docutils literal notranslate"><span class="pre">/mnt/scratch</span></code></p></li>
 </ul>
 </li>
-<li><p><strong>Quota</strong>: 1TB and up to 1.5 million files.</p></li>
+<li><p><strong>Quota</strong>: 1 TB and up to 1.5 million files.</p></li>
 <li><p><strong>Backup</strong>: No.</p></li>
-<li><p><strong>Automatic Deletion</strong>: No.</p></li>
-<li><p><strong>Usage</strong>:<br />
-Designed for large datasets and active job data. Manual cleanup is essential to avoid exceeding quotas.</p></li>
+<li><p><strong>Automatic deletion</strong>: No.</p></li>
+<li><p><strong>Usage</strong>: Designed for large datasets and active job data. Manual cleanup is essential to avoid exceeding quotas.</p></li>
 </ul>
 </section>
-<section id="flash-on-lustre-nvmebased">
-<h3>Flash on Lustre (NVMe‑based)<a class="headerlink" href="#flash-on-lustre-nvmebased" title="Link to this heading">#</a></h3>
+<section id="flash-on-lustre-nvme-based">
+<h3>Flash on Lustre (NVMe-based)<a class="headerlink" href="#flash-on-lustre-nvme-based" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Path &amp; Environment</strong>:</p>
+<li><p><strong>Path and environment</strong></p>
 <ul>
 <li><p>Directory: <code class="docutils literal notranslate"><span class="pre">/mnt/flash/tmp/job.&lt;JOB-ID&gt;</span></code></p></li>
 <li><p>Accessible via the <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code> variable.</p></li>
-<li><p>Symlink: <code class="docutils literal notranslate"><span class="pre">/flash</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">/mnt/flash</span></code></p></li>
+<li><p>Symlink: <code class="docutils literal notranslate"><span class="pre">/flash</span></code> → <code class="docutils literal notranslate"><span class="pre">/mnt/flash</span></code></p></li>
 </ul>
 </li>
-<li><p><strong>Quota</strong>: 1TB per job and up to 1.5 million files per job.</p></li>
+<li><p><strong>Quota</strong>: 1 TB per job and up to 1.5 million files per job.</p></li>
 <li><p><strong>Backup</strong>: No.</p></li>
-<li><p><strong>Automatic Deletion</strong>: Yes—files are purged upon job completion.</p></li>
-<li><p><strong>Usage</strong>:<br />
-Optimised for I/O‑intensive operations such as simulations. Ideal for tasks that require high performance during the job period.</p></li>
+<li><p><strong>Automatic deletion</strong>: Yes. Files are purged when the job completes.</p></li>
+<li><p><strong>Usage</strong>: Optimised for I/O-intensive tasks such as simulations. Ideal for workloads that require high performance during the job period.</p></li>
 </ul>
 </section>
 <section id="scratch-on-compute-nodes">
 <h3>Scratch on compute nodes<a class="headerlink" href="#scratch-on-compute-nodes" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Path &amp; Environment</strong>:</p>
+<li><p><strong>Path and environment</strong></p>
 <ul>
 <li><p>Directory: <code class="docutils literal notranslate"><span class="pre">/tmp</span></code></p></li>
 <li><p>Accessible via <code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code> and <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code>.</p></li>
 </ul>
 </li>
-<li><p><strong>Quota</strong>: None, subject to node storage availability</p></li>
+<li><p><strong>Quota</strong>: None, subject to node storage availability.</p></li>
 <li><p><strong>Backup</strong>: No.</p></li>
-<li><p><strong>Automatic Deletion</strong>: Yes—data is purged after job completion.</p></li>
-<li><p><strong>Usage</strong>:<br />
-Best for fast, node‑local storage during single‑node jobs. Note that data cannot be shared between nodes and is local.</p></li>
+<li><p><strong>Automatic deletion</strong>: Yes. Data is purged after job completion.</p></li>
+<li><p><strong>Usage</strong>: Best for fast, node-local storage during single-node jobs. Data is not shared between nodes and remains local to the node.</p></li>
 </ul>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>For detailed guidance on best practices for using storage and filesystems, please refer to the <a class="reference internal" href="../usage/file_data_management/start.html"><span class="std std-doc">File and Data Management</span></a> section.</p>
+<p>For detailed guidance on best practices for using storage and filesystems, see the <a class="reference internal" href="../usage/file_management/start.html"><span class="std std-doc">File and Data Management</span></a> section.</p>
 </div>
 </section>
-</section>
-<section id="storage-capacity-and-limits">
-<h2>Storage Capacity and Limits<a class="headerlink" href="#storage-capacity-and-limits" title="Link to this heading">#</a></h2>
+<section id="storage-capacity-and-limits-on-aire">
+<h3>Storage Capacity and Limits on Aire<a class="headerlink" href="#storage-capacity-and-limits-on-aire" title="Link to this heading">#</a></h3>
 <p>As explained above, Aire provides several shared storage areas. Each has a finite capacity, and usage is managed collectively across all users:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -635,8 +635,60 @@ Best for fast, node‑local storage during single‑node jobs. Note that data ca
 </table>
 </div>
 <p><em>* Quantities available per node</em></p>
+</section>
+</section>
+<section id="calder-storage">
+<h2>Calder storage<a class="headerlink" href="#calder-storage" title="Link to this heading">#</a></h2>
+<p id="id1">Calder provides its own Lustre parallel filesystem alongside Aire’s, following the same pattern of persistent home storage plus disk-based and NVMe-based scratch space.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Storage Type</strong></p></th>
+<th class="head"><p><strong>Details</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Home Folder</strong></p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$HOME</span></code><br><strong>Shared with:</strong> Aire, so your home directory is the same on both systems<br><strong>Backup:</strong> ✅ Yes<br><strong>Best for:</strong> Persistent small files such as scripts, notes, and configuration files</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Scratch on Lustre (disk-based)</strong></p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/scratch-calder/&lt;username&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code><br><strong>Quota:</strong> Project-based<br><strong>Backup:</strong> ❌ No<br><strong>Best for:</strong> Large datasets and active project data</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Flash on Lustre (NVMe-based)</strong></p></td>
+<td><p><strong>Path:</strong> <code class="docutils literal notranslate"><span class="pre">/flash-calder/tmp/job.&lt;JOB-ID&gt;</span></code><br><strong>Environment variable:</strong> <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code><br><strong>Quota:</strong> Project-based<br><strong>Automatic deletion:</strong> ✅ Yes<br><strong>Best for:</strong> I/O-intensive tasks</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Unlike Aire’s fixed per-user quotas, Calder uses project-based quotas, with limits set per project by Research IT.</p>
+<section id="storage-capacity-and-limits-on-calder">
+<h3>Storage Capacity and Limits on Calder<a class="headerlink" href="#storage-capacity-and-limits-on-calder" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Filesystem</p></th>
+<th class="head"><p>Total Space</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/scratch-calder</span></code>)</p></td>
+<td><p>~6.3 PB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/flash-calder</span></code>)</p></td>
+<td><p>~246 TB</p></td>
+</tr>
+<tr class="row-even"><td><p>Home Folder (<code class="docutils literal notranslate"><span class="pre">$HOME</span></code>)</p></td>
+<td><p>Shared with Aire (see above)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the upgraded Aire system (Aire 2.0) launches, Aire’s scratch and flash paths will be renamed to <code class="docutils literal notranslate"><span class="pre">/scratch-aire</span></code> and <code class="docutils literal notranslate"><span class="pre">/flash-aire</span></code> respectively, to distinguish them from Calder’s storage.</p>
+</div>
+</section>
+</section>
 <section id="when-a-filesystem-becomes-full">
-<h3>When a Filesystem Becomes Full<a class="headerlink" href="#when-a-filesystem-becomes-full" title="Link to this heading">#</a></h3>
+<h2>When a Filesystem Becomes Full<a class="headerlink" href="#when-a-filesystem-becomes-full" title="Link to this heading">#</a></h2>
 <p>While the quota system helps manage individual usage, it doesn’t guarantee that the overall filesystem won’t fill up. Quotas are intentionally <strong>oversubscribed</strong> to maximise usable space — most users don’t use their full quota all the time. However, this means it’s possible for the filesystem itself to become critically full.</p>
 <p>When a filesystem reaches <strong>90% capacity</strong>, performance starts to degrade significantly:</p>
 <ul class="simple">
@@ -664,14 +716,14 @@ Best for fast, node‑local storage during single‑node jobs. Note that data ca
 </div>
 </section>
 <section id="a-community-responsibility">
-<h3>A Community Responsibility<a class="headerlink" href="#a-community-responsibility" title="Link to this heading">#</a></h3>
+<h2>A Community Responsibility<a class="headerlink" href="#a-community-responsibility" title="Link to this heading">#</a></h2>
 <p>The HPC system is a shared resource. Although we monitor usage closely and take preemptive action when possible, <strong>the majority of data is managed by users</strong>, not system administrators.</p>
 <p>For this reason, we ask everyone to:</p>
 <ul class="simple">
 <li><p>Regularly review and clean up your data.</p></li>
-<li><p>Follow our <a class="reference internal" href="../usage/file_data_management/best_practices.html#page-best-practices"><span class="std std-ref">Best Practices</span></a> for data management and storage usage.</p></li>
-<li><p>Understand and respect your <a class="reference internal" href="../usage/file_data_management/filesystem_quotas.html#page-quotas"><span class="std std-ref">Filesystem Quotas</span></a>, and monitor them regularly.</p></li>
-<li><p>Comply with the <a class="reference internal" href="../getting_started/rules_regulations.html#page-rules"><span class="std std-ref">Rules and Regulations for using Aire</span></a>.</p></li>
+<li><p>Follow our <a class="reference internal" href="../usage/file_management/best_practices.html#page-best-practices"><span class="std std-ref">Best Practices</span></a> for data management and storage usage.</p></li>
+<li><p>Understand and respect your <a class="reference internal" href="../usage/file_management/filesystem_quotas.html#page-filesystem-quotas"><span class="std std-ref">Filesystem Quotas</span></a>, and monitor them regularly.</p></li>
+<li><p>Comply with the <a class="reference internal" href="../getting_started/rules_regulations.html#page-rules-regulations"><span class="std std-ref">Rules and Regulations for using Aire</span></a>.</p></li>
 <li><p>Respond promptly to any system alerts or emails — early action can prevent disruption for the entire community.</p></li>
 </ul>
 <p>By following these guidelines, you help protect not only your work, but also the reliability of the HPC platform as a whole.</p>
@@ -679,7 +731,6 @@ Best for fast, node‑local storage during single‑node jobs. Note that data ca
 <p class="admonition-title">Warning</p>
 <p>In emergency situations, we may take <strong>immediate and irreversible actions without warning</strong> to protect the system and ensure continued access for the wider community.</p>
 </div>
-</section>
 </section>
 </section>
 
@@ -714,7 +765,7 @@ Best for fast, node‑local storage during single‑node jobs. Note that data ca
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="compute_node_types.html"
+       href="node_types.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
@@ -748,19 +799,21 @@ Best for fast, node‑local storage during single‑node jobs. Note that data ca
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-storage-types">Summary of storage types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-of-storage-types-on-aire">Summary of storage types on Aire</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-storage-descriptions">Detailed storage descriptions</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-directory">Home Directory</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-lustre-diskbased">Scratch on Lustre (Disk‑based)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-on-lustre-nvmebased">Flash on Lustre (NVMe‑based)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-lustre-disk-based">Scratch on Lustre (disk-based)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flash-on-lustre-nvme-based">Flash on Lustre (NVMe-based)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-on-compute-nodes">Scratch on compute nodes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits-on-aire">Storage Capacity and Limits on Aire</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits">Storage Capacity and Limits</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-filesystem-becomes-full">When a Filesystem Becomes Full</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#a-community-responsibility">A Community Responsibility</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calder-storage">Calder storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-capacity-and-limits-on-calder">Storage Capacity and Limits on Calder</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-a-filesystem-becomes-full">When a Filesystem Becomes Full</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-community-responsibility">A Community Responsibility</a></li>
 </ul>
   </nav></div>
 

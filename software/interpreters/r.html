@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Data Sharing &#8212; Calder Documentation</title>
+    <title>R &#8212; Aire and Calder User Documentation</title>
   
   
   
@@ -60,13 +60,13 @@
     <script async="async" src="../../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'usage/file_data_management/data_sharing';</script>
-    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/calder/usage/file_data_management/data_sharing.html" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'software/interpreters/r';</script>
+    <link rel="canonical" href="https://arcdocs.leeds.ac.uk/calder/software/interpreters/r.html" />
     <link rel="icon" href="../../_static/favicon-32x32.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Dependency Management" href="../dependency_management.html" />
-    <link rel="prev" title="Data Transfer" href="data_transfer.html" />
+    <link rel="next" title="Tools" href="../tools/start.html" />
+    <link rel="prev" title="Interpreters" href="start.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../../_static/logo.png" class="logo__image only-light" alt="Calder Documentation - Home"/>
-    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-light" alt="Aire and Calder User Documentation - Home"/>
+    <img src="../../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire and Calder User Documentation - Home"/>
   
   
 </a></div>
@@ -166,12 +166,13 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../../welcome.html">
-                    Calder User Documentation
+                    Aire and Calder User Documentation
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../getting_started/start.html">Getting Started</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/faq.html">FAQ</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_account.html">Requesting an account</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/logging_on.html">Logging on</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../getting_started/request_software.html">Requesting new software</a></li>
@@ -180,85 +181,87 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../system/start.html">System Overview</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../system/hpc_architecture.html">HPC architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system/compute_node_types.html">Compute node types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system/storage_filesystem.html">Storage and Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/node_types.html">Compute node types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/storage_filesystem.html">Storage and Filesystem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../system/job_scheduler.html">Job Scheduler</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system/modules_and_applications.html">Modules and Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../system/linux_user_environment.html">Linux User Environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../system/module_system.html">Modules and Applications</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../start.html">Using Aire</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../job_type.html">Job Types</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../job_example.html">Job Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../job_priority.html">Job Priority</a></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="start.html">File and Data Management</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="best_practices.html">Best Practices</a></li>
-<li class="toctree-l3"><a class="reference internal" href="storage_options.html">Storage Options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="filesystem_quotas.html">Filesystem Quotas</a></li>
-<li class="toctree-l3"><a class="reference internal" href="data_transfer.html">Data Transfer</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Data Sharing</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../usage/start.html">Using Aire and Calder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../usage/environment_management.html">Managing Software Environments</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../usage/file_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/file_management/best_practices.html">Best Practices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/file_management/storage_options.html">Storage Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/file_management/filesystem_quotas.html">Filesystem Quotas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/file_management/data_transfer.html">Data Transfer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../usage/file_management/data_sharing.html">Data Sharing</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../dependency_management.html">Dependency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage/jobs.html">Job Types and Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../usage/job_priority.html">Job Priority</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../../software/start.html">Software on Aire</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/abaqus.html">Abaqus</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../../software/applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ansys_cli.html">Ansys CLI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/cfx.html">CFX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/chemkin.html">Chemkin Pro</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/fluent.html">Fluent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../../software/applications/ansys/ls-dyna.html">LS-DYNA</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../start.html">Software on HPC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="../applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../applications/abaqus.html">Abaqus</a></li>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/ansys_cli.html">Ansys CLI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/cfx.html">CFX</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/chemkin.html">Chemkin Pro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/fluent.html">Fluent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/ls-dyna.html">LS-DYNA</a></li>
 </ul>
 </details></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/castep.html">CASTEP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/comsol.html">COMSOL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/fleur.html">Fleur</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/gaussian.html">Gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/matlab.html">MATLAB</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/namd.html">NAMD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/openfoam.html">OpenFOAM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/orca.html">ORCA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/rosetta.html">Rosetta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/applications/vasp.html">VASP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/castep.html">CASTEP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/comsol.html">COMSOL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/fleur.html">Fleur</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/gaussian.html">Gaussian</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/matlab.html">MATLAB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/namd.html">NAMD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/openfoam.html">OpenFOAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/orca.html">ORCA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/rosetta.html">Rosetta</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../applications/vasp.html">VASP</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/cuda.html">CUDA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/gcc.html">GCC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/intel.html">Intel oneAPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/compilers/jdk.html">Java Development Kit</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../compilers/cuda.html">CUDA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compilers/gcc.html">GCC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compilers/intel.html">Intel oneAPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../compilers/jdk.html">Java Development Kit</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/dask.html">Dask</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/fftw.html">FFTW</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/hdf5.html">HDF5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/lapack.html">LAPACK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf.html">NetCDF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openblas.html">OpenBLAS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/openmpi.html">Open MPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/libraries/vtk.html">VTK</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/dask.html">Dask</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/fftw.html">FFTW</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/hdf5.html">HDF5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/lapack.html">LAPACK</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/netcdf.html">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/openblas.html">OpenBLAS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/openmpi.html">Open MPI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../libraries/vtk.html">VTK</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/interpreters/miniforge.html">Miniforge</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="start.html">Interpreters</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">R</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../software/tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../software/tools/apptainer.html">Apptainer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/tools/cmake.html">CMake</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/tools/spack.html">Spack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../software/tools/texlive.html">TeX Live</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../tools/start.html">Tools</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tools/apptainer.html">Apptainer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/cmake.html">CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/miniforge.html">Miniforge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/spack.html">Spack</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tools/texlive.html">TeX Live</a></li>
 </ul>
 </details></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk/courses/">Training Courses</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../support/start.html">Contact Us</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../support/start.html">How to get support</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../support/training_courses.html">Training courses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../support/other_resources.html">Other useful resources</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../privacy_cookies.html">Privacy and cookies</a></li>
 
@@ -338,7 +341,7 @@
       
       
       
-      <li><a href="https://github.com/arcdocs/calder/edit/main/book/usage/file_data_management/data_sharing.md" target="_blank"
+      <li><a href="https://github.com/arcdocs/calder/edit/main/book/software/interpreters/r.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -355,7 +358,7 @@
       
       
       
-      <li><a href="https://github.com/arcdocs/calder/issues/new?title=Issue%20on%20page%20%2Fusage/file_data_management/data_sharing.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/arcdocs/calder/issues/new?title=Issue%20on%20page%20%2Fsoftware/interpreters/r.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -385,7 +388,7 @@
       
       
       
-      <li><a href="../../_sources/usage/file_data_management/data_sharing.md" target="_blank"
+      <li><a href="../../_sources/software/interpreters/r.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -459,7 +462,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Data Sharing</h1>
+    <h1>R</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -473,37 +476,10 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="data-sharing">
-<h1>Data Sharing<a class="headerlink" href="#data-sharing" title="Link to this heading">#</a></h1>
-<!-- Original title: File permissions and access control -->
-<p>It is important that you understand how the Linux system for controlling access to files works and if you need to share files with another user, how to do this safely and not open up access to people you don’t want to. This area is one of the most common areas which people have problems with in Linux, so we have a guide to this area.</p>
-<p>There are 3 permissions: read (r), write (w) and execute (x). There are 3 levels of permission: owner, group and all. The default permissions on ARC3 are different to ARC4: On ARC3 group and all have read and execute permissions on new files, whereas on ARC4 group and all have no permissions. Permissions, group and ownership can be changed with <code class="docutils literal notranslate"><span class="pre">chmod</span></code>, <code class="docutils literal notranslate"><span class="pre">chgrp</span></code> and <code class="docutils literal notranslate"><span class="pre">chown</span></code> commands.</p>
-<p>Users belong to groups, the <code class="docutils literal notranslate"><span class="pre">groups</span></code> command can be used to check what groups a user is in. File/directory permissions can be organised for groups. Only system administrators can create new groups and add users to groups.</p>
-<p>Users can share files and directories with other users and specify permissions using the <code class="docutils literal notranslate"><span class="pre">setfacl</span></code> command.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">getfacl</span></code> command can be used to report the access controls for specific files/directories.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">setfacl</span></code> command can be run to recurse through subdirectories and can be used to set default access controls on directories created.</p>
-<p>If you want other users to read and execute files in your scratch directory, you can use the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/scratch/&lt;username&gt;
-setfacl<span class="w"> </span>-m<span class="w"> </span>u:&lt;target-username&gt;:r-x<span class="w"> </span>.
-</pre></div>
-</div>
-<p>(Replace <code class="docutils literal notranslate"><span class="pre">&lt;target-username&gt;</span></code> with the USERNAME of the user that you want to share the directory with.)</p>
-<p>You can check what access controls there are using:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/scratch/&lt;username&gt;
-getfacl<span class="w"> </span>.
-</pre></div>
-</div>
-<p>If there is an existing directory with subdirectories and you want to set the access control to recurse and provide also write permissions in subdirectories, use the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/scratch/&lt;username&gt;
-setfacl<span class="w"> </span>--recursive<span class="w"> </span>-m<span class="w"> </span>u:&lt;target-username&gt;:rwx<span class="w"> </span>.
-</pre></div>
-</div>
-<p>To change the default so that any new files and directories also have these permissions, use the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>/mnt/scratch/&lt;username&gt;
-setfacl<span class="w"> </span>--recursive<span class="w"> </span>-m<span class="w"> </span>u:&lt;target-username&gt;:rwx,d:u:&lt;target-username&gt;:rwx<span class="w"> </span>.
-</pre></div>
-</div>
-<p>For more detailed examples and explanations of Linux file permissions, you can refer to this <a class="reference external" href="https://www.redhat.com/en/blog/linux-file-permissions-explained">Linux File Permissions Guide</a>.</p>
+  <section id="r">
+<h1>R<a class="headerlink" href="#r" title="Link to this heading">#</a></h1>
+<p>R is not provided as a standalone module in the HPC software stack. We recommend installing R in a Conda environment using Miniforge.</p>
+<p>For guidance on creating and managing environments, see <a class="reference internal" href="../../usage/environment_management.html#page-environment-management"><span class="std std-ref">Managing Software Environments</span></a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -519,7 +495,7 @@ setfacl<span class="w"> </span>--recursive<span class="w"> </span>-m<span class=
         },
         kernelOptions: {
             name: "python3",
-            path: "./usage/file_data_management"
+            path: "./software/interpreters"
         },
         predefinedOutput: true
     }
@@ -537,20 +513,20 @@ setfacl<span class="w"> </span>--recursive<span class="w"> </span>-m<span class=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="data_transfer.html"
+       href="start.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Data Transfer</p>
+        <p class="prev-next-title">Interpreters</p>
       </div>
     </a>
     <a class="right-next"
-       href="../dependency_management.html"
+       href="../tools/start.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Dependency Management</p>
+        <p class="prev-next-title">Tools</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

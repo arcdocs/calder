@@ -1,11 +1,9 @@
 # CUDA
-<!-- Brief introduction -->
+
 NVIDIA® CUDA® is a general purpose parallel computing architecture introduced by NVIDIA. It includes the CUDA Instruction Set Architecture (ISA) and the parallel compute engine in the GPU. To program to the CUDA architecture, developers can use C, one of the most widely used high-level programming languages, which can then be run at great performance on a CUDA-enabled processor
 
 The NVIDIA® CUDA® Toolkit provides a comprehensive development environment for C and C++ developers building GPU-accelerated
-applications. The CUDA Toolkit includes a compiler for NVIDIA GPUs, math libraries, and tools for debugging and optimizing the performance of your applications.  You’ll also find programming guides, user manuals, API reference, and other documentation to help you get started quickly accelerating your application with GPUs.
-
-[Official Documentation](http://developer.nvidia.com/cuda/cuda-toolkit)
+applications. The CUDA Toolkit includes a compiler for NVIDIA GPUs, math libraries, and tools for debugging and optimizing the performance of your applications. You’ll also find programming guides, user manuals, API reference, and other documentation to help you get started quickly accelerating your application with GPUs. You can find more information in its [Official Documentation](http://developer.nvidia.com/cuda/cuda-toolkit).
 
 ## The CUDA modules on Aire
 
@@ -37,8 +35,5 @@ headers in your compilation, please use:
 
 This ensures your build system explicitly includes CUDA headers only
 when needed, keeping your environment clean and predictable.
-
-
-
 
 <!-- Optional: If there is any other useful advice, such as profiling and performance tuning, please include them here as a separate section. -->

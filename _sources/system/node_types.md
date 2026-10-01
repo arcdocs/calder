@@ -1,8 +1,21 @@
 # Compute node types
 
-The Aire HPC cluster is composed of various types of compute nodes, each designed to handle specific computational tasks and workloads. This section provides an overview of the different compute node types available, including standard compute nodes, high-memory nodes, and GPU nodes. Each type offers unique capabilities to meet the diverse needs of users.
+The Aire and Calder HPC clusters are composed of various types of compute nodes, each designed to handle specific computational tasks and workloads. This section provides an overview of the different compute node types available, including standard compute nodes, high-memory nodes, and GPU nodes. Each type offers unique capabilities to meet the diverse needs of users.
 
 ## Standard compute node
+
+::::{tab-set}
+
+:::{tab-item} Calder
+
+- 96 nodes
+- 2 x AMD EPYC 9555 (128 cores/node)
+- 768GB Memory
+- BOSS-N1 480GB M.2 local storage
+
+:::
+
+:::{tab-item} Aire
 
 - 52 nodes
 - Dell R6625 servers
@@ -10,7 +23,10 @@ The Aire HPC cluster is composed of various types of compute nodes, each designe
 - Dual 480GB M2 drives
 - 768GB DDR5-4800 Memory
 
-## High-memory node
+:::
+::::
+
+## High-memory node (Aire only)
 
 - 2 nodes
 - Dell R6625 servers
@@ -20,6 +36,22 @@ The Aire HPC cluster is composed of various types of compute nodes, each designe
 
 ## GPU node
 
+::::{tab-set}
+
+:::{tab-item} Calder
+
+- 7 nodes
+- 8 x NVIDIA H200 NVL GPUs
+- 2 x AMD EPYC 9555
+- 1.5TB Memory
+- 1 x 6.4TB E3.s Gen5 SED local storage
+- NVLink 4-way bridges
+- **56 GPU cards** total
+
+:::
+
+:::{tab-item} Aire
+
 - 28 nodes
 - Dell R7615 servers
 - 3 x NVIDIA L40S 48GB GPUs (PCIe)
@@ -28,9 +60,12 @@ The Aire HPC cluster is composed of various types of compute nodes, each designe
 - 256GB DDR5-4800 Memory
 - **84 GPU cards** total
 
-## Purchasing additional Aire nodes
+:::
+::::
 
-If your project requires additional resources, you can purchase nodes for priority access within the Aire HPC system. Please review the guidelines below and contact Research IT for more details.
+## Purchasing additional nodes
+
+If your project requires additional resources, you can purchase nodes for priority access within the Aire or Calder HPC systems. Please review the guidelines below and contact Research IT for more details.
 
 ### Guidelines for node purchases
 
@@ -47,10 +82,12 @@ If your project requires additional resources, you can purchase nodes for priori
 | High-memory CPU node | 168            | 2.3TB           | 2 x AMD 9634 2.25GHz 84c | To be confirmed   |
 | GPU node             | 24             | 256GB           | 3 x NVIDIA L40S PCIe     | £41,755.00 + VAT  |
 
-Please reach out to Research IT to discuss your specific needs, obtain a quote, and explore how additional nodes can enhance your research project.
+:::{note}
+Please reach out to Research IT to discuss your specific needs, obtain a quote, and explore how additional nodes can enhance your research project. The estimated costs above are indicative and subject to market variation. The final price for any purchased node will be confirmed at the time of purchase.
 
-**Note:** The estimated costs above are indicative and subject to market variation. The final price for any purchased node will be confirmed at the time of purchase.
+Estimated node costs for Calder will be provided at a later date.
+:::
 
 ### Requesting Research Software Engineering support
 
-In addition to infrastructure, we also offer Research Software Engineering (RSE) support to help researchers make the most of the available resources. Our RSE team can provide expertise in optimising code, parallelising workflows, and ensuring efficient usage of HPC systems. The full consulting catalogue and instructions for requesting our services are available on our main [Website](https://arc.leeds.ac.uk/consulting/).
+In addition to infrastructure, we also offer Research Software Engineering (RSE) support to help researchers make the most of the available resources. Our RSE team can provide expertise in optimising code, parallelising workflows, and ensuring efficient usage of HPC systems. The full consulting catalogue and instructions for requesting our services are available on our main [ARC website](https://arc.leeds.ac.uk/consulting/).

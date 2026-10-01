@@ -1,6 +1,6 @@
 # Job Priority
 
-The Slurm scheduler manages resources and decides the order in which jobs run. On Aire, a **fair share algorithm** is used to calculate the priority for each job. The idea is simple:
+The Slurm scheduler manages resources and decides the order in which jobs run. On Aire and Calder, a **fair share algorithm** is used to calculate the priority for each job. The idea is simple:
 
 * With more use of resources priority decreases for a user.
 * With less use of resources priority increases for a user.

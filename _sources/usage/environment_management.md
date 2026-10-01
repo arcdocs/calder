@@ -1,16 +1,14 @@
-(dependency-management)=
-
-# Dependency Management
+(page:environment-management)=
+# Managing Software Environments
 
 ```{note}
-Research IT has determined that, due to licensing restrictions, Anaconda must no longer be used. Miniforge is the recommended alternative for Python environments on Aire.
+Research IT has determined that, due to licensing restrictions, Anaconda must no longer be used. Miniforge is the recommended alternative for Python environments on Aire and Calder.
 
 This guidance specifically discusses Conda dependency management, which can be used for a range of languages/projects, including Python, R, C/C++, and Rust amongst others.
 
 This does not cover alternative package management and virtual environment solutions like `renv`, `pixi`, or `uv pip`.
 
-For instructions on submitting a job using Miniforge, please see the [Miniforge documentation](https://arcdocs.leeds.ac.uk/aire/software/interpreters/miniforge.html)
-
+For instructions on submitting a job using Miniforge, please see the [Miniforge section](page:miniforge).
 ```
 
 Good dependency management makes your research computing:
@@ -25,7 +23,7 @@ Please read through this guide even if you use `conda` locally on your machine, 
 Our guidance has changed: help us to help you make your research more efficient, reproducible, and robust by ensuring you follow the steps below.
 ```
 
-While there are many options for dependency management for Python, we offer [`miniforge`](https://github.com/conda-forge/miniforge) on Aire as a fast, open-source replacement for Anaconda. The same `conda` commands you are used to using will work, but the default channel for miniforge environments is [`conda-forge`](https://conda-forge.org/docs/), the open source repository, as opposed to the commercial Anaconda repository. The guidance we provide below is specifically for using conda; however, the general principles will also be applicable to other package management systems.
+While there are many options for dependency management for Python, we offer [`miniforge`](https://github.com/conda-forge/miniforge) on both Aire and Calder as a fast, open-source replacement for Anaconda. The same `conda` commands you are used to using will work, but the default channel for miniforge environments is [`conda-forge`](https://conda-forge.org/docs/), the open source repository, as opposed to the commercial Anaconda repository. The guidance we provide below is specifically for using conda; however, the general principles will also be applicable to other package management systems.
 
 For some packages, you may also need to use `pip`; we detail how this can be done if needed within a conda environment.
 
@@ -33,9 +31,10 @@ For some packages, you may also need to use `pip`; we detail how this can be don
 
 - **In general, environments should be treated as disposable and rebuildable**: you should be able to tear down and rebuild your environment quickly and easily (of course, some larger environments with complex installations will be an exception to this rule). This means that your `environment.yaml` file should be up-to-date and match your working environment, and should be version-controlled and backed up. We will explain how to effectively use the `.yaml` file below.
 - **Export your exact environment as metadata for analysis results**: it is useful to save a snapshot of your environment (into a `.yaml` file) to store along any results or outputs produced in that specific environment. We will show you how to do this below.
-- **Environments must be stored in your `home` directory and all research output must be stored in `/mnt/scratch/users`**: misuse of the system can affect performance for **all users** and will lead to your jobs being stopped.
+- **Environments must be stored in your `home` directory and all research output must be stored in the scratch directory**: misuse of the system can affect performance for **all users** and will lead to your jobs being stopped.
 
 (creating-environment)=
+
 ## Create a new environment
 
 In order to create a new conda environment, you need to create an environment YAML file, with the file ending `.yaml`.
@@ -71,7 +70,7 @@ conda activate my-env-name
 
 ### R Environments
 
-Conda is not only useful for Python, is can also be used for R scripts.
+Conda is not only useful for Python, it can also be used for R scripts.
 
 ```{admonition} R environment creation
 When using conda to install R packages, add r- before the R package name. For instance, to install rbokeh, use `r-rbokeh`. To install rJava, use conda `r-rjava`.
@@ -79,7 +78,7 @@ When using conda to install R packages, add r- before the R package name. For in
 
 If you are creating an R environment, your  file might look like this:
 
-```
+```yaml
 name: my-env-name
 
 dependencies:
@@ -94,7 +93,6 @@ Please follow all the other general instructions; creating an R environment is o
 If you need to include Python `pip` dependencies in your Conda environment, you can add these to your environment YAML file as follows:
 
 ```yaml
-
 name: env-with-pip-dependencies
 
 dependencies:
@@ -105,7 +103,6 @@ dependencies:
   - pip
   - pip:
     - black
-
 ```
 
 ## Updating an environment or adding new packages
@@ -193,10 +190,30 @@ Yes, updating the entire environment with your `.yaml` file absolutely can updat
 
 ### Conda environments are big, what do I do if I run out of space in my home directory?
 
-Conda environments can become big quickly. On ARC3 and ARC4, due to limitations in home directory size, we advised you to move your `.conda` directory over to `/nobackup` if you ran out of room; however, this is an inefficient use of HPC storage and can lead to performance issues. **On Aire, it is essentially that your conda environments live in your home directory, and that *all* research output files are stored on `/mnt/scratch/users` and not in the home directory. Misuse of the home directory for storing job output can cause sluggish behaviour and affect other users, and could lead to your account being suspended.**
+Conda environments can become big quickly. On ARC3 and ARC4, due to limitations in home directory size, we advised you to move your `.conda` directory over to `/nobackup` if you ran out of space; however, this is an inefficient use of HPC storage and can lead to performance issues. **On Aire and Calder, it is essential that your conda environments live in your home directory, and that *all* research output files are stored on Scratch and not in the home directory. Misuse of the home directory for storing job output can cause sluggish behaviour and affect other users, and could lead to your account being suspended.**
 
 There are three steps to solving your conda environment overtaking your home directory storage space:
 
 1. Ensure you are using `--prune` when you update your conda environments to shrink them and remove unnecessary content.
 2. Delete environments that are not in active or current use: if you have followed our guidance on building from an `environment.yaml` file, rebuilding at a later point should not be difficult.
 3. Request more space: you can ask us to increase your home directory quota. Note however that we will audit your conda usage, and you will not be granted extra space if you haven't followed the guidelines presented here.
+
+### Removing an environment
+
+If you no longer need an environment, remove it entirely with:
+
+```bash
+conda env remove -n my-env-name
+```
+
+This deletes the environment and its installed packages, freeing up the space it was using in your home directory.
+
+### Cleaning the package cache
+
+Conda keeps a cache of downloaded package files (tarballs) and unused package copies under `~/.conda/pkgs`, so it can reuse them across environments without re-downloading. Over time this cache can grow large, even after you have removed the environments that used it. To clear it:
+
+```bash
+conda clean --all
+```
+
+This removes cached package tarballs, unused packages, and index caches. It's good practice to run this after removing an environment, or periodically if you are low on home directory space.

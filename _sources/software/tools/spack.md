@@ -1,5 +1,5 @@
 # Spack
-<!-- Brief introduction and a link to its official documentation -->
+
 Spack is a flexible package manager designed to support multiple versions and configurations of software on a wide variety of platforms and environments. Spack's official documentation can be found [here](https://spack.readthedocs.io/). For a usage tutorial please [see here](https://spack-tutorial.readthedocs.io/en/latest/tutorial_basics.html).
 
 :::{note}

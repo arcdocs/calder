@@ -8,19 +8,14 @@ If you are a researcher and find that your current computational work running on
 
 ## What type of work do we support?
 
-Aire supports a number of different categories of work. These include:
+Aire and Calder support a number of different categories of work. These include:
 
 **Serial jobs**, running on a single processor. We can accommodate large numbers of these, and the system provides tools to automatically manage these and co-ordinate the workflow. It is capable of running **many jobs at the same time**, without it interfering with other work on the system. There are **job arrays**, which help to automate tasks such as parameter sweeps and the processing of large numbers of datasets, using a single command to initiate the runs.
 **Parallel jobs**, running on a few CPUs or more, up to the size of a single compute node. These jobs often use techniques such as OpenMP, pthreads, or tasking to spread the work for a particular run over several cores, thus reducing the overall run time.
-**Multi-node parallel jobs**, these usually use the MPI programming model, which allows the user program to co-ordinate its work across large numbers of processors and nodes, and is the de facto standard for large simulations. Some codes can scale up to thousands of processors using this technique. Aire and many other HPC systems have a special hardware feature linking the nodes together, called a low latency interconnect, (an example is Infiniband) which improves the performance of these types of code, especially at larger scale.
+**Multi-node parallel jobs**, these usually use the MPI programming model, which allows the user program to co-ordinate its work across large numbers of processors and nodes, and is the de facto standard for large simulations. Some codes can scale up to thousands of processors using this technique. Aire, Calder, and many other HPC systems have a special hardware feature linking the nodes together, called a low latency interconnect, (an example is Infiniband) which improves the performance of these types of code, especially at larger scale.
 
 In general we can support most areas where there are long runs that take hours, and/or there are a lot of them. The system uses the Linux OS, so if your code is Windows based, you’ll need to port it to the Linux environment, or find an existing Linux code that does the job you want. It’s well worth the small effort to learn a bit of Linux and get the benefits of running work on the HPC and the tools you can use.
 
 ## How to get started with HPC?
 
 Before diving into HPC, it's beneficial to have discussions with your colleagues and supervisor to understand how HPC can best support your research. They can provide valuable insights and advice based on their experience. If you're new to HPC, consider taking introductory training courses such as [HPC0: Introduction to Linux for HPC](https://arc.leeds.ac.uk/knowledge-centre/courses/hpc0/) and [HPC1: Introduction to High Performance Computing](https://arc.leeds.ac.uk/knowledge-centre/courses/hpc1/) to build a solid foundation. Additionally, explore self-help resources and join relevant teams or forums where you can ask questions and share knowledge with other HPC users. These steps will help you make the most of the HPC resources available to you.
-
-<!-- ## Table of Contents
-
-```{tableofcontents}
-``` -->

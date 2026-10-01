@@ -1,6 +1,6 @@
 # Privacy and cookies
 
-Privacy notice for [Calder User Documentation](https://arcdocs.leeds.ac.uk/calder). This privacy notice has been updated in line with the General Data Protection Regulation. You can <a href="#" id="open_preferences_center">manage your cookie settings here</a>.
+Privacy notice for [Aire and Calder User Documentation](https://arcdocs.leeds.ac.uk/calder). This privacy notice has been updated in line with the General Data Protection Regulation. You can <a href="#" id="open_preferences_center">manage your cookie settings here</a>.
 
 ## 1. Purpose of this Notice
 
