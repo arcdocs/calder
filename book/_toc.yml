@@ -40,45 +40,45 @@ chapters:
   sections:
   - file: software/applications/start
     sections:
-    - file: software/applications/abaqus
-    - file: software/applications/ansys
-      sections:
-      - file: software/applications/ansys/ansys_cli
-      - file: software/applications/ansys/cfx
-      - file: software/applications/ansys/chemkin
-      - file: software/applications/ansys/fluent
-      - file: software/applications/ansys/ls-dyna
-    - file: software/applications/castep
-    - file: software/applications/comsol
-    - file: software/applications/fleur
-    # - file: software/applications/gromacs
-    - file: software/applications/gaussian
-    - file: software/applications/matlab
-    - file: software/applications/namd
+  #   - file: software/applications/abaqus
+  #   - file: software/applications/ansys
+  #     sections:
+  #     - file: software/applications/ansys/ansys_cli
+  #     - file: software/applications/ansys/cfx
+  #     - file: software/applications/ansys/chemkin
+  #     - file: software/applications/ansys/fluent
+  #     - file: software/applications/ansys/ls-dyna
+  #   - file: software/applications/castep
+  #   - file: software/applications/comsol
+  #   - file: software/applications/fleur
+  #   - file: software/applications/gromacs
+  #   - file: software/applications/gaussian
+  #   - file: software/applications/matlab
+  #   - file: software/applications/namd
     - file: software/applications/openfoam
-    - file: software/applications/orca
-    - file: software/applications/rosetta
-    # - file: software/applications/paraview
-    # - file: software/applications/stata
-    - file: software/applications/vasp
-  - file: software/compilers/start
-    sections:
-    - file: software/compilers/cuda
-    - file: software/compilers/gcc
-    - file: software/compilers/intel
-    - file: software/compilers/jdk
-  - file: software/libraries/start
-    sections:
-    - file: software/libraries/dask
-    - file: software/libraries/fftw
-    - file: software/libraries/hdf5
-    - file: software/libraries/lapack
-    - file: software/libraries/netcdf
-    - file: software/libraries/netcdf-fortran
-    - file: software/libraries/openblas
-    - file: software/libraries/openmpi
-    # - file: software/libraries/pytorch
-    - file: software/libraries/vtk
+  #   - file: software/applications/orca
+  #   - file: software/applications/rosetta
+  #   - file: software/applications/paraview
+  #   - file: software/applications/stata
+  #   - file: software/applications/vasp
+  # - file: software/compilers/start
+  #   sections:
+  #   - file: software/compilers/cuda
+  #   - file: software/compilers/gcc
+  #   - file: software/compilers/intel
+  #   - file: software/compilers/jdk
+  # - file: software/libraries/start
+  #   sections:
+  #   - file: software/libraries/dask
+  #   - file: software/libraries/fftw
+  #   - file: software/libraries/hdf5
+  #   - file: software/libraries/lapack
+  #   - file: software/libraries/netcdf
+  #   - file: software/libraries/netcdf-fortran
+  #   - file: software/libraries/openblas
+  #   - file: software/libraries/openmpi
+  #   - file: software/libraries/pytorch
+  #   - file: software/libraries/vtk
   - file: software/interpreters/start
     sections:
     # - file: software/interpreters/julia
@@ -90,8 +90,8 @@ chapters:
     - file: software/tools/cmake
     - file: software/tools/miniforge
     # - file: software/tools/pixi
-    - file: software/tools/spack
-    - file: software/tools/texlive
+    # - file: software/tools/spack
+    # - file: software/tools/texlive
 # ===== Training and Support ========================
 - file: support/start
   sections:

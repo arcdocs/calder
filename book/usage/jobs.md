@@ -421,7 +421,7 @@ GPUs are also available in interactive mode. For example, requesting an interact
 :::{tab-item} Calder
 
 ```bash
-[username@login1[calder] ~]$ srun -t 01:00:00 -p calder-gpu-hopper --gres=gpu:nvidia_h200:2 --pty /bin/bash
+[username@calder-login-3 ~]$ srun -t 01:00:00 -p calder-gpu-hopper --gres=gpu:nvidia_h200:2 --pty /bin/bash
 [username@calder-gpu-h200-001 ~]$
 ```
 

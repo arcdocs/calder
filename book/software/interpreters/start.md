@@ -1,7 +1,7 @@
 # Interpreters
 
-This page provides an overview of the interpreters available on the HPC. Interpreters are essential tools for running scripts and programs written in various programming languages. This section includes instructions for loading and using these interpreters on the HPC, as well as advice on submitting jobs that require specific interpreters.
+This page provides an overview of the interpreters available on the HPC systems. Interpreters are essential tools for running scripts and programs written in various programming languages.
 
-To see the available interpreters, use the `module avail` command. To load an interpreter, use the `module load <modulename>` command. For example, to load Miniforge, use `module load miniforge`.
+This section provides guidance on loading and using interpreters on Calder, with a focus on their general usage within the HPC environment.
 
-<!-- TODO: add more sections when we have new modules installed -->
+The information provided here is intended to cover the general usage of interpreters on HPC. For detailed information, advanced usage, and language specific features, please refer to the official documentation for the relevant interpreter or programming language.

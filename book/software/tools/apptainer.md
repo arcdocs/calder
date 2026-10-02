@@ -1,31 +1,61 @@
 # Apptainer
 
-Apptainer is a containerisation platform, and allows users to package up collections of software in a reproducible and portable fashion. Containers built on your work laptop, for instance, can be simply copied over onto the HPC to run there. For usage instructions and further explanations, please see the [official documentaion](https://apptainer.org/docs/user/main/index.html).
+[Apptainer](https://apptainer.org/) is a containerisation platform that allows users to package software and its dependencies into portable, reproducible containers. Apptainer containers can be transferred between systems and run without requiring the software to be installed directly on the HPC system.
 
-## The Apptainer module on Aire
-<!-- List the available versions of Apptainer on Aire in a table format -->
-| Version | Load Command                    |
-|---------|---------------------------------|
-| 1.3.6   | `module load apptainer/1.3.6`   |
+This page provides guidance on the general use of Apptainer on Calder. For detailed information about Apptainer, including advanced container usage and configuration, please refer to the [official Apptainer documentation](https://apptainer.org/docs/user/main/index.html).
+
+## Apptainer on Calder
+
+Apptainer is installed on Calder and is automatically available when you log in. No module needs to be loaded before using Apptainer. You can check the installed version with:
+
+```bash
+apptainer --version
+```
+
+```text
+apptainer version 1.5.3-1.el9
+```
 
 ## Running Apptainer containers
-<!-- Instructions on how to run Apptainer containers -->
-To run an Apptainer container, use the following command:
+
+To run an Apptainer container, use:
 
 ```bash
 apptainer run my_container.sif
 ```
 
-For use with MPI, please see the excellent guide in the [official documentation](https://apptainer.org/docs/user/main/mpi.html), which includes examples for use with `Slurm`.
+You can also execute a specific command inside a container with `apptainer exec`:
+
+```bash
+apptainer exec my_container.sif command
+```
+
+For example, to check the Python version provided by a container:
+
+```bash
+apptainer exec my_container.sif python --version
+```
+
+Apptainer containers can be used within Slurm jobs in the same way as other applications. The resources required by the application should be requested from Slurm, while the container provides the required software environment.
+
+### Using Apptainer with MPI
+
+Apptainer can be used with MPI applications, including applications running across multiple compute nodes. MPI container usage requires additional configuration and depends on how both the container and the host system are built.
+
+For guidance and examples, including the use of Apptainer with Slurm, see the [MPI section of the official Apptainer documentation](https://apptainer.org/docs/user/main/mpi.html).
 
 ## Building Apptainer containers
-<!-- Instructions on how to build Apptainer containers -->
-To build an Apptainer container from a definition file, use the following command:
+
+If you need to build an Apptainer container from a definition file, use:
 
 ```bash
 apptainer build my_container.sif my_definition.def
 ```
 
+Building containers may require additional privileges or access to a suitable build environment. If you cannot build a container directly on Calder, you can build it elsewhere and transfer the resulting `.sif` file to Calder.
+
+For detailed information about definition files, building containers, and other container workflows, see the [official Apptainer documentation](https://apptainer.org/docs/user/main/index.html).
+
 :::{note}
-More information regarding containeration and use a container can be found in [HPC2 training course](https://arctraining.github.io/hpc2-software/course/containers.html#).
+More information about containers and their use on HPC is available in the [HPC2 training course](https://arctraining.github.io/hpc2-software/course/containers.html).
 :::
