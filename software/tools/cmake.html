@@ -203,44 +203,7 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../start.html">Software on HPC</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="../applications/start.html">Applications</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../applications/abaqus.html">Abaqus</a></li>
-<li class="toctree-l3 has-children"><a class="reference internal" href="../applications/ansys.html">Ansys</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/ansys_cli.html">Ansys CLI</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/cfx.html">CFX</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/chemkin.html">Chemkin Pro</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/fluent.html">Fluent</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../applications/ansys/ls-dyna.html">LS-DYNA</a></li>
-</ul>
-</details></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/castep.html">CASTEP</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/comsol.html">COMSOL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/fleur.html">Fleur</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/gaussian.html">Gaussian</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/matlab.html">MATLAB</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/namd.html">NAMD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../applications/openfoam.html">OpenFOAM</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/orca.html">ORCA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/rosetta.html">Rosetta</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../applications/vasp.html">VASP</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../compilers/start.html">Compilers</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../compilers/cuda.html">CUDA</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../compilers/gcc.html">GCC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../compilers/intel.html">Intel oneAPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../compilers/jdk.html">Java Development Kit</a></li>
-</ul>
-</details></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../libraries/start.html">Libraries</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/dask.html">Dask</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/fftw.html">FFTW</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/hdf5.html">HDF5</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/lapack.html">LAPACK</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/netcdf.html">NetCDF</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/netcdf-fortran.html">NetCDF-Fortran</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/openblas.html">OpenBLAS</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/openmpi.html">Open MPI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../libraries/vtk.html">VTK</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../interpreters/start.html">Interpreters</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -251,8 +214,6 @@
 <li class="toctree-l3"><a class="reference internal" href="apptainer.html">Apptainer</a></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">CMake</a></li>
 <li class="toctree-l3"><a class="reference internal" href="miniforge.html">Miniforge</a></li>
-<li class="toctree-l3"><a class="reference internal" href="spack.html">Spack</a></li>
-<li class="toctree-l3"><a class="reference internal" href="texlive.html">TeX Live</a></li>
 </ul>
 </details></li>
 </ul>
@@ -451,7 +412,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -467,6 +430,14 @@
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-on-calder">CMake on Calder</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -478,12 +449,22 @@
                   
   <section id="cmake">
 <h1>CMake<a class="headerlink" href="#cmake" title="Link to this heading">#</a></h1>
-<p>CMake is a cross-platform, open-source build system that is used to control the software compilation process using simple platform and compiler-independent configuration files. For more information, please refer to the <a class="reference external" href="https://cmake.org/documentation/">official documentation</a></p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>CMake is not in the module list; it is automatically available on the login node. The current version available is <code class="docutils literal notranslate"><span class="pre">CMake</span> <span class="pre">3.26.5</span></code>.</p>
+<p><a class="reference external" href="https://cmake.org/">CMake</a> is a cross platform, open source build system used to control the software compilation process using simple, platform and compiler independent configuration files.</p>
+<p>This page provides guidance on the general use of CMake on Calder. For detailed information about CMake and its advanced features, please refer to the <a class="reference external" href="https://cmake.org/documentation/">official CMake documentation</a>.</p>
+<section id="cmake-on-calder">
+<h2>CMake on Calder<a class="headerlink" href="#cmake-on-calder" title="Link to this heading">#</a></h2>
+<p>CMake is not automatically available on Calder. To use CMake, first load the Calder CPU environment and then load the CMake module:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>calder/cpu
+module<span class="w"> </span>load<span class="w"> </span>cmake/3.31.11
+</pre></div>
 </div>
-<p>For more information on how to build software with CMake, please refer to the <a class="reference external" href="https://arctraining.github.io/hpc2-software/course/cmake.html">HPC2 training material</a>.</p>
+<p>You can check the version of CMake currently loaded with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake<span class="w"> </span>--version
+</pre></div>
+</div>
+<p>The CMake version currently available on Calder is <strong>3.31.11</strong>.</p>
+<p>For guidance on building software with CMake on HPC, see the <a class="reference external" href="https://arctraining.github.io/hpc2-software/course/cmake.html">HPC2 training material</a>.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -540,6 +521,22 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cmake-on-calder">CMake on Calder</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

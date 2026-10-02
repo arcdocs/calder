@@ -19,45 +19,44 @@ This page provides an overview of data transfer on Aire and Calder along with su
 
 ## SCP
 
-Due to the authentication methods required to access the HPC services, some standard SCP clients can be cumbersome as they require repeated authentication during transfer. For a smoother experience, we recommend using MobaXterm on Windows, or CyberDuck or ForkLift on Mac, which handle authentication more efficiently and provide user-friendly interfaces for file transfers. For Linux, using the `scp` command via the terminal is the most straightforward, please refer to the <a href="https://leeds.service-now.com/it?id=kb_article_view&table=kb_knowledge&sys_kb_id=dfcc76a9fb3b16909eaffefbaeefdc09&searchTerm=KB0018323" target="_blank">KB0018323 - How to transfer data to and from Aire</a>.
+Due to the authentication methods required to access the HPC services, some standard SCP clients can be cumbersome as they require repeated authentication during transfer. For a smoother experience, we recommend using MobaXterm on Windows, or CyberDuck or ForkLift on Mac, which handle authentication more efficiently and provide user-friendly interfaces for file transfers. For Linux, using the `scp` command via the terminal is the most straightforward, please refer to the <a href="https://leeds.service-now.com/it?id=kb_article_view&table=kb_knowledge&sys_kb_id=dfcc76a9fb3b16909eaffefbaeefdc09&searchTerm=KB0018323" target="_blank">KB0018323 - How to transfer data to and from HPC</a>.
 
 Note that the above articles require you to log in with your University account to view.
 
 ## Globus
 
 :::{note}
- Globus is now our preference for transferring files between OneDrive and Aire, whereas, in the past, users have been advised to use `rclone`. We'd also encourage you to use Isilon `/resstore` more than OneDrive or N:\ drive for research data files.
+ Globus is now our preference for transferring files between OneDrive and HPC, whereas, in the past, users have been advised to use `rclone`. We'd also encourage you to use Isilon `/resstore` more than OneDrive or N:\ drive for research data files.
  Visit the Library's <a href="https://library.leeds.ac.uk/info/14062/research-data-management/65/storing-and-handling-data/3">Storing and handling data</a> section for more information about different storage services.
  Refer to <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sys_kb_id=a15bba21fb943a909eaffefbaeefdcb5&table=kb_knowledge&searchTerm=KB0017543">KB0017543</a> for help with data transfer between University storage systems and Globus connection points.
 :::
 
-Globus enables you to quickly, securely and reliably move your data (in particular, large files) to and from locations you have access to, using GridFTP protocol optimised for high-bandwidth wide-area networks. We are currently working to add Globus centrally to Aire.
+Globus enables you to quickly, securely and reliably move your data (in particular, large files) to and from locations you have access to, using GridFTP protocol optimised for high-bandwidth wide-area networks. We are currently working to add Globus centrally to HPC.
 
-Globus Personal provides an effective interim solution for file transfers to/from Aire to locations such as University-managed Research IT Storage (`resstore`: <a href="https://it.leeds.ac.uk/it?id=kb_article&sysparm_article=KB0018026" target="_blank">Research Data Storage Service Provision</a>)  while we work towards enabling the central Globus client infrastructure. The personal client allows users to make both their Aire home directory and `$SCRATCH` visible to Globus, enabling efficient data transfers between Aire and Globus-enabled endpoints such as `resstore`.
+Globus Personal provides an effective interim solution for file transfers to/from HPC to locations such as University-managed Research IT Storage (`resstore`: <a href="https://it.leeds.ac.uk/it?id=kb_article&sysparm_article=KB0018026" target="_blank">Research Data Storage Service Provision</a>)  while we work towards enabling the central Globus client infrastructure. The personal client allows users to make both their HPC home and scratch directories visible to Globus, enabling efficient data transfers between HPC and Globus-enabled endpoints such as `resstore`.
 
 :::{warning}
 You cannot transfer files between two instances of Globus personal without a subscription; you must connect between an instance of Globus personal and a Globus client endpoint.
 
-This means that at the moment (until we have the central client enabled on Aire):
+This means that at the moment (until we have the central client enabled on HPC):
 
-+ You can transfer files between Globus Personal on Aire and Globus endpoints such as `resstore`;
-+ You can transfer files between Globus Personal on Aire and Globus endpoints such as OneDrive;
-+ You *cannot* transfer files between Globus Personal on Aire and Globus Personal on your PC or laptop (without a subscription);
-+ You can transfer files between Globus Personal on Aire and Globus endpoints such as OneDrive/`resstore`, and then between OneDrive/`resstore`; and Globus Personal on your PC or laptop.
++ You can transfer files between Globus Personal on HPC and Globus endpoints such as `resstore`;
++ You can transfer files between Globus Personal on HPC and Globus endpoints such as OneDrive;
++ You *cannot* transfer files between Globus Personal on HPC and Globus Personal on your PC or laptop (without a subscription);
++ You can transfer files between Globus Personal on HPC and Globus endpoints such as OneDrive/`resstore`, and then between OneDrive/`resstore`; and Globus Personal on your PC or laptop.
 :::
 
 :::{note}
- If you want to connect Globus to your OneDrive account, you will need to request approval. Refer to the 
-<a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018501" target="_blank">KB0018501 article.</a>
+ If you want to connect Globus to your OneDrive account, you will need to request approval. Please refer to the <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018501" target="_blank">Requesting access to applications to connect to your data (M365 Enterprise Apps)</a> Knowledge Base article.
 :::
 
-In addition to the specific installation instructions provided below for Aire, you will also find the Knowledge Base articles linked below useful for setting up Globus and accessing your storage.
+In addition to the specific installation instructions provided below for HPC, you will also find the Knowledge Base articles linked below useful for setting up Globus and accessing your storage.
 
-### Installing Globus Personal on Aire
+### Installing Globus Personal on HPC
 
-The following guidance has been adapted from the [Globus documentation (Linux installation instructions)](https://docs.globus.org/globus-connect-personal/install/linux/):
+The following guidance has been adapted from [How To Install, Configure, and Uninstall Globus Connect Personal for Linux](https://docs.globus.org/globus-connect-personal/install/linux/):
 
-1. After logging in to Aire, download Globus:
+1. After logging on to HPC, download Globus:
 
    ```bash
    $ wget https://downloads.globus.org/globus-connect-personal/linux/stable/globusconnectpersonal-latest.tgz
@@ -78,8 +77,10 @@ The following guidance has been adapted from the [Globus documentation (Linux in
    $ ./globusconnectpersonal -setup --no-gui
    ```
 
-   This will launch Globus, and your terminal should provide you with a URL to visit on your local machine to complete set-up (including University of Leeds SSO); you will then receive a key to copy and paste back into the command line on Aire. You will then need to set a name for this endpoint (e.g. `aire_endpoint` or something sensible). Please see the [Globus documentation](https://docs.globus.org/globus-connect-personal/install/linux/#running_with_no_gui) for further details.
+   This will launch Globus, and your terminal should provide you with a URL to visit on your local machine to complete set-up (including University of Leeds SSO); you will then receive a key to copy and paste back into the command line on HPC. You will then need to set a name for this endpoint (e.g. `aire_endpoint` or `calder_endpoint` or something sensible). Please see the [Globus documentation](https://docs.globus.org/globus-connect-personal/install/linux/#running_with_no_gui) for further details.
+
 4. You can close Globus once set-up is complete.
+
 5. Modify or create the file `config-paths` (assuming you are still in the folder `globusconnectpersonal-x.y.z`) with your favourite text editor (this command will create the file if it doesn't already exist):
 
    ```bash
@@ -110,10 +111,11 @@ The following guidance has been adapted from the [Globus documentation (Linux in
 
    Read more about [Managing Globus Connect Personal Directory Permissions via the Config File in the official documentation](https://docs.globus.org/globus-connect-personal/install/linux/#config-paths).
 
-### Running Globus Personal on Aire
+### Running Globus Personal on HPC
 
-1. Please read the [Globus webapp documentation](https://docs.globus.org/guides/tutorials/manage-files/transfer-files/) and ensure your Globus endpoints are visible under "Connections" from the [webapp](https://app.globus.org/). Your newly configured Aire collection should also be present, but will show the status "offline".
-2. From Aire, run Globus with `nohup`:
+1. Please read the [Globus webapp documentation](https://docs.globus.org/guides/tutorials/manage-files/transfer-files/) and ensure your Globus endpoints are visible under "Connections" from the [webapp](https://app.globus.org/). Your newly configured HPC collection should also be present, but will show the status "offline".
+
+2. From HPC, run Globus with `nohup`:
 
    ```bash
    # replace `x.y.z` in the line below with the version number you see
@@ -121,15 +123,16 @@ The following guidance has been adapted from the [Globus documentation (Linux in
    $ ./globusconnectpersonal -start &
    ```
 
-   If you refresh the [webapp](https://app.globus.org/), you should now see your Aire collection as "online". Because we used `&`, this will continue to run even when you log out of Aire, making disruption-free transfers easier. Note that if you edit any configuration etc. you will need to stop and restart Globus:
+   If you refresh the [webapp](https://app.globus.org/), you should now see your HPC collection as "online". Because we used `&`, this will continue to run even when you log out of the HPC service, making disruption-free transfers easier. Note that if you edit any configuration etc. you will need to stop and restart Globus:
 
    ```bash
    $ ./globusconnectpersonal -stop
    $ ./globusconnectpersonal -start &
    ```
 
-3. Using the "File Manager" tab on the left of the screen, select Aire as a collection. By default, the path is to your home directory, however if you made `$SCRATCH` visible as per the installation instructions, you can also enter a path to a directory in this space: `/mnt/scratch/<USERNAME>/some_directory`.
-4. Using the UI, you can now transfer data across between Aire and another endpoint.
+3. Using the "File Manager" tab on the left of the screen, select HPC as a collection. By default, the path is to your home directory, however if you made `$SCRATCH` visible as per the installation instructions, you can also enter a path to a directory in this space: `/mnt/scratch/<USERNAME>/some_directory`.
+
+4. Using the UI, you can now transfer data across between HPC and another endpoint.
 
 ### Relevant Globus Knowledge Base Articles
 
