@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Job Scheduler &#8212; Aire and Calder User Documentation</title>
+    <title>Job Scheduler &#8212; Calder User Documentation</title>
   
   
   
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Aire and Calder User Documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire and Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder User Documentation - Home"/>
   
   
 </a></div>
@@ -166,7 +166,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../welcome.html">
-                    Aire and Calder User Documentation
+                    Calder User Documentation
                 </a>
             </li>
         </ul>
@@ -187,7 +187,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module_system.html">Modules and Applications</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire and Calder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using the HPC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../usage/environment_management.html">Managing Software Environments</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../usage/file_management/best_practices.html">Best Practices</a></li>
@@ -224,7 +224,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../privacy_cookies.html">Privacy and cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../privacy.html">Privacy and Cookies</a></li>
 
 </ul>
 
@@ -435,11 +435,17 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-job-scheduler">What is a job scheduler?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-a-job-scheduler">Benefits of a job scheduler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-does-aire-and-calder-use">Which job scheduler does Aire and Calder use?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-a-job-scheduler">Why use a job scheduler?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-do-aire-and-calder-use">Which job scheduler do Aire and Calder use?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-a-job-to-the-scheduler">Submitting a job to the scheduler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-status-of-a-job">Checking the status of a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-completed-jobs-with-sacct">Checking completed jobs with <code class="docutils literal notranslate"><span class="pre">sacct</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-output">Job output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancelling-a-job">Cancelling a job</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-resources-for-your-job">Choosing resources for your job</a></li>
 </ul>
             </nav>
         </div>
@@ -452,49 +458,141 @@
                 <article class="bd-article">
                   
   <section id="job-scheduler">
-<h1>Job Scheduler<a class="headerlink" href="#job-scheduler" title="Link to this heading">#</a></h1>
-<p id="page-job-scheduler">This page offers a more in-depth overview of the job scheduling system. It is recommended that you familiarise yourself with this content before <a class="reference internal" href="../getting_started/start.html"><span class="std std-doc">getting started</span></a> using Aire.</p>
-<section id="what-is-a-job-scheduler">
-<h2>What is a job scheduler?<a class="headerlink" href="#what-is-a-job-scheduler" title="Link to this heading">#</a></h2>
-<p>A job scheduler - also known as a queueing system or workload manager - is a software tool that implements a batch system on an HPC cluster, allowing many users to submit jobs simultaneously.</p>
-<p>The two most popular schedulers in HPC are <a class="reference external" href="https://altair.com/pbs-professional">PBSPro</a> and <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>, though there are others, such as <a class="reference external" href="https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=scheduler-about-lsf-session">LSF</a> and <a class="reference external" href="https://altair.com/grid-engine/">Grid Engine</a>.</p>
+<span id="page-job-scheduler"></span><h1>Job Scheduler<a class="headerlink" href="#job-scheduler" title="Link to this heading">#</a></h1>
+<p>A job scheduler, also known as a queueing system or workload manager, is software that manages jobs submitted to an HPC system. It allocates compute resources to jobs according to the system’s scheduling policies, allowing many users to run workloads efficiently and fairly.</p>
+<p>A job scheduler is particularly useful for HPC workloads because jobs may require substantial resources or run for long periods. Rather than waiting for a job to finish in an interactive terminal, you can submit it to the scheduler and allow it to run when the required resources become available.</p>
+<section id="why-use-a-job-scheduler">
+<h2>Why use a job scheduler?<a class="headerlink" href="#why-use-a-job-scheduler" title="Link to this heading">#</a></h2>
+<p>The job scheduler helps to:</p>
+<ul class="simple">
+<li><p><strong>Use resources efficiently:</strong> HPC systems are expensive to operate and consume significant amounts of energy. Scheduling jobs efficiently helps maximise system throughput and resource utilisation.</p></li>
+<li><p><strong>Save users time:</strong> Long running or repetitive workloads can run without requiring you to monitor them continuously.</p></li>
+<li><p><strong>Share resources fairly:</strong> The scheduler manages access to the available resources so that users and groups can share the system effectively.</p></li>
+</ul>
 </section>
-<section id="benefits-of-a-job-scheduler">
-<h2>Benefits of a job scheduler<a class="headerlink" href="#benefits-of-a-job-scheduler" title="Link to this heading">#</a></h2>
-<dl class="simple myst">
-<dt>Efficient use of resources</dt><dd><p>HPC systems are very powerful and have a huge capacity for work. They are expensive to run too, and consume lot of energy. It is important for us to run the systems as efficiently as possible and to maximise the amount of work they can do. Job scheduling systems can help us optimise for energy consumption, as well as throughput.</p>
-</dd>
-<dt>Saving users time</dt><dd><p>Some user tasks take a long time to run - even more than a day. You might want to run a long connected sequence of runs, or run the same task many times with lots of different parameters. Doing this directly from a PC by hand can become very tedious and error prone. A job scheduling system allows us to automate the running of work so that you don’t have to monitor your terminal for hours on end, and can set up complex workflows, leaving it to the job scheduling system to keep things moving.</p>
-</dd>
-<dt>Fair-sharing</dt><dd><p>A job scheduler can be configured to allocate compute resources fairly to different users and groups. For example, a user who has recently submitted a large job may need to wait longer for their job to run than another user who has not recently run a job.</p>
-</dd>
-</dl>
-</section>
-<section id="which-job-scheduler-does-aire-and-calder-use">
-<h2>Which job scheduler does Aire and Calder use?<a class="headerlink" href="#which-job-scheduler-does-aire-and-calder-use" title="Link to this heading">#</a></h2>
-<p>Aire and Calder use the Slurm system, which is used in many other UK University HPC centres. The old ARC3 and ARC4 HPC systems used Grid Engine. Fortunately, it is quite easy for users who are familiar with Grid Engine to transition to Slurm.</p>
-<div class="admonition-used-slurm-before admonition">
+<section id="which-job-scheduler-do-aire-and-calder-use">
+<h2>Which job scheduler do Aire and Calder use?<a class="headerlink" href="#which-job-scheduler-do-aire-and-calder-use" title="Link to this heading">#</a></h2>
+<p>Both Aire and Calder use <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a>, a widely used workload manager in HPC systems.</p>
+<p>Slurm is configured differently at different HPC centres to meet local requirements. However, the main commands and options are generally the same or similar between systems.</p>
+<div class="tip admonition">
 <p class="admonition-title">Used Slurm before?</p>
-<p>Slurm is configured differently at different HPC centres, to meet the differing requirements of their users. However, most of the commands and parameters you use on your jobs will be the same or similar.</p>
+<p>If you have used Slurm on another HPC system, many of the commands and concepts will be familiar. However, always check the local documentation for the partitions, resource limits, and other configuration specific to Aire and Calder.</p>
 </div>
 </section>
 <section id="submitting-a-job-to-the-scheduler">
 <h2>Submitting a job to the scheduler<a class="headerlink" href="#submitting-a-job-to-the-scheduler" title="Link to this heading">#</a></h2>
-<p>To submit a job to the scheduler, you must first create a job script to run your program. In the script, you will specify any particular data or parameters needed to run your program. You can then submit the script to the job scheduling system using Slurm’s <a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code></a> command for batch mode or <a class="reference external" href="https://slurm.schedmd.com/srun.html"><code class="docutils literal notranslate"><span class="pre">srun</span></code></a> command for interactive jobs. In your script or run command, you will include some information for the scheduling system to inform it about the size and shape of the job, and the resources it will need to run.</p>
+<p>To submit a batch job, first create a job script containing the commands needed to run your application. The script also specifies the resources required by the job, such as the number of CPU cores, memory, GPUs, and the maximum run time.</p>
+<p>You can then submit the script using Slurm’s <a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code></a> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>my_job.sh
+</pre></div>
+</div>
+<p>Slurm will assign a job ID when the job is submitted. For example:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Submitted batch job 123456
+</pre></div>
+</div>
+<p>The job ID can be used to monitor the job and inspect its accounting information after it has completed.</p>
+<p>For interactive jobs, use Slurm’s <a class="reference external" href="https://slurm.schedmd.com/srun.html"><code class="docutils literal notranslate"><span class="pre">srun</span></code></a> command.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>For the full list of submission options and example job scripts for different job types, check out <a class="reference internal" href="../usage/jobs.html"><span class="std std-doc">Job Types and Examples</span></a>.</p>
+<p>For examples of job scripts and guidance on different types of jobs, see <a class="reference internal" href="../usage/jobs.html"><span class="std std-doc">Job Types and Examples</span></a>.</p>
 </div>
 </section>
 <section id="after-a-job-is-submitted">
 <h2>After a job is submitted<a class="headerlink" href="#after-a-job-is-submitted" title="Link to this heading">#</a></h2>
-<p>Once it is submitted, Slurm looks for a space to fit your job into, and if space is free, will start the job running immediately. However as many other users will often be using the system too, the job is likely to be placed in a queue, waiting to run when resource become available as other jobs finish.</p>
+<p>After a job is submitted, Slurm determines when it can run based on the resources requested, the availability of those resources, and the scheduling policies in place.</p>
+<p>If the required resources are available and the job can be scheduled, it will start running. Otherwise, it will remain in the queue until resources become available and the job reaches a position where it can run.</p>
+<section id="checking-the-status-of-a-job">
+<h3>Checking the status of a job<a class="headerlink" href="#checking-the-status-of-a-job" title="Link to this heading">#</a></h3>
+<p>Use <a class="reference external" href="https://slurm.schedmd.com/squeue.html"><code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> to view jobs that are currently queued or running.</p>
+<p>To see your own jobs:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>--user<span class="o">=</span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<p>You can also check a specific job by providing its job ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>--job<span class="o">=</span><span class="m">123456</span>
+</pre></div>
+</div>
+<p>The job’s state is shown in the <code class="docutils literal notranslate"><span class="pre">ST</span></code> or <code class="docutils literal notranslate"><span class="pre">STATE</span></code> column. Common states include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PD</span></code> (<code class="docutils literal notranslate"><span class="pre">PENDING</span></code>) - the job is waiting to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">R</span></code> (<code class="docutils literal notranslate"><span class="pre">RUNNING</span></code>) - the job is currently running.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CG</span></code> (<code class="docutils literal notranslate"><span class="pre">COMPLETING</span></code>) - the job has finished its main work and is completing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CD</span></code> (<code class="docutils literal notranslate"><span class="pre">COMPLETED</span></code>) - the job completed successfully.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">F</span></code> (<code class="docutils literal notranslate"><span class="pre">FAILED</span></code>) - the job terminated unsuccessfully.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CA</span></code> (<code class="docutils literal notranslate"><span class="pre">CANCELLED</span></code>) - the job was cancelled.</p></li>
+</ul>
+<p>For pending jobs, the <code class="docutils literal notranslate"><span class="pre">REASON</span></code> column can provide useful information about why the job has not started.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>Check the status of your job using the <a class="reference external" href="https://slurm.schedmd.com/squeue.html"><code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> command.</p>
+<p>If a job is waiting in the queue, do not assume that it is stuck. The scheduler may be waiting for the resources requested by the job to become available or for the job to reach a sufficiently high scheduling priority.</p>
 </div>
-<p>The time you wait can vary, depending on how much work there is on the system and how much is waiting to run. Your jobs will be assigned to a partition, which is part of the apparatus used by the scheduler to manage the work. Which partition your job goes into is not important in terms of how quickly the job may run.</p>
-<p>When resources become free, Slurm will run your job and when it completes, it will return the output file to your directory.</p>
+</section>
+<section id="checking-completed-jobs-with-sacct">
+<h3>Checking completed jobs with <code class="docutils literal notranslate"><span class="pre">sacct</span></code><a class="headerlink" href="#checking-completed-jobs-with-sacct" title="Link to this heading">#</a></h3>
+<p>Once a job has finished, it will normally no longer appear in <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. Use <a class="reference external" href="https://slurm.schedmd.com/sacct.html"><code class="docutils literal notranslate"><span class="pre">sacct</span></code></a> to view accounting information for completed jobs and job steps.</p>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>--job<span class="o">=</span><span class="m">123456</span>
+</pre></div>
+</div>
+<p>This provides information such as the job state, elapsed time, and exit code. You can request specific fields to make the output easier to interpret:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>--job<span class="o">=</span><span class="m">123456</span><span class="w"> </span>--format<span class="o">=</span>JobID,JobName,State,Elapsed,AllocCPUS,MaxRSS,ExitCode
+</pre></div>
+</div>
+<p>Some useful fields include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">JobID</span></code> - the job or job step ID.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JobName</span></code> - the name of the job.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">State</span></code> - the final state of the job.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Elapsed</span></code> - the amount of wall clock time for which the job ran.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AllocCPUS</span></code> - the number of CPUs allocated to the job.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code> - the maximum resident memory used by the job or job step.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ExitCode</span></code> - the exit code returned by the job.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">sacct</span></code> is particularly useful after a job has completed because it can help you understand how the job ran and whether the resources requested were appropriate. For example, <code class="docutils literal notranslate"><span class="pre">MaxRSS</span></code> can help identify whether you requested substantially more memory than the job required.</p>
+<p>For more information about the fields available in <code class="docutils literal notranslate"><span class="pre">sacct</span></code>, see the <a class="reference external" href="https://slurm.schedmd.com/sacct.html">Slurm <code class="docutils literal notranslate"><span class="pre">sacct</span></code> documentation</a>.</p>
+</section>
+<section id="job-output">
+<h3>Job output<a class="headerlink" href="#job-output" title="Link to this heading">#</a></h3>
+<p>Unless otherwise specified in the job script, Slurm writes the standard output and standard error from a batch job to an output file in the directory from which the job was submitted.</p>
+<p>You can specify separate output and error files using:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --output=output_%j.out</span>
+<span class="c1">#SBATCH --error=error_%j.err</span>
+</pre></div>
+</div>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">%j</span></code> is replaced by the job ID.</p>
+</section>
+<section id="cancelling-a-job">
+<h3>Cancelling a job<a class="headerlink" href="#cancelling-a-job" title="Link to this heading">#</a></h3>
+<p>If you need to stop a queued or running job, use <a class="reference external" href="https://slurm.schedmd.com/scancel.html"><code class="docutils literal notranslate"><span class="pre">scancel</span></code></a> with the job ID:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scancel<span class="w"> </span><span class="m">123456</span>
+</pre></div>
+</div>
+<p>You can cancel all of your jobs with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>scancel<span class="w"> </span>--user<span class="o">=</span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">scancel</span></code> carefully. Cancelling a running job will terminate it, and any work that has not been saved may be lost.</p>
+</div>
+</section>
+</section>
+<section id="choosing-resources-for-your-job">
+<h2>Choosing resources for your job<a class="headerlink" href="#choosing-resources-for-your-job" title="Link to this heading">#</a></h2>
+<p>When submitting a job, request the resources that your application actually needs. These can include:</p>
+<ul class="simple">
+<li><p>CPU cores</p></li>
+<li><p>Memory</p></li>
+<li><p>GPUs</p></li>
+<li><p>Number of nodes</p></li>
+<li><p>Wall time</p></li>
+</ul>
+<p>Requesting substantially more resources than your application requires can increase the time you wait for the job to start and can reduce overall system utilisation. Conversely, requesting too few resources may cause the job to fail or perform poorly.</p>
+<p>The available resources and limits differ between Aire and Calder. Refer to the system specific guidance when selecting a partition and requesting resources.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference internal" href="../usage/jobs.html"><span class="std std-doc">Job Types and Examples</span></a> for examples of resource requests and job submission scripts.</p>
+</div>
 </section>
 </section>
 
@@ -563,11 +661,17 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-job-scheduler">What is a job scheduler?</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benefits-of-a-job-scheduler">Benefits of a job scheduler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-does-aire-and-calder-use">Which job scheduler does Aire and Calder use?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-a-job-scheduler">Why use a job scheduler?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#which-job-scheduler-do-aire-and-calder-use">Which job scheduler do Aire and Calder use?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submitting-a-job-to-the-scheduler">Submitting a job to the scheduler</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#after-a-job-is-submitted">After a job is submitted</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-the-status-of-a-job">Checking the status of a job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checking-completed-jobs-with-sacct">Checking completed jobs with <code class="docutils literal notranslate"><span class="pre">sacct</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#job-output">Job output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cancelling-a-job">Cancelling a job</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-resources-for-your-job">Choosing resources for your job</a></li>
 </ul>
   </nav></div>
 

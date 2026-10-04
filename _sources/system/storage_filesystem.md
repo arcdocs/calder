@@ -72,12 +72,12 @@ For detailed guidance on best practices for using storage and filesystems, see t
 
 As explained above, Aire provides several shared storage areas. Each has a finite capacity, and usage is managed collectively across all users:
 
-| Filesystem                          | Total Space | Total Inode   |
-| ----------------------------------- | ----------- | ------------- |
-| Home Folder (`$HOME`)               | 106 TB      | 2,269,138,752 |
-| Scratch on Lustre (`$SCRATCH`)      | 3.7 PB      | 2,997,485,568 |
-| Flash on Lustre (`$TMP_SHARED`)     | 139 TB      | 293,022,729   |
-| Scratch on compute nodes (`TMPDIR`) | 372 GB*     | 24,838,144*   |
+| Filesystem               | Total Space | Total Inode   |
+| -------------------------| ----------- | ------------- |
+| Home Directory           | 106 TB      | 2,269,138,752 |
+| Scratch on Lustre        | 3.7 PB      | 2,997,485,568 |
+| Flash on Lustre          | 139 TB      |   293,022,729 |
+| Scratch on compute nodes | 372 GB*     |    24,838,144*|
 
 *\* Quantities available per node*
 
@@ -97,11 +97,11 @@ Unlike Aire's fixed per-user quotas, Calder uses project-based quotas, with limi
 
 ### Storage Capacity and Limits on Calder
 
-| Filesystem                            | Total Space |
-| -------------------------------------- | ----------- |
-| Scratch on Lustre (`/scratch-calder`)  | ~6.3 PB     |
-| Flash on Lustre (`/flash-calder`)      | ~246 TB     |
-| Home Folder (`$HOME`)                  | Shared with Aire (see above) |
+| Filesystem                            | Total Space      |
+| --------------------------------------| -----------------|
+| Home Directory                        | Shared with Aire |
+| Scratch on Lustre (`/scratch-calder`) | ~6.3 PB          |
+| Flash on Lustre (`/flash-calder`)     | ~246 TB          |
 
 ```{note}
 When the upgraded Aire system (Aire 2.0) launches, Aire's scratch and flash paths will be renamed to `/scratch-aire` and `/flash-aire` respectively, to distinguish them from Calder's storage.

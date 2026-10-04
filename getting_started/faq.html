@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Frequently Asked Questions &#8212; Aire and Calder User Documentation</title>
+    <title>Frequently Asked Questions &#8212; Calder User Documentation</title>
   
   
   
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Aire and Calder User Documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire and Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder User Documentation - Home"/>
   
   
 </a></div>
@@ -166,7 +166,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../welcome.html">
-                    Aire and Calder User Documentation
+                    Calder User Documentation
                 </a>
             </li>
         </ul>
@@ -187,7 +187,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../system/module_system.html">Modules and Applications</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire and Calder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using the HPC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../usage/environment_management.html">Managing Software Environments</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../usage/file_management/best_practices.html">Best Practices</a></li>
@@ -224,7 +224,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../privacy_cookies.html">Privacy and cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../privacy.html">Privacy and Cookies</a></li>
 
 </ul>
 
@@ -435,6 +435,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aire-and-calder">Aire and Calder</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounts-and-access">Accounts and Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-and-quotas">Storage and Quotas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-support">Getting Support</a></li>
@@ -452,13 +453,28 @@
                   
   <section id="frequently-asked-questions">
 <h1>Frequently Asked Questions<a class="headerlink" href="#frequently-asked-questions" title="Link to this heading">#</a></h1>
-<p>This page answers common questions from users during the launch of Calder. If your question isn’t answered here, please see <a class="reference internal" href="../support/start.html"><span class="std std-doc">How to get support</span></a>.</p>
+<p>This page answers common questions from users during the launch of Calder. If your question is not answered here, please see <a class="reference internal" href="../support/start.html"><span class="std std-doc">How to get support</span></a>.</p>
+<section id="aire-and-calder">
+<h2>Aire and Calder<a class="headerlink" href="#aire-and-calder" title="Link to this heading">#</a></h2>
+<p><strong>What is the difference between Aire and Calder, and when should I use each system?</strong></p>
+<p>Calder is the newer HPC system and provides increased compute and storage capacity compared with Aire. It has 12,288 CPU cores across 96 standard CPU nodes, compared with 9,072 CPU cores across the standard and high-memory CPU nodes on Aire. Calder also provides 6.3 PB of Lustre scratch storage and 246 TB of Lustre flash storage, compared with 3.7 PB and 139 TB respectively on Aire.</p>
+<p>The two systems also have different hardware and system configurations. Calder uses a newer AMD EPYC 9555 CPU platform and InfiniBand networking, while Aire uses AMD EPYC 9634 processors and Omni-Path networking.</p>
+<p>For CPU workloads, Calder is particularly well suited to jobs that require substantial computational resources or parallel execution across multiple nodes. Calder has a minimum CPU allocation of 8 cores, and its InfiniBand network provides a high-performance interconnect for workloads that require communication between nodes.</p>
+<p>Calder also provides NVIDIA H200 NVL GPUs, while Aire provides NVIDIA L40S GPUs. The H200 has 141 GB of HBM3e memory and 4.8 TB/s of memory bandwidth, making it well suited to demanding scientific computing, HPC, and AI/ML workloads. The L40S has 48 GB of GDDR6 memory and is well suited to a range of AI, machine learning, inference, visualisation, and other GPU workloads. The most appropriate system therefore depends on the requirements of your application.</p>
+<p>As a general guide:</p>
+<ul class="simple">
+<li><p><strong>Use Calder</strong> for new or demanding CPU workloads, particularly large multi-node parallel jobs, and for workloads that benefit from the capabilities of the H200 GPUs.</p></li>
+<li><p><strong>Use Aire</strong> when your workload has specific requirements that are better supported by its existing hardware or software environment, or while your workflow is being migrated to Calder.</p></li>
+<li><p><strong>If you are unsure which system is most appropriate</strong>, please contact us. We can help you assess your application’s requirements and identify a suitable system.</p></li>
+</ul>
+<p>Both systems use Slurm as their job scheduler, but partitions, resource limits, software environments, and some hardware-specific features differ between them. Always refer to the system-specific documentation when submitting a job.</p>
+</section>
 <section id="accounts-and-access">
 <h2>Accounts and Access<a class="headerlink" href="#accounts-and-access" title="Link to this heading">#</a></h2>
 <p><strong>Do I need to request a separate account to use Calder?</strong></p>
 <p>No. There is a single HPC user group covering both systems, so there is no separate application process for Calder. If you already have an Aire account, you will be able to access Calder once it is available, and new applicants will get access to both systems through the existing <a class="reference internal" href="request_account.html"><span class="std std-doc">HPC account request form</span></a>.</p>
 <p><strong>Will my home directory, Slurm account, and quotas carry over from Aire?</strong></p>
-<p>Yes. Home directories are shared between Aire and Calder, and the same onboarding process that currently creates your home directory, Slurm association, and Lustre quotas for Aire will also apply to Calder — there is nothing extra you need to do.</p>
+<p>Yes. Home directories are shared between Aire and Calder, and the same onboarding process that currently creates your home directory, Slurm association, and Lustre quotas for Aire will also apply to Calder. There is nothing extra you need to do.</p>
 </section>
 <section id="storage-and-quotas">
 <h2>Storage and Quotas<a class="headerlink" href="#storage-and-quotas" title="Link to this heading">#</a></h2>
@@ -467,10 +483,27 @@
 </section>
 <section id="getting-support">
 <h2>Getting Support<a class="headerlink" href="#getting-support" title="Link to this heading">#</a></h2>
-<p><strong>I’m having trouble logging in — what should I include when reporting the issue?</strong></p>
-<p>Please share the exact steps you took, ideally by copying the commands and output directly from your terminal, or with a screenshot if copying isn’t possible. This helps us diagnose the problem much faster than a general description.</p>
-<p><strong>My job failed or isn’t behaving as expected — what should I include when reporting it?</strong></p>
-<p>Please include the job ID, along with the job’s output and error files, and your job submission script. This information is essential for us to investigate what happened.</p>
+<p><strong>I’m having trouble logging in. What should I include when reporting the issue?</strong></p>
+<p>Please share the exact steps you took, ideally by copying the commands and output directly from your terminal, or with a screenshot if copying is not possible. This helps us diagnose the problem much faster than a general description.</p>
+<p><strong>My job failed or isn’t behaving as expected. What should I include when reporting it?</strong></p>
+<p>Please include:</p>
+<ul class="simple">
+<li><p>The <strong>job ID</strong>.</p></li>
+<li><p>Your <strong>job submission script</strong>.</p></li>
+<li><p>The job’s <strong>output and error files</strong>.</p></li>
+<li><p>Any relevant commands and error messages.</p></li>
+<li><p>The output from <a class="reference external" href="https://slurm.schedmd.com/sacct.html"><code class="docutils literal notranslate"><span class="pre">sacct</span></code></a> for the job, where available.</p></li>
+</ul>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>--job<span class="o">=</span><span class="m">123456</span><span class="w"> </span>--format<span class="o">=</span>JobID,JobName,State,Elapsed,AllocCPUS,MaxRSS,ExitCode
+</pre></div>
+</div>
+<p>This can provide useful information about the final state of the job, the resources allocated to it, its elapsed time, memory usage, and exit code. Including this information when reporting a failed or unexpected job can help us identify resource or application issues more quickly.</p>
+<p>If the job is still queued or running, <a class="reference external" href="https://slurm.schedmd.com/squeue.html"><code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> can be used to check its current state:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>--job<span class="o">=</span><span class="m">123456</span>
+</pre></div>
+</div>
+<p>For more information about investigating jobs, see the <a class="reference internal" href="../system/job_scheduler.html"><span class="std std-doc">Job Scheduler</span></a> documentation.</p>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <p>See <a class="reference internal" href="../support/start.html"><span class="std std-doc">How to get support</span></a> for details on raising an issue or submitting a Research IT ticket.</p>
@@ -479,8 +512,8 @@
 <section id="shell-configuration">
 <h2>Shell Configuration<a class="headerlink" href="#shell-configuration" title="Link to this heading">#</a></h2>
 <p><strong>What’s the difference between <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> and <code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code>, and which one should I use?</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is sourced for every new shell that is spawned and should be used only for defining shell functions — not for updating your environment or running commands.</p>
-<p><code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> is executed at the start of each new login session and at the start of each batch job. If you want to tailor your environment — for example, setting custom path or environment variable values — this is the file to use. Any settings you add here are automatically exported to all child processes in that session or job.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> is sourced for every new shell that is spawned and should be used only for defining shell functions, not for updating your environment or running commands.</p>
+<p><code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> is executed at the start of each new login session and at the start of each batch job. If you want to tailor your environment, for example by setting custom path or environment variable values, this is the file to use. Any settings you add here are automatically exported to all child processes in that session or job.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Do not include <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands in <code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code>. Doing so can cause unintentional conflicts with modules you load in your job scripts. If you contact the <a class="reference external" href="https://arc.leeds.ac.uk/">Research Computing</a> team for support and your <code class="docutils literal notranslate"><span class="pre">.bash_profile</span></code> contains <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands, you will be asked to remove them first.</p>
@@ -553,6 +586,7 @@
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aire-and-calder">Aire and Calder</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accounts-and-access">Accounts and Access</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-and-quotas">Storage and Quotas</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-support">Getting Support</a></li>

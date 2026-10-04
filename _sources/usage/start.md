@@ -1,4 +1,4 @@
-# Using Aire and Calder
+# Using the HPC
 
 Aire and Calder are both University of Leeds HPC facilities, but they differ in hardware and software environment. Calder is the newer system, with more powerful CPU and GPU hardware (AMD EPYC 9555 processors and NVIDIA H200 GPUs, connected via NDR InfiniBand), while Aire remains the established platform (older AMD EPYC processors and NVIDIA L40S GPUs, connected via Omni-Path). For a full hardware comparison, see the [System Overview](../system/start.md).
 

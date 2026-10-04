@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Compute node types &#8212; Aire and Calder User Documentation</title>
+    <title>Compute node types &#8212; Calder User Documentation</title>
   
   
   
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Aire and Calder User Documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Aire and Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Calder User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Calder User Documentation - Home"/>
   
   
 </a></div>
@@ -166,7 +166,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../welcome.html">
-                    Aire and Calder User Documentation
+                    Calder User Documentation
                 </a>
             </li>
         </ul>
@@ -187,7 +187,7 @@
 <li class="toctree-l2"><a class="reference internal" href="module_system.html">Modules and Applications</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using Aire and Calder</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../usage/start.html">Using the HPC</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../usage/environment_management.html">Managing Software Environments</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../usage/file_management/start.html">File and Data Management</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="../usage/file_management/best_practices.html">Best Practices</a></li>
@@ -224,7 +224,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference external" href="https://arc.leeds.ac.uk">Research Computing Website</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../privacy_cookies.html">Privacy and cookies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../privacy.html">Privacy and Cookies</a></li>
 
 </ul>
 
@@ -435,10 +435,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-compute-node">Standard compute node</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-memory-node-aire-only">High-memory node (Aire only)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-cpu-node">Standard CPU node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-memory-cpu-node-aire-only">High-memory CPU node (Aire only)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-node">GPU node</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purchasing-additional-nodes">Purchasing additional nodes</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purchasing-additional-nodes-for-aire">Purchasing additional nodes for Aire</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guidelines-for-node-purchases">Guidelines for node purchases</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimated-node-costs">Estimated node costs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-research-software-engineering-support">Requesting Research Software Engineering support</a></li>
@@ -457,18 +457,18 @@
                   
   <section id="compute-node-types">
 <h1>Compute node types<a class="headerlink" href="#compute-node-types" title="Link to this heading">#</a></h1>
-<p>The Aire and Calder HPC clusters are composed of various types of compute nodes, each designed to handle specific computational tasks and workloads. This section provides an overview of the different compute node types available, including standard compute nodes, high-memory nodes, and GPU nodes. Each type offers unique capabilities to meet the diverse needs of users.</p>
-<section id="standard-compute-node">
-<h2>Standard compute node<a class="headerlink" href="#standard-compute-node" title="Link to this heading">#</a></h2>
+<p>The Aire and Calder HPC systems provide several types of compute nodes, each designed for different computational workloads. This section provides an overview of the standard CPU nodes, high-memory CPU nodes, and GPU nodes available on each system.</p>
+<section id="standard-cpu-node">
+<h2>Standard CPU node<a class="headerlink" href="#standard-cpu-node" title="Link to this heading">#</a></h2>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
 Calder</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>96 nodes</p></li>
-<li><p>2 x AMD EPYC 9555 (128 cores/node)</p></li>
-<li><p>768GB Memory</p></li>
-<li><p>BOSS-N1 480GB M.2 local storage</p></li>
+<li><p>2 x AMD EPYC 9555 processors, providing 128 CPU cores per node</p></li>
+<li><p>768 GB memory</p></li>
+<li><p>480 GB BOSS-N1 M.2 local storage</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
@@ -477,21 +477,22 @@ Aire</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>52 nodes</p></li>
 <li><p>Dell R6625 servers</p></li>
-<li><p>AMD Dual 84 core 2.2GHz (9634 Genoa-X)</p></li>
-<li><p>Dual 480GB M2 drives</p></li>
-<li><p>768GB DDR5-4800 Memory</p></li>
+<li><p>2 x AMD EPYC 9634 processors, providing 168 CPU cores per node</p></li>
+<li><p>768 GB DDR5-4800 memory</p></li>
+<li><p>2 x 480 GB M.2 local storage</p></li>
 </ul>
 </div>
 </div>
 </section>
-<section id="high-memory-node-aire-only">
-<h2>High-memory node (Aire only)<a class="headerlink" href="#high-memory-node-aire-only" title="Link to this heading">#</a></h2>
+<section id="high-memory-cpu-node-aire-only">
+<h2>High-memory CPU node (Aire only)<a class="headerlink" href="#high-memory-cpu-node-aire-only" title="Link to this heading">#</a></h2>
+<p>Calder does not have dedicated high-memory CPU nodes. Aire provides two high-memory CPU nodes for workloads that require more memory than is available on a standard CPU node.</p>
 <ul class="simple">
 <li><p>2 nodes</p></li>
 <li><p>Dell R6625 servers</p></li>
-<li><p>AMD Dual 84 core 2.2GHz (9634 Genoa-X)</p></li>
-<li><p>Dual 480GB M2 drives</p></li>
-<li><p>2.3TB DDR5-4800 Memory</p></li>
+<li><p>2 x AMD EPYC 9634 processors, providing 168 CPU cores per node</p></li>
+<li><p>2.3 TB DDR5-4800 memory</p></li>
+<li><p>2 x 480 GB M.2 local storage</p></li>
 </ul>
 </section>
 <section id="gpu-node">
@@ -502,12 +503,12 @@ Aire</label><div class="sd-tab-content docutils">
 Calder</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>7 nodes</p></li>
-<li><p>8 x NVIDIA H200 NVL GPUs</p></li>
-<li><p>2 x AMD EPYC 9555</p></li>
-<li><p>1.5TB Memory</p></li>
-<li><p>1 x 6.4TB E3.s Gen5 SED local storage</p></li>
+<li><p>8 x NVIDIA H200 NVL GPUs per node</p></li>
+<li><p>2 x AMD EPYC 9555 processors</p></li>
+<li><p>1.5 TB memory</p></li>
+<li><p>6.4 TB E3.S Gen5 SED local storage</p></li>
 <li><p>NVLink 4-way bridges</p></li>
-<li><p><strong>56 GPU cards</strong> total</p></li>
+<li><p><strong>56 GPUs</strong> in total</p></li>
 </ul>
 </div>
 <input id="sd-tab-item-3" name="sd-tab-set-1" type="radio">
@@ -515,70 +516,69 @@ Calder</label><div class="sd-tab-content docutils">
 Aire</label><div class="sd-tab-content docutils">
 <ul class="simple">
 <li><p>28 nodes</p></li>
-<li><p>Dell R7615 servers</p></li>
-<li><p>3 x NVIDIA L40S 48GB GPUs (PCIe)</p></li>
-<li><p>AMD 24 core 2.9GHz (9254 Genoa-X)</p></li>
-<li><p>Dual 480GB M2 drives</p></li>
-<li><p>256GB DDR5-4800 Memory</p></li>
-<li><p><strong>84 GPU cards</strong> total</p></li>
+<li><p>3 x NVIDIA L40S 48 GB GPUs per node (PCIe)</p></li>
+<li><p>AMD EPYC 9254 processors, providing 24 CPU cores per node</p></li>
+<li><p>256 GB DDR5-4800 memory</p></li>
+<li><p>2 x 480 GB M.2 local storage</p></li>
+<li><p><strong>84 GPUs</strong> in total</p></li>
 </ul>
 </div>
 </div>
 </section>
-<section id="purchasing-additional-nodes">
-<h2>Purchasing additional nodes<a class="headerlink" href="#purchasing-additional-nodes" title="Link to this heading">#</a></h2>
-<p>If your project requires additional resources, you can purchase nodes for priority access within the Aire or Calder HPC systems. Please review the guidelines below and contact Research IT for more details.</p>
+<section id="purchasing-additional-nodes-for-aire">
+<h2>Purchasing additional nodes for Aire<a class="headerlink" href="#purchasing-additional-nodes-for-aire" title="Link to this heading">#</a></h2>
+<p>If your project requires additional resources, you may be able to purchase nodes for priority access within the Aire HPC system. Please contact Research IT to discuss your requirements and the available options.</p>
 <section id="guidelines-for-node-purchases">
 <h3>Guidelines for node purchases<a class="headerlink" href="#guidelines-for-node-purchases" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><strong>Quote Details:</strong> The quoted price will cover only the cost of the hardware. Management and maintenance of the system are provided centrally and are not included in the hardware quote.</p></li>
-<li><p><strong>Data Centre Capacity:</strong> The number of nodes that can be added depends on available space in the data centre. Please consult with Research IT to confirm the current capacity.</p></li>
-<li><p><strong>Node Lifespan:</strong> All purchased nodes are managed as part of Aire’s infrastructure and will remain available until the system’s retirement date of 31/07/2029, regardless of purchase timing.</p></li>
-<li><p><strong>Access Model:</strong> Purchasing a node grants priority access to its resources, not exclusive ownership. This policy maximises resource utilisation and promotes energy efficiency. For specific arrangements, please discuss with Research IT.</p></li>
+<li><p><strong>Quote details:</strong> The quoted price covers the cost of the hardware. Management and maintenance of the system are provided centrally and are not included in the hardware quote.</p></li>
+<li><p><strong>Data centre capacity:</strong> The number of nodes that can be added depends on available space in the data centre. Please consult Research IT to confirm the current capacity.</p></li>
+<li><p><strong>Node lifespan:</strong> Purchased nodes are managed as part of Aire’s infrastructure and will remain available until the system’s retirement date of 31/07/2029, regardless of when they are purchased.</p></li>
+<li><p><strong>Access model:</strong> Purchasing a node grants priority access to its resources, not exclusive ownership. This policy maximises resource utilisation and promotes energy efficiency. For specific arrangements, please discuss with Research IT.</p></li>
 </ul>
 </section>
 <section id="estimated-node-costs">
 <h3>Estimated node costs<a class="headerlink" href="#estimated-node-costs" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Node Name</p></th>
-<th class="head"><p>Cores per node</p></th>
-<th class="head"><p>Memory per node</p></th>
+<tr class="row-odd"><th class="head"><p>Node type</p></th>
+<th class="head text-right"><p>CPU cores per node</p></th>
+<th class="head text-right"><p>Memory per node</p></th>
 <th class="head"><p>Processor</p></th>
-<th class="head"><p>Estimated cost</p></th>
+<th class="head text-right"><p>Estimated cost</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Standard CPU node</p></td>
-<td><p>168</p></td>
-<td><p>768GB</p></td>
-<td><p>2 x AMD 9634 2.25GHz 84c</p></td>
-<td><p>£39,651.00 + VAT</p></td>
+<td class="text-right"><p>168</p></td>
+<td class="text-right"><p>768 GB</p></td>
+<td><p>2 x AMD EPYC 9634</p></td>
+<td class="text-right"><p>£39,651.00 + VAT</p></td>
 </tr>
 <tr class="row-odd"><td><p>High-memory CPU node</p></td>
-<td><p>168</p></td>
-<td><p>2.3TB</p></td>
-<td><p>2 x AMD 9634 2.25GHz 84c</p></td>
-<td><p>To be confirmed</p></td>
+<td class="text-right"><p>168</p></td>
+<td class="text-right"><p>2.3 TB</p></td>
+<td><p>2 x AMD EPYC 9634</p></td>
+<td class="text-right"><p>To be confirmed</p></td>
 </tr>
 <tr class="row-even"><td><p>GPU node</p></td>
-<td><p>24</p></td>
-<td><p>256GB</p></td>
-<td><p>3 x NVIDIA L40S PCIe</p></td>
-<td><p>£41,755.00 + VAT</p></td>
+<td class="text-right"><p>24</p></td>
+<td class="text-right"><p>256 GB</p></td>
+<td><p>3 x NVIDIA L40S</p></td>
+<td class="text-right"><p>£41,755.00 + VAT</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please reach out to Research IT to discuss your specific needs, obtain a quote, and explore how additional nodes can enhance your research project. The estimated costs above are indicative and subject to market variation. The final price for any purchased node will be confirmed at the time of purchase.</p>
+<p>Please contact Research IT to discuss your specific requirements, obtain a quote, and explore how additional nodes could support your research project. The estimated costs above are indicative and subject to market variation. The final price for any purchased node will be confirmed at the time of purchase.</p>
 <p>Estimated node costs for Calder will be provided at a later date.</p>
 </div>
 </section>
 <section id="requesting-research-software-engineering-support">
 <h3>Requesting Research Software Engineering support<a class="headerlink" href="#requesting-research-software-engineering-support" title="Link to this heading">#</a></h3>
-<p>In addition to infrastructure, we also offer Research Software Engineering (RSE) support to help researchers make the most of the available resources. Our RSE team can provide expertise in optimising code, parallelising workflows, and ensuring efficient usage of HPC systems. The full consulting catalogue and instructions for requesting our services are available on our main <a class="reference external" href="https://arc.leeds.ac.uk/consulting/">ARC website</a>.</p>
+<p>In addition to infrastructure, we offer Research Software Engineering (RSE) support to help researchers make the most of the available resources. Our RSE team can provide expertise in optimising code, parallelising workflows, and ensuring efficient use of HPC systems. The full consulting catalogue and instructions for requesting our services are available on our main <a class="reference external" href="https://arc.leeds.ac.uk/consulting/">ARC website</a>.</p>
 </section>
 </section>
 </section>
@@ -648,10 +648,10 @@ Aire</label><div class="sd-tab-content docutils">
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-compute-node">Standard compute node</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-memory-node-aire-only">High-memory node (Aire only)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-cpu-node">Standard CPU node</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-memory-cpu-node-aire-only">High-memory CPU node (Aire only)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gpu-node">GPU node</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purchasing-additional-nodes">Purchasing additional nodes</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purchasing-additional-nodes-for-aire">Purchasing additional nodes for Aire</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#guidelines-for-node-purchases">Guidelines for node purchases</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimated-node-costs">Estimated node costs</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#requesting-research-software-engineering-support">Requesting Research Software Engineering support</a></li>

@@ -1,21 +1,54 @@
-# Aire and Calder User Documentation
+# Calder User Documentation
 
-This site documents information relevant to users of Aire and Calder, the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk). It is oriented towards researchers with basic experience using a Unix-like command line interface (CLI).
+This site provides documentation for users of **Aire and Calder**, the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
 
-Calder is the latest HPC system following Aire, launching in October 2026. It introduces a new software stack and user environment, alongside updated hardware and software. These pages are being developed as a shared documentation site so that guidance can be kept together while system-specific instructions remain clear.
+**Calder** is the latest HPC system at the University of Leeds, following Aire, and launches in October 2026. It introduces new hardware, a new software stack, and an updated user environment, with increased compute and storage capacity compared with Aire. This site has been developed to provide documentation for both systems in one place, making it easier for existing Aire users to transition to Calder while keeping guidance for both systems available during the transition.
 
-Where a command, job submission script, or hardware detail differs between systems, the documentation uses tabs to show the relevant information. Select the **Aire** or **Calder** tab to view the instructions for the system you are using. For example, a job submission page may provide separate scripts while keeping the common Slurm concepts in one place.
+## Calder at a glance
+
+Calder provides a significant increase in both compute and storage capacity compared with Aire:
+
+| Resource | Aire | Calder | Increase |
+| --- | ---: | ---: | ---: |
+| CPU cores | 9,072 | 12,288 | **35%** |
+| GPUs | 84 NVIDIA L40S | 56 NVIDIA H200 NVL | — |
+| Scratch on Lustre (Disk based) | 3.7 PB | 6.3 PB | **70%** |
+| Flash on Lustre (NVMe based) | 139 TB | 246 TB | **77%** |
+
+Calder provides **3,216 additional CPU cores** compared with Aire, increasing the available CPU capacity by approximately 35%. Although Calder has fewer physical GPUs, its NVIDIA H200 NVL GPUs provide a newer and more capable GPU platform than the NVIDIA L40S GPUs available on Aire.
+
+Calder also provides substantially more storage capacity, with approximately 70% more Lustre scratch storage and 77% more Lustre flash storage than Aire.
+
+These figures describe overall system capacity. The performance of individual applications will vary depending on the workload and the hardware resources they use.
+
+Where instructions or system characteristics differ between Aire and Calder, the documentation clearly identifies the relevant system. Where possible, common concepts and guidance are shared between the two systems to avoid unnecessary duplication.
+
+## An evolving documentation site
+
+This documentation is actively maintained and will continue to be updated as Calder develops and as we learn from users. New software, features, guidance, and improvements will be added over time, so some sections may initially be more complete than others.
+
+The documentation will also evolve alongside the Aire upgrade. Aire is being upgraded with a new software stack, a new module system, and other changes to its user environment. Once the Aire upgrade is complete, documentation for the upgraded Aire system will gradually be incorporated into this site.
+
+The existing [Aire User Documentation](https://arcdocs.leeds.ac.uk/aire/) remains available during this transition. Over time, content will be migrated from the existing Aire documentation to this site. Once the Aire upgrade and documentation migration are complete, the existing Aire Docs site will be retired and this site will become the main documentation site for the University of Leeds HPC systems.
+
+:::{admonition} Using Aire and Calder
+:class: note
+
+During the transition, some guidance will apply to both systems, while other sections will provide separate instructions for Aire and Calder.
+
+Where a command, job submission script, or hardware detail differs between systems, the documentation uses tabs to show the relevant information. Select the **Aire** or **Calder** tab to view the instructions for the system you are using.
+
+For example, a job submission page may provide separate scripts for Aire and Calder while keeping the common Slurm concepts in one place.
+:::
 
 New users may want to start by reading the [Getting Started](getting_started/start) section.
 
-```{admonition} Upgrading from Aire to Calder
-Calder is being introduced as the latest generation of the University of Leeds HPC service. During the transition, some guidance will apply to both systems, while other sections will provide separate instructions. In particular, Calder uses InfiniBand networking where Aire uses Omni-Path, so MPI guidance may differ between the two systems.
-```
-
 :::{seealso}
-To expand your expertise, you might be interested in exploring the [training courses](https://arc.leeds.ac.uk/courses/) offered by the [Research Computing](https://arc.leeds.ac.uk/) team. Also, check out the [HPC Architecture](system/hpc_architecture.md) section for a basic introduction to the system.
+To expand your expertise, you might be interested in exploring the [training courses](https://arc.leeds.ac.uk/courses/) offered by the [Research Computing](https://arc.leeds.ac.uk/) team. You can also see the [HPC Architecture](system/hpc_architecture.md) section for a basic introduction to the systems.
 :::
 
-```{admonition} Give us feedback
-This documentation site will gradually replace the existing [Aire User Documentation](https://arcdocs.leeds.ac.uk/aire/welcome.html) over the coming months, so active changes are expected as Calder launches. We welcome your feedback: please [raise an issue on GitHub](https://github.com/arcdocs/calder/issues) or submit a [Research IT ticket](https://bit.ly/arc-help) if you have any questions or suggestions.
-```
+:::{admonition} Give us feedback
+:class: note
+
+As this documentation is actively developed, we welcome your feedback and suggestions. If you find an error, notice missing information, or have suggestions for improving the documentation, please [raise an issue on GitHub](https://github.com/arcdocs/calder/issues) or submit a [Research IT ticket](https://bit.ly/arc-help).
+:::
