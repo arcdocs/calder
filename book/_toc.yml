@@ -21,7 +21,7 @@ chapters:
   - file: system/storage_filesystem
   - file: system/job_scheduler
   - file: system/module_system
-# ===== Using Calder ==================================
+# ===== Using HPC ==================================
 - file: usage/start
   sections:
   - file: usage/environment_management
@@ -34,7 +34,7 @@ chapters:
     - file: usage/file_management/data_sharing
   - file: usage/jobs
   - file: usage/job_priority
-# ===== Software on Calder ============================
+# ===== Software on HPC ============================
 - file: software/start
   title: Software on HPC
   sections:
@@ -99,4 +99,4 @@ chapters:
     - file: support/other_resources.md
 - url: https://arc.leeds.ac.uk
   title: Research Computing Website
-- file: privacy_cookies
+- file: privacy
