@@ -1,50 +1,166 @@
+(page:job-scheduler)=
 # Job Scheduler
 
-(page:job-scheduler)=
+A job scheduler, also known as a queueing system or workload manager, is software that manages jobs submitted to an HPC system. It allocates compute resources to jobs according to the system's scheduling policies, allowing many users to run workloads efficiently and fairly.
 
-This page offers a more in-depth overview of the job scheduling system. It is recommended that you familiarise yourself with this content before [getting started](../getting_started/start.md) using Aire.
+A job scheduler is particularly useful for HPC workloads because jobs may require substantial resources or run for long periods. Rather than waiting for a job to finish in an interactive terminal, you can submit it to the scheduler and allow it to run when the required resources become available.
 
-## What is a job scheduler?
+## Why use a job scheduler?
 
-A job scheduler - also known as a queueing system or workload manager - is a software tool that implements a batch system on an HPC cluster, allowing many users to submit jobs simultaneously.
+The job scheduler helps to:
 
-The two most popular schedulers in HPC are [PBSPro](https://altair.com/pbs-professional) and [Slurm](https://slurm.schedmd.com/), though there are others, such as [LSF](https://www.ibm.com/docs/en/spectrum-lsf/10.1.0?topic=scheduler-about-lsf-session) and [Grid Engine](https://altair.com/grid-engine/).
+- **Use resources efficiently:** HPC systems are expensive to operate and consume significant amounts of energy. Scheduling jobs efficiently helps maximise system throughput and resource utilisation.
+- **Save users time:** Long running or repetitive workloads can run without requiring you to monitor them continuously.
+- **Share resources fairly:** The scheduler manages access to the available resources so that users and groups can share the system effectively.
 
-## Benefits of a job scheduler
+## Which job scheduler do Aire and Calder use?
 
-Efficient use of resources
-: HPC systems are very powerful and have a huge capacity for work. They are expensive to run too, and consume lot of energy. It is important for us to run the systems as efficiently as possible and to maximise the amount of work they can do. Job scheduling systems can help us optimise for energy consumption, as well as throughput.
+Both Aire and Calder use [Slurm](https://slurm.schedmd.com/), a widely used workload manager in HPC systems.
 
-Saving users time
-: Some user tasks take a long time to run - even more than a day. You might want to run a long connected sequence of runs, or run the same task many times with lots of different parameters. Doing this directly from a PC by hand can become very tedious and error prone. A job scheduling system allows us to automate the running of work so that you don't have to monitor your terminal for hours on end, and can set up complex workflows, leaving it to the job scheduling system to keep things moving.
+Slurm is configured differently at different HPC centres to meet local requirements. However, the main commands and options are generally the same or similar between systems.
 
-Fair-sharing
-: A job scheduler can be configured to allocate compute resources fairly to different users and groups. For example, a user who has recently submitted a large job may need to wait longer for their job to run than another user who has not recently run a job.
+:::{admonition} Used Slurm before?
+:class: tip
 
-## Which job scheduler does Aire and Calder use?
-
-Aire and Calder use the Slurm system, which is used in many other UK University HPC centres. The old ARC3 and ARC4 HPC systems used Grid Engine. Fortunately, it is quite easy for users who are familiar with Grid Engine to transition to Slurm.
-
-```{admonition} Used Slurm before?
-Slurm is configured differently at different HPC centres, to meet the differing requirements of their users. However, most of the commands and parameters you use on your jobs will be the same or similar.
-```
+If you have used Slurm on another HPC system, many of the commands and concepts will be familiar. However, always check the local documentation for the partitions, resource limits, and other configuration specific to Aire and Calder.
+:::
 
 ## Submitting a job to the scheduler
 
-To submit a job to the scheduler, you must first create a job script to run your program. In the script, you will specify any particular data or parameters needed to run your program. You can then submit the script to the job scheduling system using Slurm's [`sbatch`](https://slurm.schedmd.com/sbatch.html) command for batch mode or [`srun`](https://slurm.schedmd.com/srun.html) command for interactive jobs. In your script or run command, you will include some information for the scheduling system to inform it about the size and shape of the job, and the resources it will need to run.
+To submit a batch job, first create a job script containing the commands needed to run your application. The script also specifies the resources required by the job, such as the number of CPU cores, memory, GPUs, and the maximum run time.
+
+You can then submit the script using Slurm's [`sbatch`](https://slurm.schedmd.com/sbatch.html) command:
+
+```bash
+sbatch my_job.sh
+```
+
+Slurm will assign a job ID when the job is submitted. For example:
+
+```text
+Submitted batch job 123456
+```
+
+The job ID can be used to monitor the job and inspect its accounting information after it has completed.
+
+For interactive jobs, use Slurm's [`srun`](https://slurm.schedmd.com/srun.html) command.
 
 ```{seealso}
-For the full list of submission options and example job scripts for different job types, check out [Job Types and Examples](../usage/jobs.md).
+For examples of job scripts and guidance on different types of jobs, see [Job Types and Examples](../usage/jobs.md).
 ```
 
 ## After a job is submitted
 
-Once it is submitted, Slurm looks for a space to fit your job into, and if space is free, will start the job running immediately. However as many other users will often be using the system too, the job is likely to be placed in a queue, waiting to run when resource become available as other jobs finish.
+After a job is submitted, Slurm determines when it can run based on the resources requested, the availability of those resources, and the scheduling policies in place.
 
-```{tip}
-Check the status of your job using the [`squeue`](https://slurm.schedmd.com/squeue.html) command.
+If the required resources are available and the job can be scheduled, it will start running. Otherwise, it will remain in the queue until resources become available and the job reaches a position where it can run.
+
+### Checking the status of a job
+
+Use [`squeue`](https://slurm.schedmd.com/squeue.html) to view jobs that are currently queued or running.
+
+To see your own jobs:
+
+```bash
+squeue --user=$USER
 ```
 
-The time you wait can vary, depending on how much work there is on the system and how much is waiting to run. Your jobs will be assigned to a partition, which is part of the apparatus used by the scheduler to manage the work. Which partition your job goes into is not important in terms of how quickly the job may run.
+You can also check a specific job by providing its job ID:
 
-When resources become free, Slurm will run your job and when it completes, it will return the output file to your directory.
+```bash
+squeue --job=123456
+```
+
+The job's state is shown in the `ST` or `STATE` column. Common states include:
+
+- `PD` (`PENDING`) - the job is waiting to run.
+- `R` (`RUNNING`) - the job is currently running.
+- `CG` (`COMPLETING`) - the job has finished its main work and is completing.
+- `CD` (`COMPLETED`) - the job completed successfully.
+- `F` (`FAILED`) - the job terminated unsuccessfully.
+- `CA` (`CANCELLED`) - the job was cancelled.
+
+For pending jobs, the `REASON` column can provide useful information about why the job has not started.
+
+:::{tip}
+If a job is waiting in the queue, do not assume that it is stuck. The scheduler may be waiting for the resources requested by the job to become available or for the job to reach a sufficiently high scheduling priority.
+:::
+
+### Checking completed jobs with `sacct`
+
+Once a job has finished, it will normally no longer appear in `squeue`. Use [`sacct`](https://slurm.schedmd.com/sacct.html) to view accounting information for completed jobs and job steps.
+
+For example:
+
+```bash
+sacct --job=123456
+```
+
+This provides information such as the job state, elapsed time, and exit code. You can request specific fields to make the output easier to interpret:
+
+```bash
+sacct --job=123456 --format=JobID,JobName,State,Elapsed,AllocCPUS,MaxRSS,ExitCode
+```
+
+Some useful fields include:
+
+- `JobID` - the job or job step ID.
+- `JobName` - the name of the job.
+- `State` - the final state of the job.
+- `Elapsed` - the amount of wall clock time for which the job ran.
+- `AllocCPUS` - the number of CPUs allocated to the job.
+- `MaxRSS` - the maximum resident memory used by the job or job step.
+- `ExitCode` - the exit code returned by the job.
+
+`sacct` is particularly useful after a job has completed because it can help you understand how the job ran and whether the resources requested were appropriate. For example, `MaxRSS` can help identify whether you requested substantially more memory than the job required.
+
+For more information about the fields available in `sacct`, see the [Slurm `sacct` documentation](https://slurm.schedmd.com/sacct.html).
+
+### Job output
+
+Unless otherwise specified in the job script, Slurm writes the standard output and standard error from a batch job to an output file in the directory from which the job was submitted.
+
+You can specify separate output and error files using:
+
+```bash
+#SBATCH --output=output_%j.out
+#SBATCH --error=error_%j.err
+```
+
+Here, `%j` is replaced by the job ID.
+
+### Cancelling a job
+
+If you need to stop a queued or running job, use [`scancel`](https://slurm.schedmd.com/scancel.html) with the job ID:
+
+```bash
+scancel 123456
+```
+
+You can cancel all of your jobs with:
+
+```bash
+scancel --user=$USER
+```
+
+:::{note}
+Use `scancel` carefully. Cancelling a running job will terminate it, and any work that has not been saved may be lost.
+:::
+
+## Choosing resources for your job
+
+When submitting a job, request the resources that your application actually needs. These can include:
+
+- CPU cores
+- Memory
+- GPUs
+- Number of nodes
+- Wall time
+
+Requesting substantially more resources than your application requires can increase the time you wait for the job to start and can reduce overall system utilisation. Conversely, requesting too few resources may cause the job to fail or perform poorly.
+
+The available resources and limits differ between Aire and Calder. Refer to the system specific guidance when selecting a partition and requesting resources.
+
+```{seealso}
+See [Job Types and Examples](../usage/jobs.md) for examples of resource requests and job submission scripts.
+```
