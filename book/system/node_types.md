@@ -77,11 +77,11 @@ If your project requires additional resources, you may be able to purchase nodes
 
 ### Estimated node costs
 
-| Node type | CPU cores per node | Memory per node | Processor / GPU | Estimated cost |
+| Node type | CPU cores per node | Memory per node | Processor | Estimated cost |
 | --- | ---: | ---: | --- | ---: |
 | Standard CPU node | 168 | 768 GB | 2 x AMD EPYC 9634 | £39,651.00 + VAT |
 | High-memory CPU node | 168 | 2.3 TB | 2 x AMD EPYC 9634 | To be confirmed |
-| GPU node | 24 | 256 GB | 3 x NVIDIA L40S PCIe | £41,755.00 + VAT |
+| GPU node | 24 | 256 GB | 3 x NVIDIA L40S | £41,755.00 + VAT |
 
 :::{note}
 Please contact Research IT to discuss your specific requirements, obtain a quote, and explore how additional nodes could support your research project. The estimated costs above are indicative and subject to market variation. The final price for any purchased node will be confirmed at the time of purchase.
