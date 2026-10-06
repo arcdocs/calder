@@ -1,6 +1,6 @@
-# Calder User Documentation
+# Leeds HPC User Documentation
 
-This site provides documentation for users of **Aire and Calder**, the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
+This site provides documentation for users of the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
 
 **Calder** is the latest HPC system at the University of Leeds, following Aire, and launches in October 2026. It introduces new hardware, a new software stack, and an updated user environment, with increased compute and storage capacity compared with Aire. This site has been developed to provide documentation for both systems in one place, making it easier for existing Aire users to transition to Calder while keeping guidance for both systems available during the transition.
 
@@ -21,11 +21,11 @@ Calder also provides substantially more storage capacity, with approximately 70%
 
 These figures describe overall system capacity. The performance of individual applications will vary depending on the workload and the hardware resources they use.
 
-Where instructions or system characteristics differ between Aire and Calder, the documentation clearly identifies the relevant system. Where possible, common concepts and guidance are shared between the two systems to avoid unnecessary duplication.
+Where instructions or system characteristics differ between Aire and Calder, the documentation clearly identifies the relevant system. Where possible, common concepts and guidance are shared between the two systems to simplify the user experience.
 
 ## An evolving documentation site
 
-This documentation is actively maintained and will continue to be updated as Calder develops and as we learn from users. New software, features, guidance, and improvements will be added over time, so some sections may initially be more complete than others.
+This documentation is actively maintained and will continue to be updated as our HPC provision develops and as we learn from users. New software, features, guidance, and improvements will be added over time, so some sections may initially be more complete than others.
 
 The documentation will also evolve alongside the Aire upgrade. Aire is being upgraded with a new software stack, a new module system, and other changes to its user environment. Once the Aire upgrade is complete, documentation for the upgraded Aire system will gradually be incorporated into this site.
 
