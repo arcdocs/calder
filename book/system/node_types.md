@@ -1,6 +1,6 @@
 # Compute node types
 
-The Aire and Calder HPC systems provide several types of compute nodes, each designed for different computational workloads. This section provides an overview of the standard CPU nodes, high-memory CPU nodes, and GPU nodes available on each system.
+The HPC systems provide several types of compute nodes, each designed for different computational workloads. This section provides an overview of the standard CPU nodes, high-memory CPU nodes, and GPU nodes available on each system.
 
 ## Standard CPU node
 

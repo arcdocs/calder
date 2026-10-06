@@ -5,8 +5,9 @@ Launched in October 2026, Calder provides dedicated CPU and GPU resources for a 
 The Aire HPC system has been designed with a scalable architecture capable of supporting a wide variety of research applications. The system consists of 52 standard compute nodes and 2 high-memory compute nodes, each equipped with 168 cores, providing a total of 9,072 cores. It also includes 28 GPU nodes, each containing three NVIDIA L40S GPUs, offering a total of 84 GPUs. Aire provides a generous amount of local storage to support the demands of large-scale HPC workloads.
 
 :::{note}
-Before diving into the Aire and Calder HPC systems, it's important to have a basic understanding of their architecture and capabilities. This will help you make the most of the resources available and ensure efficient use of the system.
+Before diving into the Aire and Calder HPC systems, it's important to have a basic understanding of their architecture and capabilities. This will help you make the most of the resources available and ensure efficient use of both systems.
 
-Explore the sections below to learn more about Aire and Calder:
+Explore the sections below to learn more about our HPC privision:
 
 ```{tableofcontents}
+:::

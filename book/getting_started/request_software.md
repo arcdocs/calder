@@ -3,7 +3,7 @@
 
 We have a wide variety of research software installed on our HPC systems. However, we may not always have the software you are looking for. In this situation, there are a couple of options:
 
-1. **Check Conda package management system**: We offer Miniforge to manage Conda environments on both Calder and Aire, providing a lightweight and flexible way to install a wide range of scientific packages. Check if the software is available within the Conda package management system.
+1. **Check Conda package management system**: We offer Miniforge to manage Conda environments on the HPC systems, providing a lightweight and flexible way to install a wide range of scientific packages. Check if the software is available within the Conda package management system.
 
 2. **Build from source**: You can try building the software from source in your home or scratch directories. Most software comes with a README file that includes installation instructions. For guidance, please refer to the [Research Computing team's website](https://arc.leeds.ac.uk/) and the [HPC2 training material](https://arctraining.github.io/hpc2-software/welcome.html), which provide useful resources for building software from source.
 

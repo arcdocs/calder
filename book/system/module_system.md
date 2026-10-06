@@ -4,7 +4,7 @@ This page provides an overview of how software applications are managed on Aire 
 
 ## Module system explained
 
-Aire and Calder use a *module* system to manage software applications, a common approach on HPC systems. Modules make it possible to use multiple applications and versions without conflicts, while ensuring that centrally installed software is configured and optimised for the system.
+The HPC systems use a *module* system to manage software applications, a common approach on HPC systems. Modules make it possible to use multiple applications and versions without conflicts, while ensuring that centrally installed software is configured and optimised for the system.
 
 Calder uses a hierarchical module system: the software you can see depends on the CPU or GPU environment and the compiler or MPI stack currently loaded. Aire uses a flat module system, where `module avail` lists all available software directly. See [Using modules on Calder](#using-modules-on-calder) for details.
 
