@@ -1,8 +1,7 @@
+(page:storage-filesystem)=
 # Storage and Filesystem
 
-(page:storage-filesystem)=
-
-Aire and Calder provide several storage options to support a wide range of research workflows. This section summarises the available storage types, their key features, and the best practices for managing quotas and data efficiently.
+Our HPC systems provide several storage options to support a wide range of research workflows. This section summarises the available storage types, their key features, and the best practices for managing quotas and data efficiently.
 
 ## Summary of storage types on Aire
 

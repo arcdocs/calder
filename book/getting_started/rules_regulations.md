@@ -30,7 +30,7 @@ You must use the appropriate tools and protocols provided on the system and ensu
 ## Enforcement and Access
 
 - We reserve the right to terminate runs without warning if they interfere with other users or the operation of the system.
-- We also reserve the right to disable access to Aire and Calder without warning if we believe a user is causing problems.
+- We also reserve the right to disable access to the HPC systems without warning if we believe a user is causing problems.
 
 *Where possible, we will normally try to contact users beforehand to resolve issues cooperatively.*
 
@@ -50,7 +50,7 @@ Additional guidance about data is available at:
 - <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018252" target="_blank">Research information management guide to data classification</a>: Define data confidentially tiering and help you to assess data sensitivity.
 - <a href="https://it.leeds.ac.uk/sys_attachment.do?sys_id=b0d335c6fb402a5033b5fd9aaeefdc64&view=true" target="_blank"> Research Information Management Guide (PDF)</a> Sets out what kinds of research data can be stored in what kinds of storage solution for each tier.
 
-If you are unsure whether your data is appropriate for use on Aire and Calder, you should seek advice before proceeding.
+If you are unsure whether your data is appropriate for use on the HPC systems, you should seek advice before proceeding.
 
 ## Fair Share, Job Priority, and Scheduling
 
@@ -64,8 +64,8 @@ Aire and Calder are shared HPC services used by many users concurrently. To ensu
 
 Further technical and operational details of job scheduling and fair share are documented separately [here](page:job-scheduler).
 
-## Acknowledging Use of Aire
+## Acknowledging Use of HPC
 
 When publishing research papers, posters, presentations, or similar outputs that have made use of the system, users are asked to acknowledge the service. The following sentence is appropriate:
 
-> This work was undertaken on the Aire HPC system at the University of Leeds, UK.
+> This work was undertaken on the HPC systems at the University of Leeds, UK.
