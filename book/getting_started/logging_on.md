@@ -8,8 +8,7 @@ Connecting via Eduroam or from the NHS network in St James's University Hospital
 
 You can connect to Aire and Calder and log in using SSH (Secure Shell) from within the University network. Please see the following Knowledge Base articles for more information:
 
-+ <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018286" target="_blank">KB0018286 - How do I connect to HPC from Windows?</a>
-+ <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0018284" target="_blank">KB0018284 - How do I log in to HPC on Linux or Mac OS?</a>
++ <a href="https://it.leeds.ac.uk/it?id=kb_article_view&sysparm_article=KB0019686" target="_blank">KB0019686 - How to Connect to HPC</a>
 
 For more information on connecting to the University network via the VPN or SSH, please see the following articles:
 

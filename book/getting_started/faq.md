@@ -22,6 +22,22 @@ As a general guide:
 
 Both systems use Slurm as their job scheduler, but partitions, resource limits, software environments, and some hardware-specific features differ between them. Always refer to the system-specific documentation when submitting a job.
 
+**Will my existing Aire job scripts work on Calder?**
+
+Many Slurm directives and commands will be familiar, but you should review your scripts before using them on Calder. Module names and the module system, partitions, resource limits, and hardware-specific settings may differ. Test your script with a representative job before moving a production workload.
+
+**Is my software available on Calder?**
+
+Check the Calder software documentation for available applications, versions and module names. Calder uses a hierarchical module system, so the commands required to load software may differ from Aire. Some software versions or dependencies may also differ between systems. If you cannot find the software you need, please contact us.
+
+**Do I need to move my data to Calder?**
+
+Home directories are shared between Aire and Calder. However, storage arrangements and quotas differ between systems, and you should check the [Filesystem Quotas](page:filesystem-quotas) documentation before moving data or planning a workflow. In particular, Lustre quotas on Aire are applied per user, while Calder quotas are applied per Slurm project. Check which storage location your job uses and whether the data is accessible from both systems before assuming that files are available in the same location.
+
+**Can I continue using Aire while trying Calder?**
+
+Yes. You can test representative workloads on Calder while continuing to use Aire for existing workflows. You do not need to migrate everything at once. Before moving a production workflow, check that the required software and data are available, test the job, and confirm that its results and performance meet your needs.
+
 ## Accounts and Access
 
 **Do I need to request a separate account to use Calder?**
