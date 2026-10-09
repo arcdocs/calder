@@ -23,6 +23,21 @@ These figures describe overall system capacity. The performance of individual ap
 
 Where instructions or system characteristics differ between Aire and Calder, the documentation clearly identifies the relevant system. Where possible, common concepts and guidance are shared between the two systems to simplify the user experience.
 
+## Moving from Aire to Calder
+
+If you already use Aire, you can start exploring Calder without having to migrate your entire workflow at once. Your existing HPC account provides access to both systems, so you can begin by testing a representative job on Calder.
+
+Many core HPC concepts remain the same, including Slurm job submission, command line usage and batch scripts. However, Calder has a different software stack, a hierarchical module system, different hardware, and InfiniBand networking. You may therefore need to adjust your software environment, job scripts or resource requests.
+
+We recommend starting with a small test job before moving larger production workloads:
+
+1. **Check your software:** Find out whether the software and versions you need are available on Calder.
+2. **Review your job script:** Check the module commands, partition, CPU and memory requests, and any system specific settings.
+3. **Test your workload:** Run a representative job and check its output, performance and resource usage.
+4. **Move your workflow when ready:** Once you have confirmed that your application works as expected, you can start running your production workloads on Calder.
+
+You do not need to migrate everything at once. If you are unsure how to adapt your workflow or choose appropriate resources, please contact the Research Computing team for advice.
+
 ## An evolving documentation site
 
 This documentation is actively maintained and will continue to be updated as our HPC provision develops and as we learn from users. New software, features, guidance, and improvements will be added over time, so some sections may initially be more complete than others.

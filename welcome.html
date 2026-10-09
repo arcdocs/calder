@@ -6,7 +6,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>Leeds HPC User Documentation &#8212; Leeds HPC User Documentation</title>
   
@@ -437,6 +437,7 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calder-at-a-glance">Calder at a glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-from-aire-to-calder">Moving from Aire to Calder</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-evolving-documentation-site">An evolving documentation site</a></li>
 </ul>
             </nav>
@@ -492,6 +493,19 @@
 <p>Calder also provides substantially more storage capacity, with approximately 70% more Lustre scratch storage and 77% more Lustre flash storage than Aire.</p>
 <p>These figures describe overall system capacity. The performance of individual applications will vary depending on the workload and the hardware resources they use.</p>
 <p>Where instructions or system characteristics differ between Aire and Calder, the documentation clearly identifies the relevant system. Where possible, common concepts and guidance are shared between the two systems to simplify the user experience.</p>
+</section>
+<section id="moving-from-aire-to-calder">
+<h2>Moving from Aire to Calder<a class="headerlink" href="#moving-from-aire-to-calder" title="Link to this heading">#</a></h2>
+<p>If you already use Aire, you can start exploring Calder without having to migrate your entire workflow at once. Your existing HPC account provides access to both systems, so you can begin by testing a representative job on Calder.</p>
+<p>Many core HPC concepts remain the same, including Slurm job submission, command line usage and batch scripts. However, Calder has a different software stack, a hierarchical module system, different hardware, and InfiniBand networking. You may therefore need to adjust your software environment, job scripts or resource requests.</p>
+<p>We recommend starting with a small test job before moving larger production workloads:</p>
+<ol class="arabic simple">
+<li><p><strong>Check your software:</strong> Find out whether the software and versions you need are available on Calder.</p></li>
+<li><p><strong>Review your job script:</strong> Check the module commands, partition, CPU and memory requests, and any system specific settings.</p></li>
+<li><p><strong>Test your workload:</strong> Run a representative job and check its output, performance and resource usage.</p></li>
+<li><p><strong>Move your workflow when ready:</strong> Once you have confirmed that your application works as expected, you can start running your production workloads on Calder.</p></li>
+</ol>
+<p>You do not need to migrate everything at once. If you are unsure how to adapt your workflow or choose appropriate resources, please contact the Research Computing team for advice.</p>
 </section>
 <section id="an-evolving-documentation-site">
 <h2>An evolving documentation site<a class="headerlink" href="#an-evolving-documentation-site" title="Link to this heading">#</a></h2>
@@ -575,6 +589,7 @@
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#calder-at-a-glance">Calder at a glance</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#moving-from-aire-to-calder">Moving from Aire to Calder</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#an-evolving-documentation-site">An evolving documentation site</a></li>
 </ul>
   </nav></div>
