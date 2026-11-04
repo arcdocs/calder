@@ -12,7 +12,7 @@ Fair share does not impose a fixed quota on users. Instead, it is one component 
 
 ## Understanding fair share
 
-Slurm's fair share factor is a value between `0.0` and `1.0`. A higher value indicates a stronger fair share position and contributes more positively to job priority. The exact priority of a job is determined by fair share together with the other priority factors configured on the system. citeturn0search1
+Slurm's fair share factor is a value between `0.0` and `1.0`. A higher value indicates a stronger fair share position and contributes more positively to job priority. The exact priority of a job is determined by fair share together with the other priority factors configured on the system.
 
 As a general guide:
 
@@ -64,7 +64,7 @@ The estimated start time is not guaranteed and can change as the state of the sy
 
 ## How fair share recovers
 
-The effect of previous resource usage on fair share decreases over time according to Slurm's configured decay. This is controlled by parameters such as `PriorityDecayHalfLife`, so the time required for your fair share to recover depends on the scheduler configuration. citeturn0search1
+The effect of previous resource usage on fair share decreases over time according to Slurm's configured decay. This is controlled by parameters such as `PriorityDecayHalfLife`, so the time required for your fair share to recover depends on the scheduler configuration.
 
 :::{warning}
 **Request reasonable resources for your jobs.**
@@ -78,7 +78,7 @@ If you are unsure how many CPUs, how much memory, how many GPUs, or how much wal
 
 ## What to expect when submitting jobs
 
-Fair share is only one component of job priority. Slurm combines the enabled priority factors according to the system configuration, so a job with a stronger fair share does not necessarily run before every job with a weaker fair share. citeturn0search1
+Fair share is only one component of job priority. Slurm combines the enabled priority factors according to the system configuration, so a job with a stronger fair share does not necessarily run before every job with a weaker fair share.
 
 As a result:
 
