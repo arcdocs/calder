@@ -1,4 +1,4 @@
-# Leeds HPC User Documentation
+# Leeds HPC Documentation
 
 This site provides documentation for users of the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
 

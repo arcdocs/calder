@@ -1,4 +1,4 @@
-# Leeds HPC User Documentation (a.k.a. Calder Docs)
+# Leeds HPC Documentation (a.k.a. Calder Docs)
 
 This is the repository for the documentation for the University of Leeds Calder HPC system. It is managed by the University of Leeds [Research Computing Team](https://arc.leeds.ac.uk/team/).
 
