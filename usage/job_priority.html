@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Job Priority &#8212; Leeds HPC User Documentation</title>
+    <title>Job Priority &#8212; Leeds HPC Documentation</title>
   
   
   
@@ -148,8 +148,8 @@
       
     
     
-    <img src="../_static/logo.png" class="logo__image only-light" alt="Leeds HPC User Documentation - Home"/>
-    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Leeds HPC User Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Leeds HPC Documentation - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt="Leeds HPC Documentation - Home"/>
   
   
 </a></div>
@@ -166,7 +166,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../welcome.html">
-                    Leeds HPC User Documentation
+                    Leeds HPC Documentation
                 </a>
             </li>
         </ul>
@@ -468,7 +468,7 @@
 <p>Fair share does not impose a fixed quota on users. Instead, it is one component of job priority that influences which jobs are scheduled first. The resources that contribute to fair share are determined by the system’s Slurm configuration and may include CPUs, memory, GPUs, or other trackable resources.</p>
 <section id="understanding-fair-share">
 <h2>Understanding fair share<a class="headerlink" href="#understanding-fair-share" title="Link to this heading">#</a></h2>
-<p>Slurm’s fair share factor is a value between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. A higher value indicates a stronger fair share position and contributes more positively to job priority. The exact priority of a job is determined by fair share together with the other priority factors configured on the system. citeturn0search1</p>
+<p>Slurm’s fair share factor is a value between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. A higher value indicates a stronger fair share position and contributes more positively to job priority. The exact priority of a job is determined by fair share together with the other priority factors configured on the system.</p>
 <p>As a general guide:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -519,7 +519,7 @@
 </section>
 <section id="how-fair-share-recovers">
 <h2>How fair share recovers<a class="headerlink" href="#how-fair-share-recovers" title="Link to this heading">#</a></h2>
-<p>The effect of previous resource usage on fair share decreases over time according to Slurm’s configured decay. This is controlled by parameters such as <code class="docutils literal notranslate"><span class="pre">PriorityDecayHalfLife</span></code>, so the time required for your fair share to recover depends on the scheduler configuration. citeturn0search1</p>
+<p>The effect of previous resource usage on fair share decreases over time according to Slurm’s configured decay. This is controlled by parameters such as <code class="docutils literal notranslate"><span class="pre">PriorityDecayHalfLife</span></code>, so the time required for your fair share to recover depends on the scheduler configuration.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Request reasonable resources for your jobs.</strong></p>
@@ -530,7 +530,7 @@
 </section>
 <section id="what-to-expect-when-submitting-jobs">
 <h2>What to expect when submitting jobs<a class="headerlink" href="#what-to-expect-when-submitting-jobs" title="Link to this heading">#</a></h2>
-<p>Fair share is only one component of job priority. Slurm combines the enabled priority factors according to the system configuration, so a job with a stronger fair share does not necessarily run before every job with a weaker fair share. citeturn0search1</p>
+<p>Fair share is only one component of job priority. Slurm combines the enabled priority factors according to the system configuration, so a job with a stronger fair share does not necessarily run before every job with a weaker fair share.</p>
 <p>As a result:</p>
 <ul class="simple">
 <li><p>A job with a stronger fair share does not necessarily run immediately.</p></li>
