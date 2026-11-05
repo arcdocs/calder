@@ -28,28 +28,22 @@ Globus is the recommended option for transferring large datasets and files relia
 
 For information about University storage options, see the Library's [Storing and handling data](https://library.leeds.ac.uk/info/14062/research-data-management/65/storing-and-handling-data/3) guidance. For help transferring data between Globus collections and University storage services, see [KB0017543: Data transfer between Globus Collections, OneDrive, Microsoft Teams and SharePoint sites](https://it.leeds.ac.uk/it?id=kb_article_view&sys_kb_id=a15bba21fb943a909eaffefbaeefdcb5&table=kb_knowledge&searchTerm=KB0017543).
 
-### Available HPC collection
+### Available HPC collections
 
-The centrally managed Globus collection **Aire and Calder - University of Leeds** is available for transferring files in users' home directories. Home directories are shared between Aire and Calder, so the same home-directory files are accessible from either system through this collection. To use it:
+The centrally managed Globus collections **Aire and Calder home directories**, **Aire scratch filesystem** and **Calder scratch filesystem** are available for transferring files in users' home directories and scratch directories on Aire and Calder. To use it:
 
 1. Sign in to the [Globus web app](https://app.globus.org/).
-2. In the **Collections** panel on the left, search for **Aire and Calder - University of Leeds**. Turn off all filters if the collection does not appear in the search results.
-3. Select the **Aire and Calder - University of Leeds** collection, then click **Open in File Manager**.
-4. In File Manager, double click the `users` directory, then double click the directory matching your HPC username. This will take you to your home directory, which is shared between Aire and Calder.
+2. In the **Collections** panel on the left, search for **Aire and Calder home directories** or **Aire scratch filesystem** or **Calder scratch filesystem**. Turn off all filters, including Recent Tasks, if the collection does not appear in the search results.
+3. Select the collections you want to use, then click **Open in File Manager**. When using each Globus collection for the first time, you are required to authenticate with your University of Leeds account to access this collection, follow the instruction in your browser.
+4. In File Manager, it takes you to your home directory if you open the **Aire and Calder home directories** collection, which is shared between Aire and Calder. When selecting **Calder scratch filesystem**, double click the `users` directory, then open the directory matching your HPC username. When selecting **Aire scratch filesystem**, find the directory matching your HPC username.
 5. Select the files or directories you want to transfer, then choose the destination collection and navigate to the appropriate destination directory.
 6. Start the transfer and monitor its progress in Globus.
 
 :::{admonition} Bookmarking the collection
 :class: note
 
-To make future transfers easier, you can bookmark the **Aire and Calder - University of Leeds** collection. Once bookmarked, you can access it directly from File Manager without having to search for it again.
+To make future transfers easier, you can bookmark Globus collection. Once bookmarked, you can access it directly from File Manager without having to search for it again.
 :::
-
-### Scratch storage
-
-Centrally managed Globus collections for the Scratch filesystems on Aire and Calder are planned, but are not yet available. Until they are enabled, the collection above provides access to home directories only; it does not provide access to Scratch.
-
-If you need to transfer files directly to or from Scratch in the meantime, the existing Globus Connect Personal setup described in the [Aire data transfer documentation](https://arcdocs.leeds.ac.uk/aire/usage/file_data_management/data_transfer.html) is a temporary workaround. These setup instructions are not repeated here because the centrally managed collections are the intended approach once Scratch access is available.
 
 ### Other Globus resources
 

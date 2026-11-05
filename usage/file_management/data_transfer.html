@@ -444,8 +444,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-guidance">General guidance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scp-and-rsync">Using SCP and rsync</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-globus">Using Globus</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-hpc-collection">Available HPC collection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-storage">Scratch storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-hpc-collections">Available HPC collections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-globus-resources">Other Globus resources</a></li>
 </ul>
 </li>
@@ -488,26 +487,21 @@
 <h2>Using Globus<a class="headerlink" href="#using-globus" title="Link to this heading">#</a></h2>
 <p>Globus is the recommended option for transferring large datasets and files reliably between supported storage locations. It provides a web interface for selecting source and destination collections and managing transfers.</p>
 <p>For information about University storage options, see the Library’s <a class="reference external" href="https://library.leeds.ac.uk/info/14062/research-data-management/65/storing-and-handling-data/3">Storing and handling data</a> guidance. For help transferring data between Globus collections and University storage services, see <a class="reference external" href="https://it.leeds.ac.uk/it?id=kb_article_view&amp;amp;sys_kb_id=a15bba21fb943a909eaffefbaeefdcb5&amp;amp;table=kb_knowledge&amp;amp;searchTerm=KB0017543">KB0017543: Data transfer between Globus Collections, OneDrive, Microsoft Teams and SharePoint sites</a>.</p>
-<section id="available-hpc-collection">
-<h3>Available HPC collection<a class="headerlink" href="#available-hpc-collection" title="Link to this heading">#</a></h3>
-<p>The centrally managed Globus collection <strong>Aire and Calder - University of Leeds</strong> is available for transferring files in users’ home directories. Home directories are shared between Aire and Calder, so the same home-directory files are accessible from either system through this collection. To use it:</p>
+<section id="available-hpc-collections">
+<h3>Available HPC collections<a class="headerlink" href="#available-hpc-collections" title="Link to this heading">#</a></h3>
+<p>The centrally managed Globus collections <strong>Aire and Calder home directories</strong>, <strong>Aire scratch filesystem</strong> and <strong>Calder scratch filesystem</strong> are available for transferring files in users’ home directories and scratch directories on Aire and Calder. To use it:</p>
 <ol class="arabic simple">
 <li><p>Sign in to the <a class="reference external" href="https://app.globus.org/">Globus web app</a>.</p></li>
-<li><p>In the <strong>Collections</strong> panel on the left, search for <strong>Aire and Calder - University of Leeds</strong>. Turn off all filters if the collection does not appear in the search results.</p></li>
-<li><p>Select the <strong>Aire and Calder - University of Leeds</strong> collection, then click <strong>Open in File Manager</strong>.</p></li>
-<li><p>In File Manager, double click the <code class="docutils literal notranslate"><span class="pre">users</span></code> directory, then double click the directory matching your HPC username. This will take you to your home directory, which is shared between Aire and Calder.</p></li>
+<li><p>In the <strong>Collections</strong> panel on the left, search for <strong>Aire and Calder home directories</strong> or <strong>Aire scratch filesystem</strong> or <strong>Calder scratch filesystem</strong>. Turn off all filters, including Recent Tasks, if the collection does not appear in the search results.</p></li>
+<li><p>Select the collections you want to use, then click <strong>Open in File Manager</strong>. When using each Globus collection for the first time, you are required to authenticate with your University of Leeds account to access this collection, follow the instruction in your browser.</p></li>
+<li><p>In File Manager, it takes you to your home directory if you open the <strong>Aire and Calder home directories</strong> collection, which is shared between Aire and Calder. When selecting <strong>Calder scratch filesystem</strong>, double click the <code class="docutils literal notranslate"><span class="pre">users</span></code> directory, then open the directory matching your HPC username. When selecting <strong>Aire scratch filesystem</strong>, find the directory matching your HPC username.</p></li>
 <li><p>Select the files or directories you want to transfer, then choose the destination collection and navigate to the appropriate destination directory.</p></li>
 <li><p>Start the transfer and monitor its progress in Globus.</p></li>
 </ol>
 <div class="note admonition">
 <p class="admonition-title">Bookmarking the collection</p>
-<p>To make future transfers easier, you can bookmark the <strong>Aire and Calder - University of Leeds</strong> collection. Once bookmarked, you can access it directly from File Manager without having to search for it again.</p>
+<p>To make future transfers easier, you can bookmark Globus collection. Once bookmarked, you can access it directly from File Manager without having to search for it again.</p>
 </div>
-</section>
-<section id="scratch-storage">
-<h3>Scratch storage<a class="headerlink" href="#scratch-storage" title="Link to this heading">#</a></h3>
-<p>Centrally managed Globus collections for the Scratch filesystems on Aire and Calder are planned, but are not yet available. Until they are enabled, the collection above provides access to home directories only; it does not provide access to Scratch.</p>
-<p>If you need to transfer files directly to or from Scratch in the meantime, the existing Globus Connect Personal setup described in the <a class="reference external" href="https://arcdocs.leeds.ac.uk/aire/usage/file_data_management/data_transfer.html">Aire data transfer documentation</a> is a temporary workaround. These setup instructions are not repeated here because the centrally managed collections are the intended approach once Scratch access is available.</p>
 </section>
 <section id="other-globus-resources">
 <h3>Other Globus resources<a class="headerlink" href="#other-globus-resources" title="Link to this heading">#</a></h3>
@@ -591,8 +585,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#general-guidance">General guidance</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-scp-and-rsync">Using SCP and rsync</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-globus">Using Globus</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-hpc-collection">Available HPC collection</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-storage">Scratch storage</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#available-hpc-collections">Available HPC collections</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-globus-resources">Other Globus resources</a></li>
 </ul>
 </li>

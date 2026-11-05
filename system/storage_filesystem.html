@@ -581,19 +581,15 @@
 <tbody>
 <tr class="row-even"><td><p>Home directory</p></td>
 <td class="text-right"><p>106 TB</p></td>
-<td class="text-right"><p>2,269,138,752</p></td>
+<td class="text-right"><p>~2.27 billion</p></td>
 </tr>
-<tr class="row-odd"><td><p>Scratch on Lustre</p></td>
-<td class="text-right"><p>3.7 PB</p></td>
-<td class="text-right"><p>2,997,485,568</p></td>
+<tr class="row-odd"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/mnt/scratch</span></code>)</p></td>
+<td class="text-right"><p>3.6 PB</p></td>
+<td class="text-right"><p>~3.0 billion</p></td>
 </tr>
-<tr class="row-even"><td><p>Flash on Lustre</p></td>
+<tr class="row-even"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/mnt/flash</span></code>)</p></td>
 <td class="text-right"><p>139 TB</p></td>
-<td class="text-right"><p>293,022,729</p></td>
-</tr>
-<tr class="row-odd"><td><p>Scratch on compute nodes</p></td>
-<td class="text-right"><p>372 GB per node</p></td>
-<td class="text-right"><p>24,838,144 per node</p></td>
+<td class="text-right"><p>~293 million</p></td>
 </tr>
 </tbody>
 </table>
@@ -601,25 +597,11 @@
 </section>
 <section id="id2">
 <h3>Calder<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<div class="pst-scrollable-table-container"><table class="table">
-<thead>
-<tr class="row-odd"><th class="head"><p>Filesystem</p></th>
-<th class="head text-right"><p>Total space</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Home directory</p></td>
-<td class="text-right"><p>Shared with Aire</p></td>
-</tr>
-<tr class="row-odd"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/scratch-calder</span></code>)</p></td>
-<td class="text-right"><p>Approximately 6.3 PB</p></td>
-</tr>
-<tr class="row-even"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/flash-calder</span></code>)</p></td>
-<td class="text-right"><p>Approximately 246 TB</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>| Filesystem | Total space | Total inodes |
+| — | —: |
+| Home directory | Shared with Aire | Shared with Aire |
+| Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/scratch-calder</span></code>) | ~5.5 PB | ~2.30 billion |
+| Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/flash-calder</span></code>) | ~167 TB | ~88.0 million |</p>
 <p>When Aire 2.0 launches, Aire’s scratch and flash paths are expected to change to <code class="docutils literal notranslate"><span class="pre">/scratch-aire</span></code> and <code class="docutils literal notranslate"><span class="pre">/flash-aire</span></code> respectively, distinguishing them from Calder’s filesystems. Check the updated documentation when the Aire 2.0 upgrade is complete.</p>
 </section>
 </section>
