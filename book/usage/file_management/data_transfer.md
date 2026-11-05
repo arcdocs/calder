@@ -45,14 +45,6 @@ The centrally managed Globus collections **Aire and Calder home directories**, *
 To make future transfers easier, you can bookmark Globus collection. Once bookmarked, you can access it directly from File Manager without having to search for it again.
 :::
 
-:::{admonition} Aire's Scratch storage
-:class: note
-
-Centrally managed Globus collections for the Scratch filesystems on Aire is under development, and is not yet available.
-
-If you need to transfer files directly to or from Aire's Scratch in the meantime, the existing Globus Connect Personal setup described in the [Aire data transfer documentation](https://arcdocs.leeds.ac.uk/aire/usage/file_data_management/data_transfer.html) is a temporary workaround. These setup instructions are not repeated here because the centrally managed collections are the intended approach once Scratch access on Aire is available.
-:::
-
 ### Other Globus resources
 
 - [KB0017543: Data transfer between Globus Collections, OneDrive, Microsoft Teams and SharePoint sites](https://it.leeds.ac.uk/it?id=kb_article_view&sys_kb_id=a15bba21fb943a909eaffefbaeefdcb5&table=kb_knowledge&searchTerm=KB0017543) explains how to transfer data between Globus and University storage services.
