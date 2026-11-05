@@ -36,18 +36,17 @@ The figures below describe the overall capacity of each filesystem, not the quot
 
 | Filesystem | Total space | Total inodes |
 | --- | ---: | ---: |
-| Home directory | 106 TB | 2,269,138,752 |
-| Scratch on Lustre | 3.7 PB | 2,997,485,568 |
-| Flash on Lustre | 139 TB | 293,022,729 |
-| Scratch on compute nodes | 372 GB per node | 24,838,144 per node |
+| Home directory | 106 TB | ~2.27 billion |
+| Scratch on Lustre (`/mnt/scratch`) | 3.6 PB | ~3.0 billion |
+| Flash on Lustre (`/mnt/flash`) | 139 TB | ~293 million |
 
 ### Calder
 
-| Filesystem | Total space |
+| Filesystem | Total space | Total inodes |
 | --- | ---: |
-| Home directory | Shared with Aire | 
-| Scratch on Lustre (`/scratch-calder`) | Approximately 6.3 PB |
-| Flash on Lustre (`/flash-calder`) | Approximately 246 TB |
+| Home directory | Shared with Aire | Shared with Aire |
+| Scratch on Lustre (`/scratch-calder`) | ~5.5 PB | ~2.30 billion |
+| Flash on Lustre (`/flash-calder`) | ~167 TB | ~88.0 million |
 
 When Aire 2.0 launches, Aire's scratch and flash paths are expected to change to `/scratch-aire` and `/flash-aire` respectively, distinguishing them from Calder's filesystems. Check the updated documentation when the Aire 2.0 upgrade is complete.
 
