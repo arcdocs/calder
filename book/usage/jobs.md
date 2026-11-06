@@ -9,7 +9,7 @@ Below, each job type is introduced alongside example job scripts demonstrating i
 The vast majority of jobs will be batch jobs. These are submitted via a job script, which is a shell script (file ending `.sh`), containing the commands to run your job, alongside instructions for the job scheduler (Slurm), detailing the resources required. Slurm will then allocate that job in a position in the job queue, depending on a fair share policy. This policy is not first-come-first-served; resources are allocated fairly between different faculties and users. At a bare minimum, the job script must specify how long the job needs to run for. Unless otherwise directed, Slurm will default to the following settings:
 
 - 1 CPU core
-- 1GB memory
+- 1 GB memory
 - Use of standard compute node pool (No GPU access)
 
 ```{note}
@@ -20,13 +20,13 @@ On Calder's standard compute partition, the minimum CPU request is 8 cores — i
 
 We encourage users to write their job submission scripts using text editor tools such as: `nano` (recommended for beginners), `vim`, and `emacs`.
 
-The basic approach to create a new job submission file on HPC would be `nano job_submit.sh` or `vim job_submit.sh`. This opens the new empty file in the text editor ready for you to write its contents.
+The basic approach to create a new job submission file on HPC would be `nano job_script.sh` or `vim job_script.sh`. This opens the new empty file in the text editor ready for you to write its contents.
 
 :::{warning}
 Job scripts written on Windows computers contain different invisible line ending characters that lead to job submission failures such as `/bin/bash^M: bad interpreter: No such file or directory`. You can use the command `dos2unix job_script.sh` on the login nodes to convert your script to the correct line endings.
 :::
 
-A simple demonstration script is provided below. In this example named `job_script.sh` we are requesting an hour of time, 1GB of memory, and a single CPU core to run an example binary file `example.bin` in the current directory.
+A simple demonstration script is provided below. In this example named `job_script.sh` we are requesting an hour of time, 1 GB of memory, and a single CPU core to run an example binary file `example.bin` in the current directory.
 
 ```bash
 #!/bin/bash
@@ -63,7 +63,7 @@ Submitted batch job 11
 
 Commands passed to Slurm in this way will override those in the job script.
 
-We can view the queue status using `squeue`. Use the option `--me` to filter for your own jobs:
+We can view the queue status using `squeue`. Use the option `--me` (or `-u $USER`) to filter for your own jobs:
 
 ```bash
 $ squeue --me
@@ -78,7 +78,7 @@ Jobs can be cancelled using `scancel <JOBID>` (in our case, `scancel 10`). Users
 
 ### Serial job examples
 
-This example requests 1 CPU core, 1 hour of runtime, and 32GB of memory for a serial job. It writes standard output and error messages to separate files, using `%j` to include the job ID in each filename for easier troubleshooting.
+This example requests 1 CPU core, 1 hour of runtime, and 32 GB of memory for a serial job. It writes standard output and error messages to separate files, using `%j` to include the job ID in each filename for easier troubleshooting.
 
 ```bash
 #!/bin/bash
@@ -94,7 +94,7 @@ This example requests 1 CPU core, 1 hour of runtime, and 32GB of memory for a se
 module load <module_name>
 
 # Run the job
-./example_aire.bin
+./example.bin
 ```
 
 :::{note}
@@ -114,9 +114,7 @@ Note that in order to use more than one CPU (or core), your program must be spec
 Here we request 16 cores within a single node for 2 hours. Note that jobs will need to be compiled for execution on multiple threads (e.g., via OpenMP) or run on multithreading-capable software; the below example is for a binary compiled for OpenMP.
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=aire_threaded_job
@@ -134,11 +132,8 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Run the job
 ./example_aire.bin
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=calder_threaded_job
@@ -156,7 +151,6 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Run the job
 ./example_calder.bin
 ```
-
 :::
 ::::
 
@@ -176,9 +170,7 @@ These settings can help improve thread placement and binding, potentially speedi
 These are jobs that run across multiple nodes using a Message Passing Interface (MPI). In the following example, we request 256 MPI processes across 2 nodes, with 128 tasks per node:
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=aire_mpi_job
@@ -194,11 +186,8 @@ module load openmpi
 # Run the job
 srun ./example_aire.bin
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=calder_mpi_job
@@ -214,7 +203,6 @@ module load calder/cpu openmpi
 # Run the job using Slurm's native launcher
 srun ./example_calder.bin
 ```
-
 :::
 ::::
 
@@ -223,7 +211,7 @@ On both Aire and Calder, `srun` is Slurm's native launcher and is generally reco
 
 Some applications that invoke `mpiexec` or `mpirun` internally may report errors such as "There are not enough slots available" despite the requested resources having been allocated. Where the application allows the MPI launcher to be configured, consider using `srun` instead.
 
-If you are unsure which launcher your application expects, consult the software documentation or contact Research IT.
+If you are unsure which launcher your application expects, consult the official documentation for that specific software or contact Research IT.
 ```
 
 ## Job arrays
@@ -237,9 +225,7 @@ Situations often arise when you want to run many almost identical jobs simultane
 The easiest way to think of a job array is as a job script with a built-in FOR loop. It makes use of an environment variable created by Slurm - `$SLURM_ARRAY_TASK_ID`. The example script below runs 100 jobs in a Conda environment, with input and output files determined by the array index `$SLURM_ARRAY_TASK_ID`. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=aire_task_array
@@ -255,11 +241,8 @@ conda activate my_environment
 # Run the job, passing in the input and output filenames
 python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLURM_ARRAY_TASK_ID
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=calder_task_array
@@ -275,7 +258,6 @@ conda activate my_environment
 # Run the job, passing in the input and output filenames
 python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLURM_ARRAY_TASK_ID
 ```
-
 :::
 ::::
 
@@ -288,9 +270,7 @@ Unlike job arrays, which submit many independent jobs, a task array refers to ru
 Slurm uses the `--ntasks` option to specify the number of tasks. All tasks share the same environment and resources, making this ideal for tightly coupled workloads.
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=task_example
@@ -305,11 +285,8 @@ module load openmpi
 echo "Running MPI job with $SLURM_NTASKS tasks"
 srun ./my_mpi_program
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=task_example
@@ -324,7 +301,6 @@ module load calder/cpu openmpi
 echo "Running MPI job with $SLURM_NTASKS tasks"
 srun ./my_mpi_program
 ```
-
 :::
 ::::
 
@@ -339,18 +315,17 @@ We strongly discourage users from using interactive sessions for interactive cod
 Interactive jobs can be started using the `srun` command, as follows:
 
 ```bash
-[username@login1 ~]$ srun -t 01:00:00 --pty /bin/bash
-[username@node016 ~]$
+[username@calder-login-1 ~]$ srun -t 01:00:00 --pty /bin/bash
+[username@calder-cpu001 ~]$
 ```
 
-Note that it is required to specify a requested runtime, but the scheduler will otherwise adopt the same default resources as for batch jobs. If the requested resources are available, the session will start immediately. If not, the session will immediately exit. Note that once the session has started the prompt changes to show that the interactive session is now running on a specific compute node (in this case, `node016`).
+Note that it is required to specify a requested runtime, but the scheduler will otherwise adopt the same default resources as for batch jobs. If the requested resources are available, the session will start immediately. If not, the session will immediately exit. Note that once the session has started the prompt changes to show that the interactive session is now running on a specific compute node (in this case, `calder-cpu001`).
 
 :::{note}
 If you have made changes to your environment on the login nodes these will not be preserved when connecting to an interactive session and you will be required to rerun `module load` commands. Connecting to an interactive session creates a new login shell, which means any commands in your .bashrc are executed when you connect.
 :::
 
 (gpu-jobs)=
-
 ## GPU jobs
 
 Both Aire and Calder include general-purpose GPU facilities for GPU-accelerated code. The GPU model, partition, and therefore the exact `--gres` value needed to request one, differs between the two systems:
@@ -363,9 +338,7 @@ Both Aire and Calder include general-purpose GPU facilities for GPU-accelerated 
 GPUs can be requested with `--partition=<partition>` and `--gres=gpu:<type>:<number>`, where `<partition>` and `<type>` identify the GPU partition and model available on the system (the `gpu` partition and `nvidia_l40` type on Aire; the `calder-gpu-hopper` partition and `nvidia_h200` type on Calder) and `<number>` is the number of GPUs requested. For example, a basic submission script requesting a single GPU might look like:
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash 
 #SBATCH --time=01:00:00                # Request runtime (hh:mm:ss)             
@@ -373,16 +346,13 @@ GPUs can be requested with `--partition=<partition>` and `--gres=gpu:<type>:<num
 #SBATCH --gres=gpu:nvidia_l40:1        # Request a single GPU
 
 # Load any necessary modules
-# module load <module_name>
+module load <module_name>
 
 # Run the job
 ./example.bin
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash 
 #SBATCH --time=01:00:00                   # Request runtime (hh:mm:ss)             
@@ -390,12 +360,11 @@ GPUs can be requested with `--partition=<partition>` and `--gres=gpu:<type>:<num
 #SBATCH --gres=gpu:nvidia_h200:1          # Request a single GPU
 
 # Load any necessary modules
-# module load <module_name>
+module load calder/gpu <other_modules>
 
 # Run the job
 ./example.bin
 ```
-
 :::
 ::::
 
@@ -408,23 +377,17 @@ Additionally, GPU jobs on Calder are limited to a maximum of 16 GPUs per job and
 GPUs are also available in interactive mode. For example, requesting an interactive session with two GPUs:
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 [username@login1[aire] ~]$ srun -t 01:00:00 -p gpu --gres=gpu:nvidia_l40:2 --pty /bin/bash
 [username@gpu007[aire] ~]$
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 [username@calder-login-3 ~]$ srun -t 01:00:00 -p calder-gpu-hopper --gres=gpu:nvidia_h200:2 --pty /bin/bash
 [username@calder-gpu-h200-001 ~]$
 ```
-
 :::
 ::::
 
@@ -437,9 +400,7 @@ To use the GPU hardware you will need to ensure the NVIDIA CUDA toolkit module i
 This example shows how to run a Python job in a Conda environment. To request GPUs, make sure to specify the GPU partition in your Slurm script with `--partition=gpu` on Aire (or `--partition=calder-gpu-hopper` on Calder). Then, request the number of GPUs you need using `--gres=gpu:<type>:N`, where `N` is the number of GPUs; for instance, request 1 GPU with `--gres=gpu:nvidia_l40:1` on Aire (or `--gres=gpu:nvidia_h200:1` on Calder), or 2 GPUs with `--gres=gpu:nvidia_l40:2` on Aire (or `--gres=gpu:nvidia_h200:2` on Calder).
 
 ::::{tab-set}
-
 :::{tab-item} Aire
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=ml_job                # Job name
@@ -455,11 +416,8 @@ conda activate my_ML_environment
 # Run the job
 python my_ML_script.py
 ```
-
 :::
-
 :::{tab-item} Calder
-
 ```bash
 #!/bin/bash
 #SBATCH --job-name=ml_job                # Job name
@@ -475,7 +433,6 @@ conda activate my_ML_environment
 # Run the job
 python my_ML_script.py
 ```
-
 :::
 ::::
 
@@ -578,7 +535,6 @@ sbatch --dependency=afterany:$SLURM_JOB_ID job2.sh
 ```
 
 (submission-options)=
-
 ## List of Slurm submission options
 
 Below is a list of currently available options for submissions to Slurm. This list is likely to grow as we add and update functionality.

@@ -9,22 +9,22 @@ Storage quotas and paths differ between systems. Scratch and temporary storage a
 
 ### Aire
 
-| Storage type | Path | Environment variable | Quota or capacity | Backed up? | Automatically deleted? | Recommended use |
+| Storage type | Path | Environment variable | Quota | Backedup | Auto-Delete | Recommended Use |
 | --- | --- | --- | --- | --- | --- | --- |
-| Home directory | `/users/<username>` | `$HOME` (also available as `~`) | 65 GB and 1.5 million files per user | Yes | No | Scripts, notes, documentation and configuration files |
-| Scratch on Lustre (disk-based) | `/mnt/scratch/<username>`; `/scratch` links to `/mnt/scratch` | `$SCRATCH` | 1 TB and 1.5 million files per user | No | No | Large datasets and active project data |
-| Flash on Lustre (NVMe-based) | `/mnt/flash/tmp/job.<JOB-ID>`; `/flash` links to `/mnt/flash` | `$TMP_SHARED` | 1 TB and 1.5 million files per job | No | Yes, at job completion | I/O-intensive work that benefits from high-performance shared storage |
-| Scratch on compute nodes | `/tmp` (job-specific directories may also be provided) | `$TMP_LOCAL`, `$TMPDIR` | No fixed quota; limited by available space on the node | No | Yes, at job completion | Fast, node-local temporary data for single-node jobs |
+| Home | `/users/<username>` | `$HOME` (also: `~`) | 65 GB and 1.5M files | Yes | No | Scripts, configuration, notes, documentation |
+| Scratch (Lustre disk) | `/mnt/scratch/` (also: `/scratch`) | `$SCRATCH` | 1 TB and 1.5M files | No | No | Large datasets and active project data |
+| Flash (Lustre NVMe) | `/mnt/flash/tmp/job.<JOB-ID>`; (also: `/flash`) | `$TMP_SHARED` | 1 TB and 1.5M files | No | Yes, at job completion | I/O-intensive work, high-performance shared storage |
+| Compute Nodes | `/tmp` (job-specific directories may also be provided) | `$TMP_LOCAL`, `$TMPDIR` | No fixed quota; limited by available space on the node | No | Yes, at job completion | Fast, node-local temporary data for single-node jobs |
 
 ### Calder
 
-| Storage type | Path | Environment variable | Quota or capacity | Backed up? | Automatically deleted? | Recommended use |
+| Storage type | Path | Environment variable | Quota | Backedup | Auto-Delete | Recommended Use |
 | --- | --- | --- | --- | --- | --- | --- |
-| Home directory | `/users/<username>` | `$HOME` (also available as `~`) | Shared with Aire | Yes | No | Scripts, notes, documentation and configuration files |
-| Scratch on Lustre (disk-based) | `/scratch-calder/users/` | Not currently defined | 1 TB and 1.5 million inodes per project | No | No | Large datasets and active project data |
-| Flash on Lustre (NVMe-based) | `/flash-calder/users/` | Not currently defined | 1 TB and 1.5 million inodes per project | No | Confirm the lifetime of files for your job before relying on them | I/O-intensive work that benefits from high-performance shared storage |
+| Home | `/users/<username>` | `$HOME` (also: `~`) | Shared with Aire | Yes | No | Scripts, configuration, notes, documentation |
+| Scratch (Lustre disk) | `/scratch-calder/users/` | | 1 TB and 1.5M files | No | No | Large datasets and active project data |
+| Flash (Lustre NVMe) | `/flash-calder/users/` | | 1 TB and 1.5M files | No | | I/O-intensive work, high-performance shared storage |
 
-On Calder, quotas for both scratch filesystems are applied per Slurm project. The current limits are 1 TB and 1.5 million inodes per project on each filesystem. The `$SCRATCH` and `$TMP_SHARED` environment variables are not currently defined on Calder, so use the paths listed above. Aire 2.0 will also use project-based quotas; the current Aire system uses per-user quotas. For instructions on checking your quota and usage, see [Filesystem Quotas](page:filesystem-quotas). If you are unsure which project quota applies to your work, contact the Research Computing team.
+On Calder, quotas for both scratch filesystems are applied per Slurm project. The current limits are 1 TB and 1.5 million files per project on each filesystem. The `$SCRATCH` and `$TMP_SHARED` environment variables are not currently defined on Calder, so use the paths listed above. Aire 2.0 will also use project-based quotas; the current Aire system uses per-user quotas. For instructions on checking your quota and usage, see [Filesystem Quotas](page:filesystem-quotas). If you are unsure which project quota applies to your work, contact the Research Computing team.
 
 The home directory is shared between Aire and Calder, so files stored in `/users/<username>` are available on both systems. This does **not** mean that the scratch filesystems are shared: use the appropriate path for the system on which you are working.
 
@@ -43,12 +43,16 @@ The figures below describe the overall capacity of each filesystem, not the quot
 ### Calder
 
 | Filesystem | Total space | Total inodes |
-| --- | ---: |
+| --- | ---: | ---: |
 | Home directory | Shared with Aire | Shared with Aire |
 | Scratch on Lustre (`/scratch-calder`) | ~5.5 PB | ~2.30 billion |
 | Flash on Lustre (`/flash-calder`) | ~167 TB | ~88.0 million |
 
+:::{admonition} Aire 2.0 upgrade
+:class: note
+
 When Aire 2.0 launches, Aire's scratch and flash paths are expected to change to `/scratch-aire` and `/flash-aire` respectively, distinguishing them from Calder's filesystems. Check the updated documentation when the Aire 2.0 upgrade is complete.
+:::
 
 ## Choosing and managing storage
 

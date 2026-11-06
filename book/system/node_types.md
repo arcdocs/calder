@@ -5,24 +5,18 @@ The HPC systems provide several types of compute nodes, each designed for differ
 ## Standard CPU node
 
 ::::{tab-set}
-
-:::{tab-item} Calder
-
-- 96 nodes
-- 2 x AMD EPYC 9555 processors, providing 128 CPU cores per node
-- 768 GB memory
-- 480 GB BOSS-N1 M.2 local storage
-
-:::
-
 :::{tab-item} Aire
-
 - 52 nodes
 - Dell R6625 servers
 - 2 x AMD EPYC 9634 processors, providing 168 CPU cores per node
 - 768 GB DDR5-4800 memory
 - 2 x 480 GB M.2 local storage
-
+:::
+:::{tab-item} Calder
+- 96 nodes
+- 2 x AMD EPYC 9555 processors, providing 128 CPU cores per node
+- 768 GB memory
+- 480 GB BOSS-N1 M.2 local storage
 :::
 ::::
 
@@ -39,9 +33,15 @@ Calder does not have dedicated high-memory CPU nodes. Aire provides two high-mem
 ## GPU node
 
 ::::{tab-set}
-
+:::{tab-item} Aire
+- 28 nodes
+- 3 x NVIDIA L40S 48 GB GPUs per node (PCIe)
+- AMD EPYC 9254 processors, providing 24 CPU cores per node
+- 256 GB DDR5-4800 memory
+- 2 x 480 GB M.2 local storage
+- **84 GPUs** in total
+:::
 :::{tab-item} Calder
-
 - 7 nodes
 - 8 x NVIDIA H200 NVL GPUs per node
 - 2 x AMD EPYC 9555 processors
@@ -49,18 +49,6 @@ Calder does not have dedicated high-memory CPU nodes. Aire provides two high-mem
 - 6.4 TB E3.S Gen5 SED local storage
 - NVLink 4-way bridges
 - **56 GPUs** in total
-
-:::
-
-:::{tab-item} Aire
-
-- 28 nodes
-- 3 x NVIDIA L40S 48 GB GPUs per node (PCIe)
-- AMD EPYC 9254 processors, providing 24 CPU cores per node
-- 256 GB DDR5-4800 memory
-- 2 x 480 GB M.2 local storage
-- **84 GPUs** in total
-
 :::
 ::::
 
