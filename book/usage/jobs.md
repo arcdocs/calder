@@ -360,7 +360,7 @@ module load <module_name>
 #SBATCH --gres=gpu:nvidia_h200:1          # Request a single GPU
 
 # Load any necessary modules
-module load calder/gpu <other_modules>
+module load calder/hopper <other_modules>
 
 # Run the job
 ./example.bin
