@@ -478,38 +478,38 @@
 <tr class="row-odd"><th class="head"><p>Storage type</p></th>
 <th class="head"><p>Path</p></th>
 <th class="head"><p>Environment variable</p></th>
-<th class="head"><p>Quota or capacity</p></th>
-<th class="head"><p>Backed up?</p></th>
-<th class="head"><p>Automatically deleted?</p></th>
-<th class="head"><p>Recommended use</p></th>
+<th class="head"><p>Quota</p></th>
+<th class="head"><p>Backedup</p></th>
+<th class="head"><p>Auto-Delete</p></th>
+<th class="head"><p>Recommended Use</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Home directory</p></td>
+<tr class="row-even"><td><p>Home</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (also available as <code class="docutils literal notranslate"><span class="pre">~</span></code>)</p></td>
-<td><p>65 GB and 1.5 million files per user</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (also: <code class="docutils literal notranslate"><span class="pre">~</span></code>)</p></td>
+<td><p>65 GB and 1.5M files</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
-<td><p>Scripts, notes, documentation and configuration files</p></td>
+<td><p>Scripts, configuration, notes, documentation</p></td>
 </tr>
-<tr class="row-odd"><td><p>Scratch on Lustre (disk-based)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">/mnt/scratch/&lt;username&gt;</span></code>; <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> links to <code class="docutils literal notranslate"><span class="pre">/mnt/scratch</span></code></p></td>
+<tr class="row-odd"><td><p>Scratch (Lustre disk)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/mnt/scratch/</span></code> (also: <code class="docutils literal notranslate"><span class="pre">/scratch</span></code>)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code></p></td>
-<td><p>1 TB and 1.5 million files per user</p></td>
+<td><p>1 TB and 1.5M files</p></td>
 <td><p>No</p></td>
 <td><p>No</p></td>
 <td><p>Large datasets and active project data</p></td>
 </tr>
-<tr class="row-even"><td><p>Flash on Lustre (NVMe-based)</p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">/mnt/flash/tmp/job.&lt;JOB-ID&gt;</span></code>; <code class="docutils literal notranslate"><span class="pre">/flash</span></code> links to <code class="docutils literal notranslate"><span class="pre">/mnt/flash</span></code></p></td>
+<tr class="row-even"><td><p>Flash (Lustre NVMe)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">/mnt/flash/tmp/job.&lt;JOB-ID&gt;</span></code>; (also: <code class="docutils literal notranslate"><span class="pre">/flash</span></code>)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code></p></td>
-<td><p>1 TB and 1.5 million files per job</p></td>
+<td><p>1 TB and 1.5M files</p></td>
 <td><p>No</p></td>
 <td><p>Yes, at job completion</p></td>
-<td><p>I/O-intensive work that benefits from high-performance shared storage</p></td>
+<td><p>I/O-intensive work, high-performance shared storage</p></td>
 </tr>
-<tr class="row-odd"><td><p>Scratch on compute nodes</p></td>
+<tr class="row-odd"><td><p>Compute Nodes</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (job-specific directories may also be provided)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">$TMP_LOCAL</span></code>, <code class="docutils literal notranslate"><span class="pre">$TMPDIR</span></code></p></td>
 <td><p>No fixed quota; limited by available space on the node</p></td>
@@ -528,41 +528,41 @@
 <tr class="row-odd"><th class="head"><p>Storage type</p></th>
 <th class="head"><p>Path</p></th>
 <th class="head"><p>Environment variable</p></th>
-<th class="head"><p>Quota or capacity</p></th>
-<th class="head"><p>Backed up?</p></th>
-<th class="head"><p>Automatically deleted?</p></th>
-<th class="head"><p>Recommended use</p></th>
+<th class="head"><p>Quota</p></th>
+<th class="head"><p>Backedup</p></th>
+<th class="head"><p>Auto-Delete</p></th>
+<th class="head"><p>Recommended Use</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Home directory</p></td>
+<tr class="row-even"><td><p>Home</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code></p></td>
-<td><p><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (also available as <code class="docutils literal notranslate"><span class="pre">~</span></code>)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (also: <code class="docutils literal notranslate"><span class="pre">~</span></code>)</p></td>
 <td><p>Shared with Aire</p></td>
 <td><p>Yes</p></td>
 <td><p>No</p></td>
-<td><p>Scripts, notes, documentation and configuration files</p></td>
+<td><p>Scripts, configuration, notes, documentation</p></td>
 </tr>
-<tr class="row-odd"><td><p>Scratch on Lustre (disk-based)</p></td>
+<tr class="row-odd"><td><p>Scratch (Lustre disk)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/scratch-calder/users/</span></code></p></td>
-<td><p>Not currently defined</p></td>
-<td><p>1 TB and 1.5 million inodes per project</p></td>
+<td><p></p></td>
+<td><p>1 TB and 1.5M files</p></td>
 <td><p>No</p></td>
 <td><p>No</p></td>
 <td><p>Large datasets and active project data</p></td>
 </tr>
-<tr class="row-even"><td><p>Flash on Lustre (NVMe-based)</p></td>
+<tr class="row-even"><td><p>Flash (Lustre NVMe)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">/flash-calder/users/</span></code></p></td>
-<td><p>Not currently defined</p></td>
-<td><p>1 TB and 1.5 million inodes per project</p></td>
+<td><p></p></td>
+<td><p>1 TB and 1.5M files</p></td>
 <td><p>No</p></td>
-<td><p>Confirm the lifetime of files for your job before relying on them</p></td>
-<td><p>I/O-intensive work that benefits from high-performance shared storage</p></td>
+<td><p></p></td>
+<td><p>I/O-intensive work, high-performance shared storage</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<p>On Calder, quotas for both scratch filesystems are applied per Slurm project. The current limits are 1 TB and 1.5 million inodes per project on each filesystem. The <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> and <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code> environment variables are not currently defined on Calder, so use the paths listed above. Aire 2.0 will also use project-based quotas; the current Aire system uses per-user quotas. For instructions on checking your quota and usage, see <a class="reference internal" href="../usage/file_management/filesystem_quotas.html#page-filesystem-quotas"><span class="std std-ref">Filesystem Quotas</span></a>. If you are unsure which project quota applies to your work, contact the Research Computing team.</p>
+<p>On Calder, quotas for both scratch filesystems are applied per Slurm project. The current limits are 1 TB and 1.5 million files per project on each filesystem. The <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> and <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code> environment variables are not currently defined on Calder, so use the paths listed above. Aire 2.0 will also use project-based quotas; the current Aire system uses per-user quotas. For instructions on checking your quota and usage, see <a class="reference internal" href="../usage/file_management/filesystem_quotas.html#page-filesystem-quotas"><span class="std std-ref">Filesystem Quotas</span></a>. If you are unsure which project quota applies to your work, contact the Research Computing team.</p>
 <p>The home directory is shared between Aire and Calder, so files stored in <code class="docutils literal notranslate"><span class="pre">/users/&lt;username&gt;</span></code> are available on both systems. This does <strong>not</strong> mean that the scratch filesystems are shared: use the appropriate path for the system on which you are working.</p>
 </section>
 </section>
@@ -597,12 +597,33 @@
 </section>
 <section id="id2">
 <h3>Calder<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>| Filesystem | Total space | Total inodes |
-| — | —: |
-| Home directory | Shared with Aire | Shared with Aire |
-| Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/scratch-calder</span></code>) | ~5.5 PB | ~2.30 billion |
-| Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/flash-calder</span></code>) | ~167 TB | ~88.0 million |</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Filesystem</p></th>
+<th class="head text-right"><p>Total space</p></th>
+<th class="head text-right"><p>Total inodes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Home directory</p></td>
+<td class="text-right"><p>Shared with Aire</p></td>
+<td class="text-right"><p>Shared with Aire</p></td>
+</tr>
+<tr class="row-odd"><td><p>Scratch on Lustre (<code class="docutils literal notranslate"><span class="pre">/scratch-calder</span></code>)</p></td>
+<td class="text-right"><p>~5.5 PB</p></td>
+<td class="text-right"><p>~2.30 billion</p></td>
+</tr>
+<tr class="row-even"><td><p>Flash on Lustre (<code class="docutils literal notranslate"><span class="pre">/flash-calder</span></code>)</p></td>
+<td class="text-right"><p>~167 TB</p></td>
+<td class="text-right"><p>~88.0 million</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="note admonition">
+<p class="admonition-title">Aire 2.0 upgrade</p>
 <p>When Aire 2.0 launches, Aire’s scratch and flash paths are expected to change to <code class="docutils literal notranslate"><span class="pre">/scratch-aire</span></code> and <code class="docutils literal notranslate"><span class="pre">/flash-aire</span></code> respectively, distinguishing them from Calder’s filesystems. Check the updated documentation when the Aire 2.0 upgrade is complete.</p>
+</div>
 </section>
 </section>
 <section id="choosing-and-managing-storage">

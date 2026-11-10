@@ -485,7 +485,7 @@
 <p>The vast majority of jobs will be batch jobs. These are submitted via a job script, which is a shell script (file ending <code class="docutils literal notranslate"><span class="pre">.sh</span></code>), containing the commands to run your job, alongside instructions for the job scheduler (Slurm), detailing the resources required. Slurm will then allocate that job in a position in the job queue, depending on a fair share policy. This policy is not first-come-first-served; resources are allocated fairly between different faculties and users. At a bare minimum, the job script must specify how long the job needs to run for. Unless otherwise directed, Slurm will default to the following settings:</p>
 <ul class="simple">
 <li><p>1 CPU core</p></li>
-<li><p>1GB memory</p></li>
+<li><p>1 GB memory</p></li>
 <li><p>Use of standard compute node pool (No GPU access)</p></li>
 </ul>
 <div class="admonition note">
@@ -495,12 +495,12 @@
 <section id="writing-job-scripts">
 <h3>Writing job scripts<a class="headerlink" href="#writing-job-scripts" title="Link to this heading">#</a></h3>
 <p>We encourage users to write their job submission scripts using text editor tools such as: <code class="docutils literal notranslate"><span class="pre">nano</span></code> (recommended for beginners), <code class="docutils literal notranslate"><span class="pre">vim</span></code>, and <code class="docutils literal notranslate"><span class="pre">emacs</span></code>.</p>
-<p>The basic approach to create a new job submission file on HPC would be <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">job_submit.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">job_submit.sh</span></code>. This opens the new empty file in the text editor ready for you to write its contents.</p>
+<p>The basic approach to create a new job submission file on HPC would be <code class="docutils literal notranslate"><span class="pre">nano</span> <span class="pre">job_script.sh</span></code> or <code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">job_script.sh</span></code>. This opens the new empty file in the text editor ready for you to write its contents.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Job scripts written on Windows computers contain different invisible line ending characters that lead to job submission failures such as <code class="docutils literal notranslate"><span class="pre">/bin/bash^M:</span> <span class="pre">bad</span> <span class="pre">interpreter:</span> <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code>. You can use the command <code class="docutils literal notranslate"><span class="pre">dos2unix</span> <span class="pre">job_script.sh</span></code> on the login nodes to convert your script to the correct line endings.</p>
 </div>
-<p>A simple demonstration script is provided below. In this example named <code class="docutils literal notranslate"><span class="pre">job_script.sh</span></code> we are requesting an hour of time, 1GB of memory, and a single CPU core to run an example binary file <code class="docutils literal notranslate"><span class="pre">example.bin</span></code> in the current directory.</p>
+<p>A simple demonstration script is provided below. In this example named <code class="docutils literal notranslate"><span class="pre">job_script.sh</span></code> we are requesting an hour of time, 1 GB of memory, and a single CPU core to run an example binary file <code class="docutils literal notranslate"><span class="pre">example.bin</span></code> in the current directory.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --job-name=simple_job   # Job name</span>
 <span class="c1">#SBATCH --time=01:00:00         # Request runtime (hh:mm:ss)</span>
@@ -530,7 +530,7 @@ Submitted<span class="w"> </span>batch<span class="w"> </span>job<span class="w"
 </pre></div>
 </div>
 <p>Commands passed to Slurm in this way will override those in the job script.</p>
-<p>We can view the queue status using <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. Use the option <code class="docutils literal notranslate"><span class="pre">--me</span></code> to filter for your own jobs:</p>
+<p>We can view the queue status using <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. Use the option <code class="docutils literal notranslate"><span class="pre">--me</span></code> (or <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">$USER</span></code>) to filter for your own jobs:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>squeue<span class="w"> </span>--me
 JOBID<span class="w">   </span>PARTITION<span class="w">   </span>NAME<span class="w">        </span>USER<span class="w">       </span>ST<span class="w">  </span>TIME<span class="w"> </span>NODES<span class="w">  </span>NODELIST<span class="o">(</span>REASON<span class="o">)</span>
 <span class="m">10</span><span class="w">      </span>nodes<span class="w">       </span>simple_job<span class="w">  </span>username<span class="w">   </span>R<span class="w">   </span><span class="m">0</span>:25<span class="w"> </span><span class="m">10</span><span class="w">     </span>node<span class="o">[</span><span class="m">01</span>-10<span class="o">]</span>
@@ -542,7 +542,7 @@ JOBID<span class="w">   </span>PARTITION<span class="w">   </span>NAME<span clas
 </section>
 <section id="serial-job-examples">
 <h3>Serial job examples<a class="headerlink" href="#serial-job-examples" title="Link to this heading">#</a></h3>
-<p>This example requests 1 CPU core, 1 hour of runtime, and 32GB of memory for a serial job. It writes standard output and error messages to separate files, using <code class="docutils literal notranslate"><span class="pre">%j</span></code> to include the job ID in each filename for easier troubleshooting.</p>
+<p>This example requests 1 CPU core, 1 hour of runtime, and 32 GB of memory for a serial job. It writes standard output and error messages to separate files, using <code class="docutils literal notranslate"><span class="pre">%j</span></code> to include the job ID in each filename for easier troubleshooting.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --job-name=serial_job         # Descriptive job name</span>
 <span class="c1">#SBATCH --output=output_%j.out        # Output file (%j = job ID)</span>
@@ -556,7 +556,7 @@ JOBID<span class="w">   </span>PARTITION<span class="w">   </span>NAME<span clas
 module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
 
 <span class="c1"># Run the job</span>
-./example_aire.bin
+./example.bin
 </pre></div>
 </div>
 <div class="admonition note">
@@ -676,7 +676,7 @@ srun<span class="w"> </span>./example_calder.bin
 <p class="admonition-title">Tip</p>
 <p>On both Aire and Calder, <code class="docutils literal notranslate"><span class="pre">srun</span></code> is Slurm’s native launcher and is generally recommended for launching MPI applications. It uses the resources allocated by Slurm and works well for multi-node jobs. The systems use different network fabrics: Aire uses Omni-Path and Calder uses InfiniBand. Check the system-specific software and MPI guidance when optimising an application.</p>
 <p>Some applications that invoke <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> internally may report errors such as “There are not enough slots available” despite the requested resources having been allocated. Where the application allows the MPI launcher to be configured, consider using <code class="docutils literal notranslate"><span class="pre">srun</span></code> instead.</p>
-<p>If you are unsure which launcher your application expects, consult the software documentation or contact Research IT.</p>
+<p>If you are unsure which launcher your application expects, consult the official documentation for that specific software or contact Research IT.</p>
 </div>
 </section>
 </section>
@@ -782,11 +782,11 @@ srun<span class="w"> </span>./my_mpi_program
 <p>We strongly discourage users from using interactive sessions for interactive code development using platforms like jupyter, spyder or Rstudio. Code development should be done before deploying code on the HPC.</p>
 </div>
 <p>Interactive jobs can be started using the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command, as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>username@login1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
-<span class="o">[</span>username@node016<span class="w"> </span>~<span class="o">]</span>$
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>username@calder-login-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
+<span class="o">[</span>username@calder-cpu001<span class="w"> </span>~<span class="o">]</span>$
 </pre></div>
 </div>
-<p>Note that it is required to specify a requested runtime, but the scheduler will otherwise adopt the same default resources as for batch jobs. If the requested resources are available, the session will start immediately. If not, the session will immediately exit. Note that once the session has started the prompt changes to show that the interactive session is now running on a specific compute node (in this case, <code class="docutils literal notranslate"><span class="pre">node016</span></code>).</p>
+<p>Note that it is required to specify a requested runtime, but the scheduler will otherwise adopt the same default resources as for batch jobs. If the requested resources are available, the session will start immediately. If not, the session will immediately exit. Note that once the session has started the prompt changes to show that the interactive session is now running on a specific compute node (in this case, <code class="docutils literal notranslate"><span class="pre">calder-cpu001</span></code>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you have made changes to your environment on the login nodes these will not be preserved when connecting to an interactive session and you will be required to rerun <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands. Connecting to an interactive session creates a new login shell, which means any commands in your .bashrc are executed when you connect.</p>
@@ -812,7 +812,7 @@ Aire</label><div class="sd-tab-content docutils">
 <span class="c1">#SBATCH --gres=gpu:nvidia_l40:1        # Request a single GPU</span>
 
 <span class="c1"># Load any necessary modules</span>
-<span class="c1"># module load &lt;module_name&gt;</span>
+module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
 
 <span class="c1"># Run the job</span>
 ./example.bin
@@ -828,7 +828,7 @@ Calder</label><div class="sd-tab-content docutils">
 <span class="c1">#SBATCH --gres=gpu:nvidia_h200:1          # Request a single GPU</span>
 
 <span class="c1"># Load any necessary modules</span>
-<span class="c1"># module load &lt;module_name&gt;</span>
+module<span class="w"> </span>load<span class="w"> </span>calder/hopper<span class="w"> </span>&lt;other_modules&gt;
 
 <span class="c1"># Run the job</span>
 ./example.bin
