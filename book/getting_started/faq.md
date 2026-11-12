@@ -6,13 +6,11 @@ This page answers common questions from users during the launch of Calder. If yo
 
 **What is the difference between Aire and Calder, and when should I use each system?**
 
-Calder is the newer HPC system and provides increased compute and storage capacity compared with Aire. It has 12,288 CPU cores across 96 standard CPU nodes, compared with 9,072 CPU cores across the standard and high-memory CPU nodes on Aire. Calder also provides 6.3 PB of Lustre scratch storage and 246 TB of Lustre flash storage, compared with 3.7 PB and 139 TB respectively on Aire.
+Calder is the newer HPC system and provides increased compute and storage capacity compared with Aire. It has 12,288 CPU cores across 96 standard CPU nodes, compared with 9,072 CPU cores across the standard and high-memory CPU nodes on Aire. Calder also provides 5.5 PB of Lustre scratch storage and 167 TB of Lustre flash storage, compared with 3.6 PB and 139 TB respectively on Aire. The two systems also have different hardware and system configurations. Calder uses a newer AMD EPYC 9555 CPU platform and InfiniBand networking, while Aire uses AMD EPYC 9634 processors and OmniPath networking.
 
-The two systems also have different hardware and system configurations. Calder uses a newer AMD EPYC 9555 CPU platform and InfiniBand networking, while Aire uses AMD EPYC 9634 processors and Omni-Path networking.
+For CPU workloads, Calder is particularly well suited to jobs that require substantial computational resources or parallel execution across multiple nodes. Calder has InfiniBand network provides a high-performance interconnect for workloads that require communication between compute nodes.
 
-For CPU workloads, Calder is particularly well suited to jobs that require substantial computational resources or parallel execution across multiple nodes. Calder has a minimum CPU allocation of 8 cores, and its InfiniBand network provides a high-performance interconnect for workloads that require communication between nodes.
-
-Calder also provides NVIDIA H200 NVL GPUs, while Aire provides NVIDIA L40S GPUs. The H200 has 141 GB of HBM3e memory and 4.8 TB/s of memory bandwidth, making it well suited to demanding scientific computing, HPC, and AI/ML workloads. The L40S has 48 GB of GDDR6 memory and is well suited to a range of AI, machine learning, inference, visualisation, and other GPU workloads. The most appropriate system therefore depends on the requirements of your application.
+Calder also provides NVIDIA H200 GPUs, while Aire provides NVIDIA L40S GPUs. The H200 has 141 GB of HBM3e memory and 4.8 TB/s of memory bandwidth, making it well suited to demanding scientific computing, HPC, and AI/ML workloads. The L40S has 48 GB of GDDR6 memory and is well suited to a wide range of AI, machine learning, visualisation, and other GPU workloads. The most appropriate system therefore depends on the requirements of your application.
 
 As a general guide:
 
@@ -24,7 +22,7 @@ Both systems use Slurm as their job scheduler, but partitions, resource limits, 
 
 **Will my existing Aire job scripts work on Calder?**
 
-Many Slurm directives and commands will be familiar, but you should review your scripts before using them on Calder. Module names and the module system, partitions, resource limits, and hardware-specific settings may differ. Test your script with a representative job before moving a production workload.
+Many Slurm directives and commands will be similar, but you should review your scripts before using them on Calder. Module names and the module system, partitions, resource limits, and hardware-specific settings may differ. Test your script with a representative job before moving a production workload.
 
 **Is my software available on Calder?**
 

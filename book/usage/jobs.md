@@ -10,7 +10,7 @@ The vast majority of jobs will be batch jobs. These are submitted via a job scri
 
 - 1 CPU core
 - 1 GB memory
-- Use of standard compute node pool (No GPU access)
+- Use of standard CPU compute node pool (No GPU access)
 
 ```{note}
 On Calder's standard compute partition, the minimum CPU request is 8 cores — if you request fewer, Slurm will allocate 8 cores regardless. This minimum doesn't apply to the GPU partition, where CPU and memory are instead allocated proportionally to the number of GPUs requested (see [GPU jobs](#gpu-jobs) below).
@@ -105,7 +105,7 @@ On Calder's standard compute partition, the minimum CPU request is 8 cores. A se
 
 Parallel jobs include those run over multiple cores within the same node (SMP, typically via OpenMP) or across multiple nodes via a message passing interface (MPI) such as Open MPI.
 
-:::{note}
+:::{warning}
 Note that in order to use more than one CPU (or core), your program must be specifically written to use a parallel programming model. Just requesting more CPUs in Slurm will not make the program use more than 1 CPU; the extra CPUs you reserved will sit idle.
 :::
 
@@ -143,7 +143,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 #SBATCH --cpus-per-task=16  # Number of CPU cores per task
 
 # Load any necessary modules
-module load <module_name>
+module load calder/cpu <other_modules>
 
 # Tell OpenMP how many resources it has been given
 export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
@@ -154,7 +154,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 :::
 ::::
 
-:::{note}
+:::{tip}
 To optimise performance, it is sometimes worth exploring additional OpenMP options such as:
 
 ```bash
@@ -200,41 +200,42 @@ srun ./example_aire.bin
 # Load any necessary modules, e.g. MPI
 module load calder/cpu openmpi
 
-# Run the job using Slurm's native launcher
+# Run the job
 srun ./example_calder.bin
 ```
 :::
 ::::
 
-```{tip}
+:::{tip}
 On both Aire and Calder, `srun` is Slurm's native launcher and is generally recommended for launching MPI applications. It uses the resources allocated by Slurm and works well for multi-node jobs. The systems use different network fabrics: Aire uses Omni-Path and Calder uses InfiniBand. Check the system-specific software and MPI guidance when optimising an application.
+
+On Calder, **PMIx** is the default MPI launch method for `srun`. Previously, this setting was applied when the Calder OpenMPI module was loaded; it is now enabled by default. Other MPI libraries, such as Intel MPI, should continue to use their documented launch method.
 
 Some applications that invoke `mpiexec` or `mpirun` internally may report errors such as "There are not enough slots available" despite the requested resources having been allocated. Where the application allows the MPI launcher to be configured, consider using `srun` instead.
 
 If you are unsure which launcher your application expects, consult the official documentation for that specific software or contact Research IT.
-```
+:::
 
 ## Job arrays
 
-Situations often arise when you want to run many almost identical jobs simultaneously, perhaps running the same program many times but changing the input data or some argument or parameter. One possible solution is to write a Python or Perl script to create all the job scripts, and then write a BASH script to execute them. This is very time consuming and might end up submitting many more jobs to the queue than you actually need to. Thankfully, this problem is made much easier via Slurm's job array feature:
+Situations often arise when you want to run many almost identical jobs simultaneously, perhaps running the same program many times but changing the input data or some argument or parameter. One possible solution is to write a Python or Perl script to create all the job scripts, and then write a Bash script to execute them. This is very time consuming and might end up submitting many more jobs to the queue than you actually need to. Thankfully, this problem is made much easier via Slurm's job array feature:
 
 - Only a single `sbatch` command is issued, and only a single `scancel` command would be required to cancel all jobs
 - Only a single entry appears after checking `squeue`
 - It is much easier for the user to keep track of your jobs
 
-The easiest way to think of a job array is as a job script with a built-in FOR loop. It makes use of an environment variable created by Slurm - `$SLURM_ARRAY_TASK_ID`. The example script below runs 100 jobs in a Conda environment, with input and output files determined by the array index `$SLURM_ARRAY_TASK_ID`. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.
+The easiest way to think of a job array is as a job script with a built-in `For Loop`. It makes use of an environment variable created by Slurm, `$SLURM_ARRAY_TASK_ID`. The example script, `job_array_script.sh`, below runs 100 jobs in a Conda environment, with input and output files determined by the array index `$SLURM_ARRAY_TASK_ID`. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.
 
 ::::{tab-set}
 :::{tab-item} Aire
 ```bash
 #!/bin/bash
-#SBATCH --job-name=aire_task_array
+#SBATCH --job-name=aire_job_array
 #SBATCH --time=01:00:00
-#SBATCH --array=1-100%10             # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
+#SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
 #SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)
 
-# Load any necessary modules
-# e.g. using a conda environment
+# Load any necessary modules, e.g. using a conda environment
 module load miniforge
 conda activate my_environment
 
@@ -245,9 +246,9 @@ python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLU
 :::{tab-item} Calder
 ```bash
 #!/bin/bash
-#SBATCH --job-name=calder_task_array
+#SBATCH --job-name=calder_job_array
 #SBATCH --time=01:00:00
-#SBATCH --array=1-100%10             # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
+#SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
 #SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)
 
 # Load any necessary modules
@@ -256,12 +257,16 @@ module load calder/cpu miniforge3
 conda activate my_environment
 
 # Run the job, passing in the input and output filenames
-python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLURM_ARRAY_TASK_ID
+python -i /scratch-calder/users/<username>/input/input.$SLURM_ARRAY_TASK_ID -o /scratch-calder/users/<username>/results/out.$SLURM_ARRAY_TASK_ID
 ```
 :::
 ::::
 
-This array job would be submitted as normal using `sbatch task_array_script.sh`. In this example, input files would be read from the `input` directory, and take the form input.1, input.2, input.3 etc. The program would create output files out.1, out.2, out.3 etc in the `results` directory.
+This array job would be submitted as normal using `sbatch job_array_script.sh`. In this example, input files would be read from the `input` directory, and take the form `input.1`, `input.2`, `input.3` etc. The program would create output files `out.1`, `out.2`, `out.3` etc. in the `results` directory.
+
+:::{note}
+On Calder, the maximum job array size is **10,001 tasks**. Slurm can hold up to **100,000 jobs**.
+:::
 
 ### Task arrays (multiple tasks in one job)
 
@@ -273,10 +278,8 @@ Slurm uses the `--ntasks` option to specify the number of tasks. All tasks share
 :::{tab-item} Aire
 ```bash
 #!/bin/bash
-#SBATCH --job-name=task_example
-#SBATCH --output=task_%j.out
-#SBATCH --error=task_%j.err
-#SBATCH --ntasks=10 # 10 tasks in one job
+#SBATCH --job-name=aire_task_array
+#SBATCH --ntasks=10                   # 10 tasks in one job
 #SBATCH --cpus-per-task=1
 #SBATCH --time=01:00:00
 #SBATCH --mem=20G
@@ -289,10 +292,8 @@ srun ./my_mpi_program
 :::{tab-item} Calder
 ```bash
 #!/bin/bash
-#SBATCH --job-name=task_example
-#SBATCH --output=task_%j.out
-#SBATCH --error=task_%j.err
-#SBATCH --ntasks=10 # 10 tasks in one job
+#SBATCH --job-name=calder_task_array
+#SBATCH --ntasks=10                   # 10 tasks in one job
 #SBATCH --cpus-per-task=1
 #SBATCH --time=01:00:00
 #SBATCH --mem=20G
@@ -309,7 +310,7 @@ srun ./my_mpi_program
 It is also possible to run jobs in interactive mode. This means rather than queueing for your job to run on the batch system you request resource for an interactive session via the shell.
 
 :::{warning}
-We strongly discourage users from using interactive sessions for interactive code development using platforms like jupyter, spyder or Rstudio. Code development should be done before deploying code on the HPC.
+We strongly discourage users from using interactive sessions for interactive code development using platforms like jupyter, spyder or Rstudio. Code development should be done locally first before deploying on the HPC.
 :::
 
 Interactive jobs can be started using the `srun` command, as follows:
@@ -341,9 +342,9 @@ GPUs can be requested with `--partition=<partition>` and `--gres=gpu:<type>:<num
 :::{tab-item} Aire
 ```bash
 #!/bin/bash 
-#SBATCH --time=01:00:00                # Request runtime (hh:mm:ss)             
-#SBATCH --partition=gpu                # Request the GPU partition
-#SBATCH --gres=gpu:nvidia_l40:1        # Request a single GPU
+#SBATCH --time=01:00:00              # Request runtime (hh:mm:ss)             
+#SBATCH --partition=gpu              # Request the GPU partition
+#SBATCH --gres=gpu:nvidia_l40:1      # Request a single GPU
 
 # Load any necessary modules
 module load <module_name>
@@ -355,9 +356,9 @@ module load <module_name>
 :::{tab-item} Calder
 ```bash
 #!/bin/bash 
-#SBATCH --time=01:00:00                   # Request runtime (hh:mm:ss)             
-#SBATCH --partition=calder-gpu-hopper     # Request the GPU partition
-#SBATCH --gres=gpu:nvidia_h200:1          # Request a single GPU
+#SBATCH --time=01:00:00                 # Request runtime (hh:mm:ss)             
+#SBATCH --partition=calder-gpu-hopper   # Request the GPU partition
+#SBATCH --gres=gpu:nvidia_h200:1        # Request a single GPU
 
 # Load any necessary modules
 module load calder/hopper <other_modules>
@@ -369,7 +370,7 @@ module load calder/hopper <other_modules>
 ::::
 
 ```{note}
-On Calder, if you only request a number of GPUs (without separately requesting `--cpus-per-task` or `--mem`), the CPU cores and memory allocated on the GPU node are proportional to the number of GPUs requested. For example, requesting a single GPU with no other resources specified gives you 1 GPU plus 1/8 of the node's CPU cores and memory, since there are 8 GPUs per node. GPU usage is accounted for and counts towards fair share in the same way as CPU and memory usage.
+On Calder, if you request GPUs without separately specifying `--cpus-per-task` or `--mem`, Slurm allocates CPU cores and memory in proportion to the number of GPUs requested. Each GPU provides one eighth of a GPU node: **1 GPU, 16 CPU cores and approximately 193 GB of memory**. Requesting 2 GPUs therefore provides 2 slices: 32 CPU cores and approximately 386 GB of memory. GPU usage is accounted for and counts towards fair share in the same way as CPU and memory usage.
 
 Additionally, GPU jobs on Calder are limited to a maximum of 16 GPUs per job and per user at any one time, across a maximum of 2 nodes.
 ```
@@ -391,9 +392,9 @@ GPUs are also available in interactive mode. For example, requesting an interact
 :::
 ::::
 
-Here, note again that the prompt has changed to tell us that we are now running on a dedicated GPU node.
+Here, note that the prompt has changed to tell us that we are now running on a dedicated GPU node.
 
-To use the GPU hardware you will need to ensure the NVIDIA CUDA toolkit module is loaded into your environment, *before* compiling or running code. This can be done explicitly with `module load cuda`, or via an environment manager such as conda (via miniforge). Again note that changes made to the environment on login nodes will not carry over to compute nodes, so this will need to be done in the job submission script or after starting an interactive session.
+To use the GPU hardware you will need to ensure the NVIDIA CUDA toolkit module is loaded into your environment **before** compiling or running code. This can be done explicitly with `module load cuda`, or via an environment manager such as conda (via miniforge). Again note that changes made to the environment on login nodes will not carry over to compute nodes, so this will need to be done in the job submission script or after starting an interactive session.
 
 ### AI/ML jobs on GPU
 
@@ -427,7 +428,7 @@ python my_ML_script.py
 
 # Load any necessary modules, e.g. Miniforge
 # Activate conda environment
-module load calder/cpu miniforge
+module load calder/hopper miniforge3
 conda activate my_ML_environment
 
 # Run the job
@@ -437,44 +438,82 @@ python my_ML_script.py
 ::::
 
 :::{tip}
-Requesting 1 GPU on Aire defaults to using 1 CPU core and 1GB memory for your job unless you request more. If you need more CPU cores and memory, you need to request them separately using additional SBATCH directives. On one Aire GPU node, there are 24 CPU cores and 256GB memory total, divided among 3 GPUs (approximately 8 cores and 85GB memory available per GPU). 
+Requesting 1 GPU on Aire defaults to using 1 CPU core and 1GB memory for your job unless you request more. If you need more CPU cores and memory, you need to request them separately using additional SBATCH directives. On one Aire GPU node, there are 24 CPU cores and 256GB memory total, divided among 3 GPUs (approximately 8 cores and 85GB memory available per GPU).
 
-On Calder, if not explicitly specified, CPU and memory on the GPU node scale automatically and proportionally with the number of GPUs requested. on one Calder GPU node, there are 128 CPU cores and 1.5TB memory total, divided among 8 GPUs (16 cores and approximately 192GB memory per GPU by default).
+On Calder, CPU and memory on the GPU node scale automatically with the number of GPUs requested when they are not specified separately. See the note above for the default allocation per GPU.
 :::
 
-````{admonition} Using the Flash storage
-Aire provides temporary Flash storage (`$TMP_SHARED`) for high I/O performance during job execution. This NVMe storage has a quota of 1TB and 1.5M files per job, making it ideal for I/O-intensive workloads like ML/AI. Data is automatically purged when the job ends.
+:::::{admonition} Using the Flash filesystem
+:class: note
+
+::::{tab-set}
+:::{tab-item} Aire
+
+Aire provides temporary Flash storage for high I/O performance during job execution. This NVMe storage has a quota of 1 TB and 1.5 million files per job, making it ideal for I/O-intensive workloads such as ML/AI. The storage is automatically purged when the job ends.
+
+The Flash storage path is made available through the `$TMP_SHARED` environment variable.
 
 ```bash
 #!/bin/bash
-#SBATCH --job-name=gpu_flash             # Job name
-#SBATCH --time=01:00:00                  # Request runtime (hh:mm:ss)
-#SBATCH --partition=gpu                  # Request GPU partition
-#SBATCH --gres=gpu:nvidia_l40:1          # Request 1 GPU
-#SBATCH --cpus-per-task=4                # Request 4 CPU cores
-#SBATCH --mem-per-cpu=8G                 # Request 8GB memory per CPU core
+#SBATCH --job-name=aire_gpu_flash    # Job name
+#SBATCH --time=01:00:00              # Request runtime (hh:mm:ss)
+#SBATCH --partition=gpu              # Request GPU partition
+#SBATCH --gres=gpu:nvidia_l40:1      # Request 1 GPU
+#SBATCH --cpus-per-task=4            # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G             # Request 8 GB memory per CPU core
 
 # Flash storage path is automatically set as $TMP_SHARED
 echo "Flash storage path: $TMP_SHARED"
 
 # Copy input data to Flash storage
-cp -r /path/to/input/data $TMP_SHARED/
+cp -r /path/to/input/data "$TMP_SHARED/"
 
 # Load GPU environment
 module load miniforge
 conda activate my_ML_environment
 
 # Run GPU job using local data
-python my_ML_script.py --data $TMP_SHARED/data
+python my_ML_script.py --data "$TMP_SHARED/data"
 
 # Copy results back to permanent storage
-cp -r $TMP_SHARED/results /path/to/permanent/storage/
+cp -r "$TMP_SHARED/results" /path/to/permanent/storage/
 
 # Flash storage ($TMP_SHARED) is automatically cleaned after the job ends
 ```
+:::
+:::{tab-item} Calder
 
-The availability and configuration of equivalent temporary storage on Calder will be documented when its hardware details are confirmed.
-````
+Calder provides NVMe Flash storage for high I/O performance during job execution. To use it, specify your Flash storage directory explicitly: `/flash-calder/users/<username>/`. Unlike Aire, `$TMP_SHARED` is not currently defined on Calder.
+
+Copy your input data to this directory before running your workload, then copy any results you want to keep back to permanent storage.
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=calder_gpu_flash    # Job name
+#SBATCH --time=01:00:00                # Request runtime (hh:mm:ss)
+#SBATCH --partition=calder-gpu-hopper  # Request GPU partition
+#SBATCH --gres=gpu:nvidia_h200:1       # Request 1 GPU
+#SBATCH --cpus-per-task=4              # Request 4 CPU cores
+#SBATCH --mem-per-cpu=8G               # Request 8 GB memory per CPU core
+
+# Set the Flash storage directory
+FLASH_DIR=/flash-calder/users/<username>/
+
+# Copy input data to Flash storage
+cp -r /path/to/input/data "$FLASH_DIR"
+
+# Load GPU environment
+module load calder/hopper miniforge3
+conda activate my_ML_environment
+
+# Run GPU job using local data
+python my_ML_script.py --data "$FLASH_DIR/data"
+
+# Copy results back to permanent storage
+cp -r "$FLASH_DIR/results" /path/to/permanent/storage/
+```
+:::
+:::::
 
 ## Large-memory jobs
 
@@ -482,7 +521,7 @@ Calder does not have high memory compute nodes. If you need more memory than is 
 
 High memory nodes can be useful for applications that require a large amount of memory but do not benefit from, or cannot use, MPI parallelism across multiple nodes. Keeping the application on a single node may also avoid the performance overhead associated with inter node communication.
 
-Here, we request a high memory node to run a threaded application using OpenMP. Note that the `--mem` option specifies the amount of memory requested *per node*.
+Here, we request a high memory node to run a threaded application using OpenMP. Note that the `--mem` option specifies the amount of memory requested **per node**.
 
 ```bash
 #!/bin/bash
@@ -534,6 +573,10 @@ A dependent job can also be submitted from within a job script. In this case, `$
 sbatch --dependency=afterany:$SLURM_JOB_ID job2.sh
 ```
 
+## Recurring jobs
+
+Calder supports `scrontab`, which allows you to schedule recurring jobs through Slurm. Use `scrontab` to manage recurring job schedules. For the available options and command syntax, consult the command's help page on Calder.
+
 (submission-options)=
 ## List of Slurm submission options
 
@@ -555,5 +598,5 @@ Below is a list of currently available options for submissions to Slurm. This li
 | `--gres=gpu:<type>:<number>` | Requests the use of GPU nodes, specifying the GPU type and number of requested GPUs. This needs to be used with the GPU partition (`gpu` on Aire, `calder-gpu-hopper` on Calder). On Aire, use type `nvidia_l40` (each GPU node has 3 GPUs). On Calder, use type `nvidia_h200` (each GPU node has 8 GPUs, with a maximum of 16 GPUs per job/user and 2 nodes per job). | |
 | `--array=<start>-<stop>`<br>`-a <start>-<stop>` | Produce an array of sub-tasks (loop) from `<start>` to `<stop>`, using the `$SLURM_ARRAY_TASK_ID` variable to identify the individual sub-tasks.  | |
 | `--mail-type=BEGIN,END` | Request an email to be sent at the beginning and end of a job to the owner. | |
-| `--mail-user=username@leeds.ac.uk` | Specify user email for `--mail-type` option. | User's email address |
+| `--mail-user=<username>@leeds.ac.uk` | Specify user email for `--mail-type` option. | User's email address |
 | `--help`<br>`-h`| Display a list of help information, then exit. | |

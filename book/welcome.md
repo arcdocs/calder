@@ -1,8 +1,8 @@
 # Leeds HPC Documentation
 
-Welcome to the central documentation for tehe High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
+Welcome to the central documentation for the High Performance Computing (HPC) systems at the [University of Leeds](https://www.leeds.ac.uk).
 
-**Calder**, our flagship HPC system launched in October 2026, operates alongside **Aire**. This site provides guidance for using **Aire** and **Calder**, including information about accessing the systems, running jobs, managing data and using software. Although the systems share many HPC concepts, some aspects of their hardware, software environments and configuration differ. Where instructions are system-specific, this documentation identifies the relevant system.
+**Calder**, our latest HPC system launched in October 2026, operates alongside **Aire**. This site provides guidance for using **Aire** and **Calder**, including information about accessing the systems, running jobs, managing data and using software. Although the systems share many HPC concepts, some aspects of their hardware, software environments and configuration differ. Where instructions are system-specific, this documentation identifies the relevant system.
 
 ## Moving from Aire to Calder
 
