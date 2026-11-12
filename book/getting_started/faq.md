@@ -8,7 +8,7 @@ This page answers common questions from users during the launch of Calder. If yo
 
 Calder is the newer HPC system and provides increased compute and storage capacity compared with Aire. It has 12,288 CPU cores across 96 standard CPU nodes, compared with 9,072 CPU cores across the standard and high-memory CPU nodes on Aire. Calder also provides 5.5 PB of Lustre scratch storage and 167 TB of Lustre flash storage, compared with 3.6 PB and 139 TB respectively on Aire. The two systems also have different hardware and system configurations. Calder uses a newer AMD EPYC 9555 CPU platform and InfiniBand networking, while Aire uses AMD EPYC 9634 processors and OmniPath networking.
 
-For CPU workloads, Calder is particularly well suited to jobs that require substantial computational resources or parallel execution across multiple nodes. Calder has InfiniBand network provides a high-performance interconnect for workloads that require communication between compute nodes.
+For CPU workloads, Calder is particularly well suited to jobs that require substantial computational resources or parallel execution across multiple nodes. Calder's InfiniBand network provides a high-performance interconnect for workloads that require communication between compute nodes.
 
 Calder also provides NVIDIA H200 GPUs, while Aire provides NVIDIA L40S GPUs. The H200 has 141 GB of HBM3e memory and 4.8 TB/s of memory bandwidth, making it well suited to demanding scientific computing, HPC, and AI/ML workloads. The L40S has 48 GB of GDDR6 memory and is well suited to a wide range of AI, machine learning, visualisation, and other GPU workloads. The most appropriate system therefore depends on the requirements of your application.
 
