@@ -464,6 +464,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-memory-jobs">Large-memory jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-dependencies">Job dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurring-jobs">Recurring jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-slurm-submission-options">List of Slurm submission options</a></li>
 </ul>
             </nav>
@@ -486,7 +487,7 @@
 <ul class="simple">
 <li><p>1 CPU core</p></li>
 <li><p>1 GB memory</p></li>
-<li><p>Use of standard compute node pool (No GPU access)</p></li>
+<li><p>Use of standard CPU compute node pool (No GPU access)</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -568,8 +569,8 @@ module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
 <section id="parallel-jobs">
 <h2>Parallel jobs<a class="headerlink" href="#parallel-jobs" title="Link to this heading">#</a></h2>
 <p>Parallel jobs include those run over multiple cores within the same node (SMP, typically via OpenMP) or across multiple nodes via a message passing interface (MPI) such as Open MPI.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
 <p>Note that in order to use more than one CPU (or core), your program must be specifically written to use a parallel programming model. Just requesting more CPUs in Slurm will not make the program use more than 1 CPU; the extra CPUs you reserved will sit idle.</p>
 </div>
 <section id="threaded">
@@ -608,7 +609,7 @@ Calder</label><div class="sd-tab-content docutils">
 <span class="c1">#SBATCH --cpus-per-task=16  # Number of CPU cores per task</span>
 
 <span class="c1"># Load any necessary modules</span>
-module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
+module<span class="w"> </span>load<span class="w"> </span>calder/cpu<span class="w"> </span>&lt;other_modules&gt;
 
 <span class="c1"># Tell OpenMP how many resources it has been given</span>
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span>
@@ -619,8 +620,8 @@ module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
 </div>
 </div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
 <p>To optimise performance, it is sometimes worth exploring additional OpenMP options such as:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_PLACES</span><span class="o">=</span>cores
 <span class="nb">export</span><span class="w"> </span><span class="nv">OMP_PROC_BIND</span><span class="o">=</span>close
@@ -666,7 +667,7 @@ Calder</label><div class="sd-tab-content docutils">
 <span class="c1"># Load any necessary modules, e.g. MPI</span>
 module<span class="w"> </span>load<span class="w"> </span>calder/cpu<span class="w"> </span>openmpi
 
-<span class="c1"># Run the job using Slurm's native launcher</span>
+<span class="c1"># Run the job</span>
 srun<span class="w"> </span>./example_calder.bin
 </pre></div>
 </div>
@@ -675,6 +676,7 @@ srun<span class="w"> </span>./example_calder.bin
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>On both Aire and Calder, <code class="docutils literal notranslate"><span class="pre">srun</span></code> is Slurm’s native launcher and is generally recommended for launching MPI applications. It uses the resources allocated by Slurm and works well for multi-node jobs. The systems use different network fabrics: Aire uses Omni-Path and Calder uses InfiniBand. Check the system-specific software and MPI guidance when optimising an application.</p>
+<p>On Calder, <strong>PMIx</strong> is the default MPI launch method for <code class="docutils literal notranslate"><span class="pre">srun</span></code>. Previously, this setting was applied when the Calder OpenMPI module was loaded; it is now enabled by default. Other MPI libraries, such as Intel MPI, should continue to use their documented launch method.</p>
 <p>Some applications that invoke <code class="docutils literal notranslate"><span class="pre">mpiexec</span></code> or <code class="docutils literal notranslate"><span class="pre">mpirun</span></code> internally may report errors such as “There are not enough slots available” despite the requested resources having been allocated. Where the application allows the MPI launcher to be configured, consider using <code class="docutils literal notranslate"><span class="pre">srun</span></code> instead.</p>
 <p>If you are unsure which launcher your application expects, consult the official documentation for that specific software or contact Research IT.</p>
 </div>
@@ -682,25 +684,24 @@ srun<span class="w"> </span>./example_calder.bin
 </section>
 <section id="job-arrays">
 <h2>Job arrays<a class="headerlink" href="#job-arrays" title="Link to this heading">#</a></h2>
-<p>Situations often arise when you want to run many almost identical jobs simultaneously, perhaps running the same program many times but changing the input data or some argument or parameter. One possible solution is to write a Python or Perl script to create all the job scripts, and then write a BASH script to execute them. This is very time consuming and might end up submitting many more jobs to the queue than you actually need to. Thankfully, this problem is made much easier via Slurm’s job array feature:</p>
+<p>Situations often arise when you want to run many almost identical jobs simultaneously, perhaps running the same program many times but changing the input data or some argument or parameter. One possible solution is to write a Python or Perl script to create all the job scripts, and then write a Bash script to execute them. This is very time consuming and might end up submitting many more jobs to the queue than you actually need to. Thankfully, this problem is made much easier via Slurm’s job array feature:</p>
 <ul class="simple">
 <li><p>Only a single <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command is issued, and only a single <code class="docutils literal notranslate"><span class="pre">scancel</span></code> command would be required to cancel all jobs</p></li>
 <li><p>Only a single entry appears after checking <code class="docutils literal notranslate"><span class="pre">squeue</span></code></p></li>
 <li><p>It is much easier for the user to keep track of your jobs</p></li>
 </ul>
-<p>The easiest way to think of a job array is as a job script with a built-in FOR loop. It makes use of an environment variable created by Slurm - <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>. The example script below runs 100 jobs in a Conda environment, with input and output files determined by the array index <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.</p>
+<p>The easiest way to think of a job array is as a job script with a built-in <code class="docutils literal notranslate"><span class="pre">For</span> <span class="pre">Loop</span></code>. It makes use of an environment variable created by Slurm, <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>. The example script, <code class="docutils literal notranslate"><span class="pre">job_array_script.sh</span></code>, below runs 100 jobs in a Conda environment, with input and output files determined by the array index <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>. Job arrays are compatible with many workflows, making them a flexible option for parameter sweeps or batch processing.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-4" name="sd-tab-set-2" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-4">
 Aire</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=aire_task_array</span>
+<span class="c1">#SBATCH --job-name=aire_job_array</span>
 <span class="c1">#SBATCH --time=01:00:00</span>
-<span class="c1">#SBATCH --array=1-100%10             # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently</span>
+<span class="c1">#SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently</span>
 <span class="c1">#SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)</span>
 
-<span class="c1"># Load any necessary modules</span>
-<span class="c1"># e.g. using a conda environment</span>
+<span class="c1"># Load any necessary modules e.g. using a Conda environment</span>
 module<span class="w"> </span>load<span class="w"> </span>miniforge
 conda<span class="w"> </span>activate<span class="w"> </span>my_environment
 
@@ -713,23 +714,26 @@ python<span class="w"> </span>-i<span class="w"> </span><span class="nv">$SCRATC
 <label class="sd-tab-label" for="sd-tab-item-5">
 Calder</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=calder_task_array</span>
+<span class="c1">#SBATCH --job-name=calder_job_array</span>
 <span class="c1">#SBATCH --time=01:00:00</span>
-<span class="c1">#SBATCH --array=1-100%10             # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently</span>
+<span class="c1">#SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently</span>
 <span class="c1">#SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)</span>
 
-<span class="c1"># Load any necessary modules</span>
-<span class="c1"># e.g. using a conda environment</span>
+<span class="c1"># Load any necessary modules e.g. using a Conda environment</span>
 module<span class="w"> </span>load<span class="w"> </span>calder/cpu<span class="w"> </span>miniforge3
 conda<span class="w"> </span>activate<span class="w"> </span>my_environment
 
 <span class="c1"># Run the job, passing in the input and output filenames</span>
-python<span class="w"> </span>-i<span class="w"> </span><span class="nv">$SCRATCH</span>/input/input.<span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$SCRATCH</span>/results/out.<span class="nv">$SLURM_ARRAY_TASK_ID</span>
+python<span class="w"> </span>-i<span class="w"> </span>/scratch-calder/users/<span class="nv">$USER</span>/input/input.<span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w"> </span>-o<span class="w"> </span>/scratch-calder/users/<span class="nv">$USER</span>/results/out.<span class="nv">$SLURM_ARRAY_TASK_ID</span>
 </pre></div>
 </div>
 </div>
 </div>
-<p>This array job would be submitted as normal using <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">task_array_script.sh</span></code>. In this example, input files would be read from the <code class="docutils literal notranslate"><span class="pre">input</span></code> directory, and take the form input.1, input.2, input.3 etc. The program would create output files out.1, out.2, out.3 etc in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory.</p>
+<p>This array job would be submitted as normal using <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job_array_script.sh</span></code>. In this example, input files would be read from the <code class="docutils literal notranslate"><span class="pre">input</span></code> directory, and take the form <code class="docutils literal notranslate"><span class="pre">input.1</span></code>, <code class="docutils literal notranslate"><span class="pre">input.2</span></code>, <code class="docutils literal notranslate"><span class="pre">input.3</span></code> etc. The program would create output files <code class="docutils literal notranslate"><span class="pre">out.1</span></code>, <code class="docutils literal notranslate"><span class="pre">out.2</span></code>, <code class="docutils literal notranslate"><span class="pre">out.3</span></code> etc. in the <code class="docutils literal notranslate"><span class="pre">results</span></code> directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On Calder, the maximum job array size is <strong>10,001 tasks</strong>. Slurm can hold up to <strong>100,000 jobs</strong>.</p>
+</div>
 <section id="task-arrays-multiple-tasks-in-one-job">
 <h3>Task arrays (multiple tasks in one job)<a class="headerlink" href="#task-arrays-multiple-tasks-in-one-job" title="Link to this heading">#</a></h3>
 <p>Unlike job arrays, which submit many independent jobs, a task array refers to running multiple tasks within a single Slurm job allocation. This is common for MPI jobs or parallel programs where tasks need to communicate.</p>
@@ -739,10 +743,8 @@ python<span class="w"> </span>-i<span class="w"> </span><span class="nv">$SCRATC
 <label class="sd-tab-label" for="sd-tab-item-6">
 Aire</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=task_example</span>
-<span class="c1">#SBATCH --output=task_%j.out</span>
-<span class="c1">#SBATCH --error=task_%j.err</span>
-<span class="c1">#SBATCH --ntasks=10 # 10 tasks in one job</span>
+<span class="c1">#SBATCH --job-name=aire_task_array</span>
+<span class="c1">#SBATCH --ntasks=10                   # 10 tasks in one job</span>
 <span class="c1">#SBATCH --cpus-per-task=1</span>
 <span class="c1">#SBATCH --time=01:00:00</span>
 <span class="c1">#SBATCH --mem=20G</span>
@@ -757,10 +759,8 @@ srun<span class="w"> </span>./my_mpi_program
 <label class="sd-tab-label" for="sd-tab-item-7">
 Calder</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=task_example</span>
-<span class="c1">#SBATCH --output=task_%j.out</span>
-<span class="c1">#SBATCH --error=task_%j.err</span>
-<span class="c1">#SBATCH --ntasks=10 # 10 tasks in one job</span>
+<span class="c1">#SBATCH --job-name=calder_task_array</span>
+<span class="c1">#SBATCH --ntasks=10                   # 10 tasks in one job</span>
 <span class="c1">#SBATCH --cpus-per-task=1</span>
 <span class="c1">#SBATCH --time=01:00:00</span>
 <span class="c1">#SBATCH --mem=20G</span>
@@ -779,7 +779,7 @@ srun<span class="w"> </span>./my_mpi_program
 <p>It is also possible to run jobs in interactive mode. This means rather than queueing for your job to run on the batch system you request resource for an interactive session via the shell.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>We strongly discourage users from using interactive sessions for interactive code development using platforms like jupyter, spyder or Rstudio. Code development should be done before deploying code on the HPC.</p>
+<p>We strongly discourage users from using interactive sessions for interactive code development using platforms like jupyter, spyder or Rstudio. Code development should be done locally first before deploying on the HPC.</p>
 </div>
 <p>Interactive jobs can be started using the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command, as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>username@calder-login-1<span class="w"> </span>~<span class="o">]</span>$<span class="w"> </span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>/bin/bash
@@ -807,9 +807,9 @@ srun<span class="w"> </span>./my_mpi_program
 <label class="sd-tab-label" for="sd-tab-item-8">
 Aire</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
-<span class="c1">#SBATCH --time=01:00:00                # Request runtime (hh:mm:ss)             </span>
-<span class="c1">#SBATCH --partition=gpu                # Request the GPU partition</span>
-<span class="c1">#SBATCH --gres=gpu:nvidia_l40:1        # Request a single GPU</span>
+<span class="c1">#SBATCH --time=01:00:00              # Request runtime (hh:mm:ss)             </span>
+<span class="c1">#SBATCH --partition=gpu              # Request the GPU partition</span>
+<span class="c1">#SBATCH --gres=gpu:nvidia_l40:1      # Request a single GPU</span>
 
 <span class="c1"># Load any necessary modules</span>
 module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
@@ -823,9 +823,9 @@ module<span class="w"> </span>load<span class="w"> </span>&lt;module_name&gt;
 <label class="sd-tab-label" for="sd-tab-item-9">
 Calder</label><div class="sd-tab-content docutils">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
-<span class="c1">#SBATCH --time=01:00:00                   # Request runtime (hh:mm:ss)             </span>
-<span class="c1">#SBATCH --partition=calder-gpu-hopper     # Request the GPU partition</span>
-<span class="c1">#SBATCH --gres=gpu:nvidia_h200:1          # Request a single GPU</span>
+<span class="c1">#SBATCH --time=01:00:00                 # Request runtime (hh:mm:ss)             </span>
+<span class="c1">#SBATCH --partition=calder-gpu-hopper   # Request the GPU partition</span>
+<span class="c1">#SBATCH --gres=gpu:nvidia_h200:1        # Request a single GPU</span>
 
 <span class="c1"># Load any necessary modules</span>
 module<span class="w"> </span>load<span class="w"> </span>calder/hopper<span class="w"> </span>&lt;other_modules&gt;
@@ -838,7 +838,7 @@ module<span class="w"> </span>load<span class="w"> </span>calder/hopper<span cla
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>On Calder, if you only request a number of GPUs (without separately requesting <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> or <code class="docutils literal notranslate"><span class="pre">--mem</span></code>), the CPU cores and memory allocated on the GPU node are proportional to the number of GPUs requested. For example, requesting a single GPU with no other resources specified gives you 1 GPU plus 1/8 of the node’s CPU cores and memory, since there are 8 GPUs per node. GPU usage is accounted for and counts towards fair share in the same way as CPU and memory usage.</p>
+<p>On Calder, if you request GPUs without separately specifying <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> or <code class="docutils literal notranslate"><span class="pre">--mem</span></code>, Slurm allocates CPU cores and memory in proportion to the number of GPUs requested. Each GPU provides one eighth of a GPU node: <strong>1 GPU, 16 CPU cores and approximately 193 GB of memory</strong>. Requesting 2 GPUs therefore provides 2 slices: 32 CPU cores and approximately 386 GB of memory. GPU usage is accounted for and counts towards fair share in the same way as CPU and memory usage.</p>
 <p>Additionally, GPU jobs on Calder are limited to a maximum of 16 GPUs per job and per user at any one time, across a maximum of 2 nodes.</p>
 </div>
 <p>GPUs are also available in interactive mode. For example, requesting an interactive session with two GPUs:</p>
@@ -860,8 +860,8 @@ Calder</label><div class="sd-tab-content docutils">
 </div>
 </div>
 </div>
-<p>Here, note again that the prompt has changed to tell us that we are now running on a dedicated GPU node.</p>
-<p>To use the GPU hardware you will need to ensure the NVIDIA CUDA toolkit module is loaded into your environment, <em>before</em> compiling or running code. This can be done explicitly with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">cuda</span></code>, or via an environment manager such as conda (via miniforge). Again note that changes made to the environment on login nodes will not carry over to compute nodes, so this will need to be done in the job submission script or after starting an interactive session.</p>
+<p>Here, note that the prompt has changed to tell us that we are now running on a dedicated GPU node.</p>
+<p>To use the GPU hardware you will need to ensure the NVIDIA CUDA toolkit module is loaded into your environment <strong>before</strong> compiling or running code. This can be done explicitly with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">cuda</span></code>, or via an environment manager such as conda (via miniforge). Again note that changes made to the environment on login nodes will not carry over to compute nodes, so this will need to be done in the job submission script or after starting an interactive session.</p>
 </section>
 <section id="ai-ml-jobs-on-gpu">
 <h3>AI/ML jobs on GPU<a class="headerlink" href="#ai-ml-jobs-on-gpu" title="Link to this heading">#</a></h3>
@@ -897,7 +897,7 @@ Calder</label><div class="sd-tab-content docutils">
 
 <span class="c1"># Load any necessary modules, e.g. Miniforge</span>
 <span class="c1"># Activate conda environment</span>
-module<span class="w"> </span>load<span class="w"> </span>calder/cpu<span class="w"> </span>miniforge
+module<span class="w"> </span>load<span class="w"> </span>calder/hopper<span class="w"> </span>miniforge3
 conda<span class="w"> </span>activate<span class="w"> </span>my_ML_environment
 
 <span class="c1"># Run the job</span>
@@ -909,39 +909,76 @@ python<span class="w"> </span>my_ML_script.py
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Requesting 1 GPU on Aire defaults to using 1 CPU core and 1GB memory for your job unless you request more. If you need more CPU cores and memory, you need to request them separately using additional SBATCH directives. On one Aire GPU node, there are 24 CPU cores and 256GB memory total, divided among 3 GPUs (approximately 8 cores and 85GB memory available per GPU).</p>
-<p>On Calder, if not explicitly specified, CPU and memory on the GPU node scale automatically and proportionally with the number of GPUs requested. on one Calder GPU node, there are 128 CPU cores and 1.5TB memory total, divided among 8 GPUs (16 cores and approximately 192GB memory per GPU by default).</p>
+<p>On Calder, CPU and memory on the GPU node scale automatically with the number of GPUs requested when they are not specified separately. See the note above for the default allocation per GPU.</p>
 </div>
-<div class="admonition-using-the-flash-storage admonition">
-<p class="admonition-title">Using the Flash storage</p>
-<p>Aire provides temporary Flash storage (<code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code>) for high I/O performance during job execution. This NVMe storage has a quota of 1TB and 1.5M files per job, making it ideal for I/O-intensive workloads like ML/AI. Data is automatically purged when the job ends.</p>
+<div class="note admonition">
+<p class="admonition-title">Using the Flash filesystem</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-14" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-14">
+Aire</label><div class="sd-tab-content docutils">
+<p>Aire provides temporary Flash storage for high I/O performance during job execution. This NVMe storage has a quota of 1 TB and 1.5 million files per job, making it ideal for I/O-intensive workloads such as ML/AI. The storage is automatically purged when the job ends.</p>
+<p>The Flash storage path is made available through the <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code> environment variable.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH --job-name=gpu_flash             # Job name</span>
-<span class="c1">#SBATCH --time=01:00:00                  # Request runtime (hh:mm:ss)</span>
-<span class="c1">#SBATCH --partition=gpu                  # Request GPU partition</span>
-<span class="c1">#SBATCH --gres=gpu:nvidia_l40:1          # Request 1 GPU</span>
-<span class="c1">#SBATCH --cpus-per-task=4                # Request 4 CPU cores</span>
-<span class="c1">#SBATCH --mem-per-cpu=8G                 # Request 8GB memory per CPU core</span>
+<span class="c1">#SBATCH --job-name=aire_gpu_flash    # Job name</span>
+<span class="c1">#SBATCH --time=01:00:00              # Request runtime (hh:mm:ss)</span>
+<span class="c1">#SBATCH --partition=gpu              # Request GPU partition</span>
+<span class="c1">#SBATCH --gres=gpu:nvidia_l40:1      # Request 1 GPU</span>
+<span class="c1">#SBATCH --cpus-per-task=4            # Request 4 CPU cores</span>
+<span class="c1">#SBATCH --mem-per-cpu=8G             # Request 8 GB memory per CPU core</span>
 
 <span class="c1"># Flash storage path is automatically set as $TMP_SHARED</span>
 <span class="nb">echo</span><span class="w"> </span><span class="s2">"Flash storage path: </span><span class="nv">$TMP_SHARED</span><span class="s2">"</span>
 
 <span class="c1"># Copy input data to Flash storage</span>
-cp<span class="w"> </span>-r<span class="w"> </span>/path/to/input/data<span class="w"> </span><span class="nv">$TMP_SHARED</span>/
+cp<span class="w"> </span>-r<span class="w"> </span>/path/to/input/data<span class="w"> </span><span class="s2">"</span><span class="nv">$TMP_SHARED</span><span class="s2">/"</span>
 
 <span class="c1"># Load GPU environment</span>
 module<span class="w"> </span>load<span class="w"> </span>miniforge
 conda<span class="w"> </span>activate<span class="w"> </span>my_ML_environment
 
 <span class="c1"># Run GPU job using local data</span>
-python<span class="w"> </span>my_ML_script.py<span class="w"> </span>--data<span class="w"> </span><span class="nv">$TMP_SHARED</span>/data
+python<span class="w"> </span>my_ML_script.py<span class="w"> </span>--data<span class="w"> </span><span class="s2">"</span><span class="nv">$TMP_SHARED</span><span class="s2">/data"</span>
 
 <span class="c1"># Copy results back to permanent storage</span>
-cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TMP_SHARED</span>/results<span class="w"> </span>/path/to/permanent/storage/
+cp<span class="w"> </span>-r<span class="w"> </span><span class="s2">"</span><span class="nv">$TMP_SHARED</span><span class="s2">/results"</span><span class="w"> </span>/path/to/permanent/storage/
 
 <span class="c1"># Flash storage ($TMP_SHARED) is automatically cleaned after the job ends</span>
 </pre></div>
 </div>
-<p>The availability and configuration of equivalent temporary storage on Calder will be documented when its hardware details are confirmed.</p>
+</div>
+<input id="sd-tab-item-15" name="sd-tab-set-7" type="radio">
+<label class="sd-tab-label" for="sd-tab-item-15">
+Calder</label><div class="sd-tab-content docutils">
+<p>Calder provides NVMe Flash storage for high I/O performance during job execution. To use it, specify your Flash storage directory explicitly: <code class="docutils literal notranslate"><span class="pre">/flash-calder/users/&lt;username&gt;/</span></code>. Unlike Aire, <code class="docutils literal notranslate"><span class="pre">$TMP_SHARED</span></code> is not currently defined on Calder.</p>
+<p>Copy your input data to this directory before running your workload, then copy any results you want to keep back to permanent storage.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=calder_gpu_flash    # Job name</span>
+<span class="c1">#SBATCH --time=01:00:00                # Request runtime (hh:mm:ss)</span>
+<span class="c1">#SBATCH --partition=calder-gpu-hopper  # Request GPU partition</span>
+<span class="c1">#SBATCH --gres=gpu:nvidia_h200:1       # Request 1 GPU</span>
+<span class="c1">#SBATCH --cpus-per-task=4              # Request 4 CPU cores</span>
+<span class="c1">#SBATCH --mem-per-cpu=8G               # Request 8 GB memory per CPU core</span>
+
+<span class="c1"># Set the Flash storage directory</span>
+<span class="nv">FLASH_DIR</span><span class="o">=</span>/flash-calder/users/<span class="nv">$USER</span>/
+
+<span class="c1"># Copy input data to Flash storage</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/path/to/input/data<span class="w"> </span><span class="s2">"</span><span class="nv">$FLASH_DIR</span><span class="s2">"</span>
+
+<span class="c1"># Load GPU environment</span>
+module<span class="w"> </span>load<span class="w"> </span>calder/hopper<span class="w"> </span>miniforge3
+conda<span class="w"> </span>activate<span class="w"> </span>my_ML_environment
+
+<span class="c1"># Run GPU job using local data</span>
+python<span class="w"> </span>my_ML_script.py<span class="w"> </span>--data<span class="w"> </span><span class="s2">"</span><span class="nv">$FLASH_DIR</span><span class="s2">/data"</span>
+
+<span class="c1"># Copy results back to permanent storage</span>
+cp<span class="w"> </span>-r<span class="w"> </span><span class="s2">"</span><span class="nv">$FLASH_DIR</span><span class="s2">/results"</span><span class="w"> </span>/path/to/permanent/storage/
+</pre></div>
+</div>
+</div>
+</div>
 </div>
 </section>
 </section>
@@ -949,7 +986,7 @@ cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TMP_SHARED
 <h2>Large-memory jobs<a class="headerlink" href="#large-memory-jobs" title="Link to this heading">#</a></h2>
 <p>Calder does not have high memory compute nodes. If you need more memory than is available on a single standard compute node, you can use a high memory node on Aire by requesting the relevant partition with <code class="docutils literal notranslate"><span class="pre">--partition=himem</span></code>.</p>
 <p>High memory nodes can be useful for applications that require a large amount of memory but do not benefit from, or cannot use, MPI parallelism across multiple nodes. Keeping the application on a single node may also avoid the performance overhead associated with inter node communication.</p>
-<p>Here, we request a high memory node to run a threaded application using OpenMP. Note that the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> option specifies the amount of memory requested <em>per node</em>.</p>
+<p>Here, we request a high memory node to run a threaded application using OpenMP. Note that the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> option specifies the amount of memory requested <strong>per node</strong>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --job-name=large_memory_job</span>
 <span class="c1">#SBATCH --time=04:00:00</span>
@@ -993,6 +1030,10 @@ cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$TMP_SHARED
 sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterany:<span class="nv">$SLURM_JOB_ID</span><span class="w"> </span>job2.sh
 </pre></div>
 </div>
+</section>
+<section id="recurring-jobs">
+<h2>Recurring jobs<a class="headerlink" href="#recurring-jobs" title="Link to this heading">#</a></h2>
+<p>Calder supports <code class="docutils literal notranslate"><span class="pre">scrontab</span></code>, which allows you to schedule recurring jobs through Slurm. Use <code class="docutils literal notranslate"><span class="pre">scrontab</span></code> to manage recurring job schedules. For the available options and command syntax, consult the command’s help page on Calder.</p>
 </section>
 <section id="list-of-slurm-submission-options">
 <span id="submission-options"></span><h2>List of Slurm submission options<a class="headerlink" href="#list-of-slurm-submission-options" title="Link to this heading">#</a></h2>
@@ -1061,7 +1102,7 @@ sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterany:<span
 <td class="text-left"><p>Request an email to be sent at the beginning and end of a job to the owner.</p></td>
 <td class="text-left"><p></p></td>
 </tr>
-<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">--mail-user=username&#64;leeds.ac.uk</span></code></p></td>
+<tr class="row-even"><td class="text-left"><p><code class="docutils literal notranslate"><span class="pre">--mail-user=&lt;username&gt;&#64;leeds.ac.uk</span></code></p></td>
 <td class="text-left"><p>Specify user email for <code class="docutils literal notranslate"><span class="pre">--mail-type</span></code> option.</p></td>
 <td class="text-left"><p>User’s email address</p></td>
 </tr>
@@ -1163,6 +1204,7 @@ sbatch<span class="w"> </span>--dependency<span class="o">=</span>afterany:<span
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#large-memory-jobs">Large-memory jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-dependencies">Job dependencies</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#recurring-jobs">Recurring jobs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-slurm-submission-options">List of Slurm submission options</a></li>
 </ul>
   </nav></div>
