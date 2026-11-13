@@ -10,7 +10,7 @@ Welcome to the central documentation for the University of Leeds High Performanc
 
 :::{grid-item}
 **New to HPC?**
-Start with our [Getting Started Guide](getting_started/start) to get your account and learn the basics.
+Start with our [Getting Started Guide](system/start) to get your account and learn the basics.
 :::
 
 :::{grid-item}
@@ -20,7 +20,7 @@ View the [Migration Checklist](#moving-from-aire-to-calder) and software compati
 
 :::{grid-item}
 **Technical Specs**
-Detailed hardware breakdown for [Calder](system/calder_hardware) and [Aire](system/aire_hardware).
+Detailed hardware breakdown for [Calder](system/node_types) and [Aire](system/hpc_architecture).
 :::
 ::::
 
@@ -60,17 +60,16 @@ Most Slurm commands are identical, but the **Software Stack** and **Partition Na
 module load cuda/12.1
 python my_code.py
 
-
 :::
 
 :::{tab-item} Calder Script (New)
 
-Bash
 #SBATCH --partition=calder_gpu
 #SBATCH --nodes=1
 #SBATCH --gres=gpu:1
 module load languages/anaconda3
 python my_code.py
+
 :::
 ::::
 
