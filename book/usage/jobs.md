@@ -235,7 +235,7 @@ The easiest way to think of a job array is as a job script with a built-in `For 
 #SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
 #SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)
 
-# Load any necessary modules, e.g. using a conda environment
+# Load any necessary modules e.g. using a Conda environment
 module load miniforge
 conda activate my_environment
 
@@ -251,13 +251,12 @@ python -i $SCRATCH/input/input.$SLURM_ARRAY_TASK_ID -o $SCRATCH/results/out.$SLU
 #SBATCH --array=1-100%10              # Run job array with indices 1 to 100, allowing up to 10 jobs to run concurrently
 #SBATCH --output=arrayjob_%A_%a.out   # Save output to a file named with job ID (%A) and array index (%a)
 
-# Load any necessary modules
-# e.g. using a conda environment
+# Load any necessary modules e.g. using a Conda environment
 module load calder/cpu miniforge3
 conda activate my_environment
 
 # Run the job, passing in the input and output filenames
-python -i /scratch-calder/users/<username>/input/input.$SLURM_ARRAY_TASK_ID -o /scratch-calder/users/<username>/results/out.$SLURM_ARRAY_TASK_ID
+python -i /scratch-calder/users/$USER/input/input.$SLURM_ARRAY_TASK_ID -o /scratch-calder/users/$USER/results/out.$SLURM_ARRAY_TASK_ID
 ```
 :::
 ::::
@@ -497,7 +496,7 @@ Copy your input data to this directory before running your workload, then copy a
 #SBATCH --mem-per-cpu=8G               # Request 8 GB memory per CPU core
 
 # Set the Flash storage directory
-FLASH_DIR=/flash-calder/users/<username>/
+FLASH_DIR=/flash-calder/users/$USER/
 
 # Copy input data to Flash storage
 cp -r /path/to/input/data "$FLASH_DIR"
